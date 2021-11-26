@@ -6,6 +6,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 const environment = require('./settings/environment');
 
@@ -63,8 +64,9 @@ module.exports = {
         use: ['babel-loader'],
       },
       {
-        test: /\.(png|gif|jpe?g|svg)$/i,
+        test: /\.(png|gif|jpe?g)$/i,
         type: 'asset',
+        exclude: path.resolve(environment.paths.source, 'images', 'icons'),
         parser: {
           dataUrlCondition: {
             maxSize: environment.limits.images,
@@ -73,6 +75,11 @@ module.exports = {
         generator: {
           filename: 'images/[name].[hash:7][ext]',
         },
+      },
+      {
+        test: /\.svg$/,
+        include: path.resolve(environment.paths.source, 'images', 'icons'),
+        use: ['svg-sprite-loader', 'svgo-loader'],
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/,
@@ -89,6 +96,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new SpriteLoaderPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
@@ -102,7 +110,7 @@ module.exports = {
       filename: 'css/[name].[hash:7].css',
     }),
     new ImageMinimizerPlugin({
-      test: /\.(jpe?g|png|gif|svg)$/i,
+      test: /\.(jpe?g|png|gif)$/i,
       minimizerOptions: {
         plugins: [
           ['gifsicle', { interlaced: true }],
@@ -124,6 +132,10 @@ module.exports = {
           globOptions: {
             ignore: ['*.DS_Store', 'Thumbs.db'],
           },
+        },
+        {
+          from: path.resolve(environment.paths.source, 'static'),
+          to: path.resolve(environment.paths.output),
         },
       ],
     }),

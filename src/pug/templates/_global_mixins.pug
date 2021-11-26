@@ -129,8 +129,8 @@ mixin social(socialArray)
 //- works
 mixin icon(name, mod)
 	- mod = mod || ''
-	svg(class=`icon icon-${name} ${mod}`)
-		use(xlink:href=`i/sprite/sprite.svg#${name}`)
+	svg(class=`icon icon_${name} ${mod}`)
+		use(xlink:href=`#${name}`)
 
 mixin pagination(config)
 	- config.mod = config.mod || ''
