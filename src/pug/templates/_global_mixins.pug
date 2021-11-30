@@ -106,15 +106,11 @@ mixin breadcrumbs(array,add_class)
 //- works
 mixin menu(menuArray)
 	- gl_mod = menuArray.gl_mod || ''
-	ul(class=`${menuArray.gl_class}_list ${gl_mod}`)
+	ul(class=`${menuArray.gl_class}__list `)
 		each item in menuArray.items
 			- url = item.url || '#'
-			if item.active
-				li(class= `${menuArray.gl_class}_item active_mod`)
-					a(href= url class= `${menuArray.gl_class}_link`)= item.title
-			else
-				li(class= `${menuArray.gl_class}_item`)
-					a(href= url class= `${menuArray.gl_class}_link`)= item.title
+			li(class= `${menuArray.gl_class}__item ${item.active ? `${menuArray.gl_class}__item--active_mod` : ''} ${gl_mod ? `${menuArray.gl_class}__item--${gl_mod}` : ''}`)
+				a(href= url class= `${menuArray.gl_class}__link ${gl_mod ? `${menuArray.gl_class}__link--${gl_mod}` : ''}`)= item.title
 
 //- works
 mixin social(socialArray)
