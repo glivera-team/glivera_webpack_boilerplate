@@ -22,4 +22,4 @@
 		и три таска там линтинги и производительность 
 		все таски есть в package.json
 		/ this is a production build with modifications and three tasks there linting and performance 
-		all tasks are in
+		all tasks are in package.json
