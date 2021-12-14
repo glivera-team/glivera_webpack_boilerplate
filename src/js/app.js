@@ -19,19 +19,11 @@ console.info('%c%s', styles, message);
 let $body;
 // -------------------  global variables###
 
-const readyFunc = () => {
-	console.log('document ready');
-	$body = $('body');
-};
-
 const loadFunc = () => {
 	console.log('page load');
 };
 
-docReady(() => {
-	readyFunc();
-});
-
 pageLoad(() => {
+	$body = $('body');
 	loadFunc();
 });

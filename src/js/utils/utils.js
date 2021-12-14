@@ -98,7 +98,7 @@ export const onWindowScroll = cb => {
 	handleScroll();
 };
 
-export const docReady = cb => {
+export const pageLoad = cb => {
 	if (!cb && !isFunction(cb)) return;
 	const state = document.readyState;
 	if (typeof document === 'undefined') {
@@ -107,10 +107,4 @@ export const docReady = cb => {
 	if (state === 'complete' || state === 'interactive') {
 		setTimeout(cb(), 0);
 	}
-};
-
-export const pageLoad = cb => {
-	if (!cb && !isFunction(cb)) return;
-
-	document.addEventListener('DOMContentLoaded', cb);
 };
