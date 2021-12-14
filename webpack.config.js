@@ -8,6 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
+require('babel-polyfill');
 
 const environment = require('./settings/environment');
 
@@ -17,17 +18,23 @@ const PAGES = fs
 	.filter((fileName) => fileName.endsWith('.pug'));
 
 const htmlPluginEntries = PAGES.map(
-	(page) =>
-		new HTMLWebpackPlugin({
-			template: `${PAGES_DIR}/${page}`,
-			filename: `./${page.replace(/\.pug/, '.html')}`,
-			environment: process.env.NODE_ENV,
-		}),
+	(page) => new HTMLWebpackPlugin({
+		template: `${PAGES_DIR}/${page}`,
+		filename: `./${page.replace(/\.pug/, '.html')}`,
+		environment: process.env.NODE_ENV,
+	}),
 );
 
 module.exports = {
 	entry: {
+		'es6-promise': ['core-js/modules/es6.promise'],
+		'es6-array-iterator': ['core-js/modules/es6.array.iterator'],
+		'babel-polyfill': ['babel-polyfill'],
 		app: path.resolve(environment.paths.source, 'index.js'),
+	},
+	resolve: {
+		extensions: ['.ts', '.js', '*'],
+		modules: [path.resolve(environment.paths.source, 'js'), 'node_modules'],
 	},
 	output: {
 		filename: 'js/[name].[hash:7].js',
@@ -80,13 +87,16 @@ module.exports = {
 			{
 				test: /\.svg$/,
 				include: path.resolve(environment.paths.source, 'images', 'icons'),
-				use: [{
-					loader: 'svg-sprite-loader',
-					options: {
-						extract: true,
-						publicPath: '/images/sprite/',
+				use: [
+					{
+						loader: 'svg-sprite-loader',
+						options: {
+							extract: true,
+							publicPath: '/images/sprite/',
+						},
 					},
-				}, 'svgo-loader'],
+					'svgo-loader',
+				],
 			},
 			{
 				test: /\.(eot|ttf|woff|woff2)$/,
