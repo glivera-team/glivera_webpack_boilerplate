@@ -126,7 +126,7 @@ mixin social(socialArray)
 mixin icon(name, mod)
 	- mod = mod || ''
 	svg(class=`icon icon_${name} ${mod}`)
-		use(xlink:href=`#${name}`)
+		use(xlink:href=`${assetsImage}sprite/sprite.svg#${name}`)
 
 mixin pagination(config)
 	- config.mod = config.mod || ''
@@ -156,7 +156,8 @@ mixin pagination(config)
 
 //- picture
 mixin picture(data)
-	- type = data.png ? 'png' : 'jpg'
+	- typeJpeg = data.typeJpeg ? 'jpeg' : 'jpg'
+	- type = data.png ? 'png' : typeJpeg
 	- is2x = data.is2x ? true : false
 	- media = data.media
 	- imgFit = data.contain ? 'contain_img' : 'cover_img'
@@ -164,19 +165,16 @@ mixin picture(data)
 	picture(class = data.mod , data-tab= data.tab)
 		each imgType in ['webp', type]
 			if media
-				source(media=`(min-width: ${media}px)` srcset=`${data.img}.${imgType}${is2x ? `, ${data.img}@2x.${imgType} 2x` : ''}` type=`image/${imgType}`)
-				source(media=`(max-width: ${media - 1}px)` srcset=`${data.img_mob}.${imgType}${is2x ? `, ${data.img_mob}@2x.${imgType} 2x` : ''}` type=`image/${imgType}`)
+				if imgType === 'webp'
+					source(media=`(min-width: ${media}px)` srcset=`${assetsImage}${data.img}.${type}.${imgType}${is2x ? `, ${data.img}@2x.${type}.${imgType} 2x` : ''}` type=`image/${imgType}`)
+					source(media=`(max-width: ${media - 1}px)` srcset=`${assetsImage}${data.img_mob}.${type}.${imgType}${is2x ? `, ${data.img_mob}@2x.${type}.${imgType} 2x` : ''}` type=`image/${imgType}`)
+				else
+					source(media=`(min-width: ${media}px)` srcset=`${assetsImage}${data.img}.${imgType}${is2x ? `, ${data.img}@2x.${imgType} 2x` : ''}` type=`image/${imgType}`)
+					source(media=`(max-width: ${media - 1}px)` srcset=`${assetsImage}${data.img_mob}.${imgType}${is2x ? `, ${data.img_mob}@2x.${imgType} 2x` : ''}` type=`image/${imgType}`)
 			else
-				source(srcset=`${data.img}.${imgType}${is2x ? `, ${data.img}@2x.${imgType} 2x` : ''}` type=`image/${imgType}`)
-		img(class= customClass src=`${data.img}.${type}` alt="")
-
-mixin image(array)
-	- alt = array.alt || ''
-	if array.srcsetArray
-		picture(class= array.class)
-			each item in array.srcsetArray
-				source(srcset=`${assetsImage}${item.img}`, media=item.media)
-			img(class= `${array.class}__in`, src=`${assetsImage}${array.img}`, alt= alt)
-	else
-		img(class= array.class, src=`${assetsImage}${array.img}`, alt= alt)
+				if imgType === 'webp'
+						source(srcset=`${assetsImage}${data.img}.${type}.${imgType}${is2x ? `, ${data.img}@2x.${type}.${imgType} 2x` : ''}` type=`image/${imgType}`)
+				else
+					source(srcset=`${assetsImage}${data.img}.${imgType}${is2x ? `, ${data.img}@2x.${imgType} 2x` : ''}` type=`image/${imgType}`)
+		img(class= customClass src=`${assetsImage}${data.img}.${type}` alt="")
 
