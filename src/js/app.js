@@ -1,7 +1,7 @@
 // ------------------- imports
 import $ from 'jquery';
 // import { GLOBAL_VARS } from 'constants/global_vars';
-import { docReady, pageLoad } from 'utils/utils';
+import { pageLoad } from 'utils/utils';
 // ------------------- imports###
 
 // ------------------  import components
