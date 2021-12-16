@@ -1,7 +1,7 @@
 // ------------------- imports
 import $ from 'jquery';
-// import { GLOBAL_VARS } from 'constants/global_vars';
-import { pageLoad } from 'utils/utils';
+import { GLOBAL_VARS } from 'utils/constants';
+import { documentReady, pageLoad } from 'utils';
 // ------------------- imports###
 
 // ------------------  import components
@@ -19,11 +19,20 @@ console.info('%c%s', styles, message);
 let $body;
 // -------------------  global variables###
 
+const readyFunc = () => {
+	$body = $('body');
+
+	console.log('document ready', GLOBAL_VARS);
+};
+
 const loadFunc = () => {
 	console.log('page load');
 };
 
+documentReady(() => {
+	readyFunc();
+});
+
 pageLoad(() => {
-	$body = $('body');
 	loadFunc();
 });

@@ -81,7 +81,7 @@ export const onWindowResize = cb => {
 		cb();
 	};
 
-	window.addEventListener('resize', handleResize);
+	window.addEventListener('resize', debounce(15, handleResize));
 
 	handleResize();
 };
@@ -98,13 +98,12 @@ export const onWindowScroll = cb => {
 	handleScroll();
 };
 
+export const documentReady = cb => {
+	if (!cb && !isFunction(cb)) return;
+	document.addEventListener('DOMContentLoaded', cb);
+};
+
 export const pageLoad = cb => {
 	if (!cb && !isFunction(cb)) return;
-	const state = document.readyState;
-	if (typeof document === 'undefined') {
-		throw new Error('document-ready only runs in the browser');
-	}
-	if (state === 'complete' || state === 'interactive') {
-		setTimeout(cb(), 0);
-	}
+	window.addEventListener('load', cb);
 };
