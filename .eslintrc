@@ -1,32 +1,47 @@
 {
-  "extends": "airbnb",
-  "env": {
-    "node": true,
-    "jasmine": true,
-    "jquery": true
-  },
-  "rules": {
-		"implicit-arrow-linebreak": 0,
-    "linebreak-style": 0,
-    "no-use-before-define": 0,
-    "func-names": 0,
-    "prefer-arrow-callback": 0,
-    "no-var": 0,
-    "max-len": 0,
-    "guard-for-in": 0,
-    "object-shorthand": 0,
-    "no-restricted-syntax": 0,
-    "prefer-template": 0,
-    "import/no-amd": 0,
-    "space-before-function-paren": 0,
-    "jsx-a11y/href-no-hash": "off",
-    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }],
-    "import/no-unresolved": 0,
-    "import/extensions": 0
-  },
-  "globals": {
-    "browser": false,
-    "window": true,
-    "document": true
-  }
+	"extends": "airbnb",
+	"env": {
+		"node": true,
+		"jasmine": true,
+		"jquery": true
+	},
+	"rules": {
+		"indent": [
+			2,
+			"tab"
+		],
+		"no-tabs": 0,
+		"arrow-parens": "off",
+		"no-restricted-globals": "off",
+		//		"linebreak-style": [
+		//			"error",
+		//			"windows"
+		//		],
+		"linebreak-style": "off",
+		"react/prop-types": 0,
+		"no-alert": "off",
+		"prefer-const": "off",
+		"import/prefer-default-export": "off",
+		"arrow-body-style": "off",
+		"max-len": "off",
+		"no-unused-vars": "warn",
+		"camelcase": "warn",
+		"import/no-extraneous-dependencies": "off",
+		"no-nested-ternary": "off",
+		"radix": "off",
+		"no-else-return": "off",
+		"no-lonely-if": "off",
+		"quotes": [
+			2,
+			"single",
+			{
+				"avoidEscape": true
+			}
+		]
+	},
+	"globals": {
+		"browser": false,
+		"window": true,
+		"document": true
+	}
 }

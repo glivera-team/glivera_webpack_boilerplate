@@ -5,7 +5,7 @@ import './js/app.js';
 
 // import icons svg
 function requireAll(r) {
-  r.keys().forEach(r);
+	r.keys().forEach(r);
 }
 
 requireAll(require.context('./images/icons/', true, /\.svg$/));
