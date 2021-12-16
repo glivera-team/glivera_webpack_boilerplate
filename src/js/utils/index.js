@@ -2,7 +2,7 @@ import isMobile from 'ismobilejs';
 
 export function debounce(delay, fn) {
 	let timerId;
-	return function (...args) {
+	return (...args) => {
 		if (timerId) {
 			clearTimeout(timerId);
 		}
@@ -15,11 +15,13 @@ export function debounce(delay, fn) {
 
 export function debounceImmediate(delay, fn) {
 	let fired = false;
-	return function (...args) {
+	return (...args) => {
 		if (!fired) {
 			fn(...args);
 			fired = true;
-			setTimeout(() => (fired = false), delay);
+			setTimeout(() => {
+				fired = false;
+			}, delay);
 		}
 	};
 }

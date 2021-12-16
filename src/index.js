@@ -1,7 +1,7 @@
 // scss
 import './scss/main_global.scss';
 // js
-import './js/app.js';
+import './js/app';
 
 // import icons svg
 function requireAll(r) {

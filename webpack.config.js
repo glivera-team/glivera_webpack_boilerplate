@@ -8,6 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 require('babel-polyfill');
 
 const environment = require('./settings/environment');
@@ -58,12 +59,26 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.((c|sa|sc)ss)$/i,
+				test: /\.(scss|css)$/,
 				use: [
-					MiniCssExtractPlugin.loader,
-					'css-loader',
+					{
+						loader: MiniCssExtractPlugin.loader,
+					},
+					{
+						loader: 'css-loader',
+						options: {
+							importLoaders: 2,
+							sourceMap: true,
+							modules: false,
+						},
+					},
 					'postcss-loader',
-					'sass-loader',
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: true,
+						},
+					},
 				],
 			},
 			{
@@ -81,7 +96,7 @@ module.exports = {
 					},
 				},
 				generator: {
-					filename: 'images/[name].[hash:7][ext]',
+					filename: 'images/[name].[ext]',
 				},
 			},
 			{
@@ -107,10 +122,25 @@ module.exports = {
 					},
 				},
 				generator: {
-					filename: 'fonts/[name].[hash:7][ext]',
+					filename: 'fonts/[name][ext]',
 				},
 			},
 		],
+	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				vendors: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendors',
+				},
+				default: {
+					name: 'default',
+					minChunks: 2,
+					enforce: true,
+				},
+			},
+		},
 	},
 	plugins: [
 		new SpriteLoaderPlugin(),
@@ -123,34 +153,14 @@ module.exports = {
 		new webpack.DefinePlugin({
 			PAGES: JSON.stringify(PAGES),
 		}),
-		new MiniCssExtractPlugin({
-			filename: 'css/[name].[hash:7].css',
-		}),
-		new ImageMinimizerPlugin({
-			test: /\.(jpe?g|png|gif)$/i,
-			minimizerOptions: {
-				plugins: [
-					['gifsicle', { interlaced: true }],
-					['jpegtran', { progressive: true }],
-					['optipng', { optimizationLevel: 5 }],
-				],
-			},
-		}),
-		new ImageminWebpWebpackPlugin({
-			config: [
-				{
-					test: /\.(jpe?g|png)/,
-					options: { quality: 75 },
-				},
-			],
-			overrideExtension: false,
-			detailedLogs: true,
-			silent: false,
-			strict: true,
-		}),
 		new CleanWebpackPlugin({
-			verbose: true,
+			verbose: false,
+			cleanStaleWebpackAssets: false,
 			cleanOnceBeforeBuildPatterns: ['**/*', '!stats.json'],
+		}),
+		new MiniCssExtractPlugin({
+			filename: '[name].css',
+			chunkFilename: '[name].[contenthash:7].css',
 		}),
 		new CopyWebpackPlugin({
 			patterns: [
@@ -176,6 +186,7 @@ module.exports = {
 				},
 			],
 		}),
+		new ESLintPlugin(),
 	].concat(htmlPluginEntries),
 	target: 'web',
 };
