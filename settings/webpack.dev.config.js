@@ -3,12 +3,31 @@ const {merge} = require('webpack-merge');
 
 const webpackConfiguration = require('../webpack.config');
 const environment = require('./environment');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(webpackConfiguration, {
 	mode: 'development',
 
 	/* Manage source maps generation process */
-	devtool: 'eval-source-map',
+	devtool: 'eval-cheap-source-map',
+
+	module: {
+		rules: [
+			// Styles: Inject CSS into the head with source maps
+			{
+				test: /\.(sass|scss|css)$/,
+				use: [
+					'style-loader',
+					{
+						loader: 'css-loader',
+						options: { sourceMap: true, importLoaders: 1, modules: false },
+					},
+					{ loader: 'postcss-loader', options: { sourceMap: true } },
+					{ loader: 'sass-loader', options: { sourceMap: true } },
+				],
+			},
+		],
+	},
 
 	/* Development Server Configuration */
 	devServer: {
@@ -37,5 +56,9 @@ module.exports = merge(webpackConfiguration, {
 	},
 
 	/* Additional plugins configuration */
-	plugins: [],
+	plugins: [
+		new MiniCssExtractPlugin({
+			filename: 'css/[name].css',
+		}),
+	],
 });

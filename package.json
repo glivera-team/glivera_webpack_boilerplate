@@ -7,8 +7,6 @@
     "dev": "cross-env NODE_ENV=development webpack serve --config settings/webpack.dev.config.js --mode=development",
     "dev-build": "cross-env NODE_ENV=development webpack --config settings/webpack.dev.config.js --mode=development --watch",
     "build": "cross-env NODE_ENV=production webpack --config settings/webpack.prod.config.js --mode=production",
-    "lint:sass": "sass-lint -v -q",
-    "lint:js": "eslint --ext .js src/js/",
     "stats": "webpack --config settings/webpack.prod.config.js --mode=production --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json"
   },
   "devDependencies": {
@@ -47,6 +45,7 @@
     "sass": "^1.43.4",
     "sass-lint": "^1.13.1",
     "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
     "svg-sprite-loader": "^6.0.11",
     "svgo-loader": "^3.0.0",
     "terser-webpack-plugin": "^5.2.5",

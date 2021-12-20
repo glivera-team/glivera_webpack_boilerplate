@@ -4,7 +4,6 @@ const fs = require('fs');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
@@ -38,7 +37,7 @@ module.exports = {
 		modules: [path.resolve(environment.paths.source, 'js'), 'node_modules'],
 	},
 	output: {
-		filename: 'js/[name].[hash:7].js',
+		filename: 'js/[name].js',
 		path: environment.paths.output,
 	},
 	module: {
@@ -58,29 +57,29 @@ module.exports = {
 					},
 				],
 			},
-			{
-				test: /\.(scss|css)$/,
-				use: [
-					{
-						loader: MiniCssExtractPlugin.loader,
-					},
-					{
-						loader: 'css-loader',
-						options: {
-							importLoaders: 2,
-							sourceMap: true,
-							modules: false,
-						},
-					},
-					'postcss-loader',
-					{
-						loader: 'sass-loader',
-						options: {
-							sourceMap: true,
-						},
-					},
-				],
-			},
+			// {
+			// 	test: /\.(scss|css)$/,
+			// 	use: [
+			// 		{
+			// 			loader: MiniCssExtractPlugin.loader,
+			// 		},
+			// 		{
+			// 			loader: 'css-loader',
+			// 			options: {
+			// 				importLoaders: 2,
+			// 				sourceMap: true,
+			// 				modules: false,
+			// 			},
+			// 		},
+			// 		'postcss-loader',
+			// 		{
+			// 			loader: 'sass-loader',
+			// 			options: {
+			// 				sourceMap: true,
+			// 			},
+			// 		},
+			// 	],
+			// },
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
@@ -157,10 +156,6 @@ module.exports = {
 			verbose: false,
 			cleanStaleWebpackAssets: false,
 			cleanOnceBeforeBuildPatterns: ['**/*', '!stats.json'],
-		}),
-		new MiniCssExtractPlugin({
-			filename: '[name].css',
-			chunkFilename: '[name].[contenthash:7].css',
 		}),
 		new CopyWebpackPlugin({
 			patterns: [
