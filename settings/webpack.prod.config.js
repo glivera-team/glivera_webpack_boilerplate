@@ -5,6 +5,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpackConfiguration = require('../webpack.config');
 const environment = require('./environment');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 module.exports = merge(webpackConfiguration, {
 	mode: 'production',
@@ -55,6 +56,16 @@ module.exports = merge(webpackConfiguration, {
 		new MiniCssExtractPlugin({
 			filename: 'css/[name].[contenthash].css',
 			chunkFilename: '[id].css',
+		}),
+		new ImageMinimizerPlugin({
+			test: /\.(jpe?g|png|gif)$/i,
+			minimizerOptions: {
+				plugins: [
+					['gifsicle', { interlaced: true }],
+					['jpegtran', { progressive: true }],
+					['optipng', { optimizationLevel: 5 }],
+				],
+			},
 		}),
 	],
 	performance: {
