@@ -3,7 +3,6 @@ const path = require('path');
 const fs = require('fs');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
@@ -27,9 +26,9 @@ const htmlPluginEntries = PAGES.map(
 
 module.exports = {
 	entry: {
-		'es6-promise': ['core-js/modules/es6.promise'],
-		'es6-array-iterator': ['core-js/modules/es6.array.iterator'],
-		'babel-polyfill': ['babel-polyfill'],
+		// 'es6-promise': ['core-js/modules/es6.promise'],
+		// 'es6-array-iterator': ['core-js/modules/es6.array.iterator'],
+		// 'babel-polyfill': ['babel-polyfill'],
 		app: path.resolve(environment.paths.source, 'index.js'),
 	},
 	resolve: {
@@ -126,21 +125,6 @@ module.exports = {
 			},
 		],
 	},
-	optimization: {
-		splitChunks: {
-			cacheGroups: {
-				vendors: {
-					test: /[\\/]node_modules[\\/]/,
-					name: 'vendors',
-				},
-				default: {
-					name: 'default',
-					minChunks: 2,
-					enforce: true,
-				},
-			},
-		},
-	},
 	plugins: [
 		new SpriteLoaderPlugin(),
 		new webpack.ProvidePlugin({
@@ -151,6 +135,18 @@ module.exports = {
 		}),
 		new webpack.DefinePlugin({
 			PAGES: JSON.stringify(PAGES),
+		}),
+		new ImageminWebpWebpackPlugin({
+			config: [
+				{
+					test: /\.(jpe?g|png)/,
+					options: { quality: 75 },
+				},
+			],
+			overrideExtension: false,
+			detailedLogs: true,
+			silent: false,
+			strict: true,
 		}),
 		new CleanWebpackPlugin({
 			verbose: false,

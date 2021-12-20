@@ -33,7 +33,7 @@ let $body;
 // -------------------  global variables###
 
 const readyFunc = () => {
-	$body = $('body');
+	$body = document.querySelector('body');
 
 	console.log('document ready', GLOBAL_VARS);
 };
