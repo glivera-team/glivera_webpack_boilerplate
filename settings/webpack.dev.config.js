@@ -13,17 +13,27 @@ module.exports = merge(webpackConfiguration, {
 
 	module: {
 		rules: [
-			// Styles: Inject CSS into the head with source maps
 			{
-				test: /\.(sass|scss|css)$/,
+				test: /\.(scss|css)$/,
 				use: [
-					'style-loader',
+					{
+						loader: MiniCssExtractPlugin.loader,
+					},
 					{
 						loader: 'css-loader',
-						options: { sourceMap: true, importLoaders: 1, modules: false },
+						options: {
+							importLoaders: 2,
+							sourceMap: true,
+							modules: false,
+						},
 					},
-					{ loader: 'postcss-loader', options: { sourceMap: true } },
-					{ loader: 'sass-loader', options: { sourceMap: true } },
+					'postcss-loader',
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: true,
+						},
+					},
 				],
 			},
 		],
