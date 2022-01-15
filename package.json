@@ -7,6 +7,7 @@
     "dev": "cross-env NODE_ENV=development webpack serve --config settings/webpack.dev.config.js --mode=development",
     "dev-build": "cross-env NODE_ENV=development webpack --config settings/webpack.dev.config.js --mode=development --watch",
     "build": "cross-env NODE_ENV=production webpack --config settings/webpack.prod.config.js --mode=production",
+		"wp-build": "webpack --config settings/webpack.wp_prod.config.js",
     "stats": "webpack --config settings/webpack.prod.config.js --mode=production --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json"
   },
   "devDependencies": {
