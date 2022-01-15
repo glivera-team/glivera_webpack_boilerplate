@@ -1,4 +1,7 @@
 const path = require('path');
+const portFinderSync = require('portfinder-sync');
+const servPort = portFinderSync.getPort(8080);
+
 
 module.exports = {
 	paths: {
@@ -7,11 +10,12 @@ module.exports = {
 
 		/* Path to built files directory */
 		output: path.resolve(__dirname, '../dist/'),
+		build: path.resolve(__dirname, '../build/'),
 	},
 	server: {
 		host: '0.0.0.0',
-		open: 'http://localhost:8080',
-		port: 8080,
+		open: `http://localhost:${servPort}`,
+		port: servPort,
 	},
 	limits: {
 		/* Image files size in bytes. Below this value the image file will be served as DataURL (inline base64). */

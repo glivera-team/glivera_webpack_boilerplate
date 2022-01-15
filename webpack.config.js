@@ -1,15 +1,18 @@
-const webpack = require('webpack');
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
+const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
-const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 require('babel-polyfill');
 
+const isProduction = process.env.NODE_ENV === 'production';
 const environment = require('./settings/environment');
+
+const currentOutput = isProduction ? environment.paths.build : environment.paths.output;
 
 const PAGES_DIR = `${path.resolve(environment.paths.source)}/pug/pages/`;
 const PAGES = fs
@@ -21,6 +24,8 @@ const htmlPluginEntries = PAGES.map(
 		template: `${PAGES_DIR}/${page}`,
 		filename: `./${page.replace(/\.pug/, '.html')}`,
 		environment: process.env.NODE_ENV,
+		minify: false,
+		inject: 'body',
 	}),
 );
 
@@ -37,7 +42,8 @@ module.exports = {
 	},
 	output: {
 		filename: 'js/[name].js',
-		path: environment.paths.output,
+		path: currentOutput,
+		// assetModuleFilename: 'images/[name][ext]',
 	},
 	module: {
 		rules: [
@@ -52,54 +58,41 @@ module.exports = {
 
 					// this applies to pug imports inside JavaScript
 					{
-						use: ['pug-loader'],
+						use: ['pug-loader?pretty=true'],
 					},
 				],
 			},
-			// {
-			// 	test: /\.(scss|css)$/,
-			// 	use: [
-			// 		{
-			// 			loader: MiniCssExtractPlugin.loader,
-			// 		},
-			// 		{
-			// 			loader: 'css-loader',
-			// 			options: {
-			// 				importLoaders: 2,
-			// 				sourceMap: true,
-			// 				modules: false,
-			// 			},
-			// 		},
-			// 		'postcss-loader',
-			// 		{
-			// 			loader: 'sass-loader',
-			// 			options: {
-			// 				sourceMap: true,
-			// 			},
-			// 		},
-			// 	],
-			// },
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				use: ['babel-loader'],
+				use: ['babel-loader?cacheDirectory'],
 			},
 			{
-				test: /\.(png|gif|webp|jpe?g)$/i,
+				test: /\.(png|gif|webp|jpe?g|svg)$/i,
 				type: 'asset',
-				exclude: path.resolve(environment.paths.source, 'images', 'icons'),
+				exclude: path.resolve(
+					environment.paths.source,
+					'images',
+					'icons',
+					'sprite_icons',
+				),
 				parser: {
 					dataUrlCondition: {
 						maxSize: environment.limits.images,
 					},
 				},
 				generator: {
-					filename: 'images/[name].[ext]',
+					filename: 'images/[name][ext]',
 				},
 			},
 			{
 				test: /\.svg$/,
-				include: path.resolve(environment.paths.source, 'images', 'icons'),
+				include: path.resolve(
+					environment.paths.source,
+					'images',
+					'icons',
+					'sprite_icons',
+				),
 				use: [
 					{
 						loader: 'svg-sprite-loader',
@@ -108,7 +101,9 @@ module.exports = {
 							publicPath: '/images/sprite/',
 						},
 					},
-					'svgo-loader',
+					{
+						loader: 'svgo-loader',
+					},
 				],
 			},
 			{
@@ -126,47 +121,42 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new SpriteLoaderPlugin(),
+		new webpack.DefinePlugin({
+			PAGES: JSON.stringify(PAGES),
+		}),
 		new webpack.ProvidePlugin({
 			$: 'jquery',
 			jQuery: 'jquery',
 			'window.$': 'jquery',
 			'window.jQuery': 'jquery',
 		}),
-		new webpack.DefinePlugin({
-			PAGES: JSON.stringify(PAGES),
-		}),
-		new ImageminWebpWebpackPlugin({
-			config: [
-				{
-					test: /\.(jpe?g|png)/,
-					options: { quality: 75 },
-				},
-			],
-			overrideExtension: false,
-			detailedLogs: true,
-			silent: false,
-			strict: true,
-		}),
 		new CleanWebpackPlugin({
 			verbose: false,
 			cleanStaleWebpackAssets: false,
 			cleanOnceBeforeBuildPatterns: ['**/*', '!stats.json'],
 		}),
+		new SpriteLoaderPlugin(),
+		new MiniCssExtractPlugin({
+			filename: 'css/[name].css',
+		}),
 		new CopyWebpackPlugin({
 			patterns: [
 				{
 					from: path.resolve(environment.paths.source, 'images'),
-					to: path.resolve(environment.paths.output, 'images'),
+					to: path.resolve(currentOutput, 'images'),
 					toType: 'dir',
+					noErrorOnMissing: true,
 					globOptions: {
 						dot: true,
-						ignore: ['*.DS_Store', 'Thumbs.db'],
+						ignore: [
+							'**/icons/other_icons/**',
+							'**/icons/sprite_icons/**',
+						],
 					},
 				},
 				{
 					from: path.resolve(environment.paths.source, 'static'),
-					to: path.resolve(environment.paths.output),
+					to: path.resolve(currentOutput),
 					toType: 'dir',
 					noErrorOnMissing: true,
 					globOptions: {
