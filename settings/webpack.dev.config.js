@@ -1,15 +1,14 @@
-/* eslint-disable import/no-extraneous-dependencies */
-const {merge} = require('webpack-merge');
-
+const webpack = require('webpack');
+const { merge } = require('webpack-merge');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpackConfiguration = require('../webpack.config');
 const environment = require('./environment');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(webpackConfiguration, {
 	mode: 'development',
 
 	/* Manage source maps generation process */
-	devtool: 'eval-cheap-source-map',
+	devtool: 'source-map',
 
 	module: {
 		rules: [
@@ -27,7 +26,6 @@ module.exports = merge(webpackConfiguration, {
 							modules: false,
 						},
 					},
-					'postcss-loader',
 					{
 						loader: 'sass-loader',
 						options: {
@@ -36,7 +34,7 @@ module.exports = merge(webpackConfiguration, {
 					},
 				],
 			},
-		],
+		]
 	},
 
 	/* Development Server Configuration */
@@ -53,9 +51,23 @@ module.exports = merge(webpackConfiguration, {
 			},
 		},
 		// open: true,
-		compress: false,
+		compress: true,
 		hot: false,
 		...environment.server,
+	},
+
+	plugins: [
+		new webpack.SourceMapDevToolPlugin({
+			filename: '[file].map',
+		}),
+	],
+	optimization: {
+		// Once your build outputs multiple chunks, this option will ensure they share the webpack runtime
+		// instead of having their own. This also helps with long-term caching, since the chunks will only
+		// change when actual code changes, not the webpack runtime.
+		runtimeChunk: {
+			name: 'runtime',
+		},
 	},
 
 	/* File watcher options */
@@ -64,11 +76,4 @@ module.exports = merge(webpackConfiguration, {
 		poll: 300,
 		ignored: /node_modules/,
 	},
-
-	/* Additional plugins configuration */
-	plugins: [
-		new MiniCssExtractPlugin({
-			filename: 'css/[name].css',
-		}),
-	],
 });

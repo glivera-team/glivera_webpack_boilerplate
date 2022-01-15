@@ -2,6 +2,7 @@
 import $ from 'jquery';
 import { GLOBAL_VARS } from 'utils/constants';
 import { documentReady, pageLoad } from 'utils';
+import pageWidgetInit from './dev_vendors/dev_widget';
 // ------------------- imports###
 
 // ------------------  import components
@@ -17,25 +18,16 @@ console.info('%c%s', styles, message);
 
 // -------------------  dev widget
 if (GLOBAL_VARS.projectDevStatus) {
-	// eslint-disable-next-line global-require
-	import('./dev_vendors/dev_widget').then(({ default: pageWidgetIni }) => {
-		pageWidgetIni();
-	}).catch(() => {
-		console.log('Failed to load function');
-	});
+	pageWidgetInit();
 	console.log(process.env.NODE_ENV);
 }
 // -------------------  dev widget###
 
 // -------------------  global variables
 // eslint-disable-next-line no-unused-vars
-let $body;
-// -------------------  global variables###
 
 const readyFunc = () => {
-	$body = document.querySelector('body');
-
-	console.log('document ready', GLOBAL_VARS);
+	console.log('ready');
 };
 
 const loadFunc = () => {
