@@ -12,7 +12,7 @@
 
 3. Install npm packages
 
-		npp i or npm ci
+		npm i or npm ci
 
 4. Let's code!
 
