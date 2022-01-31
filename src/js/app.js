@@ -24,7 +24,6 @@ if (GLOBAL_VARS.projectDevStatus) {
 // -------------------  dev widget###
 
 // -------------------  global variables
-// eslint-disable-next-line no-unused-vars
 
 const readyFunc = () => {
 	console.log('ready');
