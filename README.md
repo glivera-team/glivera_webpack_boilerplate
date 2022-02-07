@@ -16,7 +16,7 @@ Install cross-env global
 
 4. Let's code!
 
-`npm run dev` -  File watching + server
-`npm run dev-build` - Build (development mode) + file watching 
-`npm run build` - Build (production mode)
-`npm run wp_build` - Copies the files (css/js/fonts/static) to wp_theme directory
+* `npm run dev` -  File watching + server
+* `npm run dev-build` - Build (development mode) + file watching 
+* `npm run build` - Build (production mode)
+* `npm run wp_build` - Copies the files (css/js/fonts/static) to wp_theme directory
