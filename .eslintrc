@@ -34,6 +34,7 @@
 		"no-lonely-if": "off",
 		"import/no-unresolved": "off",
 		"no-console": 0,
+		"class-methods-use-this": "off",
 		"quotes": [
 			2,
 			"single",
