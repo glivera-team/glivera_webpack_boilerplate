@@ -1,5 +1,5 @@
 const videoPlayer = Array.from(document.querySelectorAll('.video_block')).map(p => new Plyr(p, {
-	iconUrl: 'i/sprite/sprite.svg',
+	iconUrl: 'images/sprite/sprite.svg',
 	invertTime: false,
 	hideControls: false
 }));
