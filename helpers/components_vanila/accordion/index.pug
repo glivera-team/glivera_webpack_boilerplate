@@ -1,0 +1,36 @@
+extends ../layout/_layout
+
+block vars
+	- array = {body_class:'', layout_mod:'', sub_keywords:'', title_inner:'Index'}
+block content_block
+	section.section
+		.section_in
+			h1.test__title Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi dolorum, dolore dignissimos ea distinctio unde obcaecati vitae totam culpa quia velit beatae, soluta illum est atque! Iste dolore harum obcaecati?
+
+			mixin accordion(data, prefix)
+				- itemClass = prefix ||'accordion';
+				ul(class= itemClass)
+					each item in data
+						li(class= `${itemClass}__item`)
+							div(class= `${itemClass}__item_head`)
+								div(class= `${itemClass}__item_title`)= item.title
+								div(class= `${itemClass}__item_icon_w`)
+									+icon('arrow-down', 'size-mod')
+							div(class= `${itemClass}__item_body`)
+								div(class= `${itemClass}__item_body_in`)= item.descr
+									block
+
+			+accordion([
+					{
+						title: 'accordion item 1',
+						descr: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit dignissimos, aut magnam provident iste laborum at accusantium cupiditate fugiat. Consequatur deleniti maxime voluptas suscipit veritatis fuga sapiente porro temporibus architecto.',
+					},
+					{
+						title: 'accordion item 2',
+						descr: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit dignissimos, aut magnam provident iste laborum at accusantium cupiditate fugiat. Consequatur deleniti maxime voluptas suscipit veritatis fuga sapiente porro temporibus architecto.',
+					},
+					{
+						title: 'accordion item 3',
+						descr: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit dignissimos, aut magnam provident iste laborum at accusantium cupiditate fugiat. Consequatur deleniti maxime voluptas suscipit veritatis fuga sapiente porro temporibus architecto.',
+					},
+				])
