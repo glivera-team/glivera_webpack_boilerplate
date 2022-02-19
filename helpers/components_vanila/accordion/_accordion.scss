@@ -1,3 +1,34 @@
+// ----------------------------------------------------------
+
+.accordion__item_body {
+	color: #727272;
+	font-weight: 400;
+
+// *
+// important style to work
+// *
+
+	max-height: 0;
+	opacity: 0;
+
+	transition: all 0.25s ease-out;
+	will-change: max-height;
+	overflow: hidden;
+	pointer-events: none;
+
+	.accordion__item--active-mod & {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+// *
+// important style to work /
+// *
+
+}
+
+// ----------------------------------------------------------
+
 //---------------------------------------------accordion
 .icon {
 	&.size-mod {
@@ -46,23 +77,6 @@
 	}
 }
 
-.accordion__item_body {
-	color: #727272;
-	font-weight: 400;
-
-	max-height: 0;
-	opacity: 0;
-
-	transition: all 0.25s ease-out;
-	will-change: max-height;
-	overflow: hidden;
-	pointer-events: none;
-
-	.accordion__item--active-mod & {
-		opacity: 1;
-		pointer-events: auto;
-	}
-}
 
 .accordion__item_body {
 	font-size: 1.6rem;
