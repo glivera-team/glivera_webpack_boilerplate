@@ -16,7 +16,17 @@
 
 +form_select({
 	label: 'its select',
-	options: ['item', 'value', 'hello'],
+	options: [
+		{
+			title: 'item',
+		},
+		{
+			title: 'value',
+		},
+		{
+			title: 'hello',
+		},
+	],
 	id: 'select_1',
 })
 
@@ -162,7 +172,7 @@ form.form(action='#', method='POST')
 				name: 'answer'
 			}
 		})
-	
+
 	.form-col
 		+input({
 			class: [
