@@ -74,10 +74,10 @@ readme.md                    # Documentation template
 
 ## Rules:
 
-***Naming:***
+**File naming:**
 
-| Files:                             | Naming                | Exuals to         |
-| ---------------------------------- | :--------------------:| -----------------:|
-| Pug components (pug/blocks)        | *nameOfYourFunction.js* | name of function  |
-| Pug mixins (pug/templates)         | *your_comoponent.pug*   | name of component |
-| JS components (js/components)      | *_m_your_component.pug* | name of component |
+| Type                          | Naming                | Exuals to           |
+| ----------------------------- | :--------------------:| -------------------:|
+| Pug mixins (pug/templates)    | _m_your_component.pug | *name of component* |
+| JS components (js/components) | nameOfYourFunction.js | *name of function*  |
+
