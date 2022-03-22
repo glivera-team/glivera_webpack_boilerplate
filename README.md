@@ -72,10 +72,12 @@ package.json                 # List of modules and other information
 readme.md                    # Documentation template
 ```
 
-## File naming rules:
+## Rules:
 
-| For files:                         | Naming                      | Exuals to         |
-| ---------------------------------- | :--------------------------:| -----------------:|
-| Pug components (pug/blocks)        | ```nameOfYourFunction.js``` | name of function  |
-| Pug mixins (pug/templates)         | ```your_comoponent.pug```   | name of component |
-| JS components (js/components)      | ```_m_your_component.pug``` | name of component |
+***Naming:***
+
+| Files:                             | Naming                | Exuals to         |
+| ---------------------------------- | :--------------------:| -----------------:|
+| Pug components (pug/blocks)        | *nameOfYourFunction.js* | name of function  |
+| Pug mixins (pug/templates)         | *your_comoponent.pug*   | name of component |
+| JS components (js/components)      | *_m_your_component.pug* | name of component |
