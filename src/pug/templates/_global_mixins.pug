@@ -59,7 +59,7 @@ mixin form_select(data)
 		if data.label
 			label(for=data.id class= labelClass)= data.label
 		.form_select__field
-			select(class =`${elClass} ${data.selectMod}` placeholder=data.placeholder name=data.name required=data.required)&attributes(data.attrs)
+			select(class =`${elClass}` placeholder=data.placeholder name=data.name required=data.required)&attributes(data.attrs)
 				each item in data.options
 					option(value=item)&attributes(item.attrs)= item.title
 
