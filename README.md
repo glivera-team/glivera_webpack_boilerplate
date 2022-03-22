@@ -25,9 +25,9 @@ Install cross-env global
 ## Template structure
 
 ```
-build                        # Production version
-helpers                      # Helpers and plugins
-├── components               # All helpers
+build                        # Production build
+helpers                      # All type samples and plugins
+├── components               # Samples
 ├── components_vanilla       # Vanilla js helpers
 settings                     # Webpack configs
 src                          # Sources
@@ -50,7 +50,7 @@ src                          # Sources
 │   ├── templates            # Base mixins, data arrays and variables for *.pug
 │   │   ├── mixins           # Mixins used in project
 ├── scss                     # Styles template
-│   ├── base_ui              # Base elements styles template
+│   ├── base_ui              # Styles for base elements
 │   │   ├── forms            # Styles for form elements
 │   ├── blocks               # Styles for all components
 │   │   ├── universal        # Styles for universal components
@@ -71,3 +71,11 @@ webpack.config.js            # Configuration for launching webpack tasks
 package.json                 # List of modules and other information
 readme.md                    # Documentation template
 ```
+
+## File naming rules:
+
+| For files:                         | Naming                      | Exuals to         |
+| ---------------------------------- | :--------------------------:| -----------------:|
+| Pug components (pug/blocks)        | ```nameOfYourFunction.js``` | name of function  |
+| Pug mixins (pug/templates)         | ```your_comoponent.pug```   | name of component |
+| JS components (js/components)      | ```_m_your_component.pug``` | name of component |
