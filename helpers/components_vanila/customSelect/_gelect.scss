@@ -1,0 +1,213 @@
+$gelect-selector: 'gelect';
+$black: #000;
+$white: #fff;
+$gray: #808080;
+
+:root {
+	--g-bg-color: #{$white};
+	--g-height: 4rem;
+	--g-selected-fz: 1.8rem;
+	--g-option-fz: 1.6rem;
+	--g-border: .2rem solid #{$gray};
+	--g-indent: .4rem 3.4rem .4rem 1.6rem;
+	--g-list-indent: .4rem 1.6rem;
+}
+
+.#{$gelect-selector} {
+	position: relative;
+
+	min-width: 20rem;
+
+	user-select: none;
+}
+
+.#{$gelect-selector}_selected {
+	z-index: 2;
+	position: relative;
+
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: var(--g-height);
+	padding: var(--g-indent);
+	width: 100%;
+
+	color: $black;
+	font-size: var(--g-selected-fz);
+
+	border: var(--g-border);
+	background-color: var(--g-bg-color);
+	border-radius: .6rem;
+
+	cursor: pointer;
+
+	transition: box-shadow .2s ease;
+
+	.#{$gelect-selector}[data-state='active'] & {
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+
+		&::after {
+			transform: rotateZ(180deg);
+		}
+	}
+
+	&:focus {
+		box-shadow: 0px 0px 6px 2px rgba($black, .2);
+	}
+
+	&::after {
+		position: absolute;
+		right: 1rem;
+		top: 50%;
+		margin-top: -.6rem;
+
+		display: block;
+		width: 1.2rem;
+		height: 1.2rem;
+
+		background: url('https://www.svgrepo.com/show/80156/down-arrow.svg') 0 0 / cover no-repeat;
+		content: '';
+
+		transition: transform .2s;
+	}
+}
+
+.#{$gelect-selector}_dropdown {
+	position: absolute;
+	top: 100%;
+	left: 0;
+
+	display: none;
+	width: 100%;
+
+	overflow: hidden;
+	border-bottom-left-radius: .6rem;
+	border-bottom-right-radius: .6rem;
+	background-color: var(--g-bg-color);
+
+	.#{$gelect-selector}[data-state='active'] & {
+		display: block;
+	}
+
+	&::before {
+		z-index: 2;
+		position: absolute;
+		left: 0;
+		top: 0;
+
+		width: 100%;
+		height: 100%;
+
+		pointer-events: none;
+		border: var(--g-border);
+		border-top: 0;
+		border-bottom-left-radius: .6rem;
+		border-bottom-right-radius: .6rem;
+		content: '';
+	}
+}
+
+.#{$gelect-selector}_options {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.#{$gelect-selector}_options__item {
+	width: 100%;
+
+	&[data-selected] {
+		order: -1;
+	}
+}
+
+%options_item_button {
+	display: block;
+	width: 100%;
+	min-height: var(--g-height);
+	padding: var(--g-list-indent);
+
+	font-size: var(--g-option-fz);
+	color: $black;
+
+	background-color: $white;
+	border-top: var(--g-border);
+}
+
+.#{$gelect-selector}_options__btn {
+	@extend %options_item_button;
+
+	text-align: left;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		background-color: $gray;
+		color: $white;
+	}
+
+	.#{$gelect-selector}_options__item[data-selected] & {
+		background-color: #bdbdbd;
+		color: rgba($black, .5);
+	}
+}
+
+.#{$gelect-selector}_hidden {
+	position: absolute; // important
+	visibility: hidden; // important
+}
+
+//---------------------------------------------search
+.#{$gelect-selector}_search_wrap {
+	position: relative;
+}
+
+.#{$gelect-selector}_search {
+	@extend %options_item_button;
+
+	border: 0;
+	box-shadow: inset 0 0 .2rem rgba($black, .6);
+
+	// remove browser`s clear button
+	&::-ms-clear {  display: none; width : 0; height: 0; }
+	&::-ms-reveal {  display: none; width : 0; height: 0; }
+	&::-webkit-search-decoration,
+	&::-webkit-search-cancel-button,
+	&::-webkit-search-results-button,
+	&::-webkit-search-results-decoration { display: none; }
+	// remove browser`s clear button#
+}
+
+.#{$gelect-selector}_search_close {
+	position: absolute;
+	top: 50%;
+	right: 1rem;
+
+	width: 1.6rem;
+	height: 1.6rem;
+	margin-top: -1rem;
+
+	opacity: 0;
+	pointer-events: none;
+
+	background: url('https://www.svgrepo.com/show/315851/close.svg') 0 0 / cover no-repeat;
+	border: 0;
+	cursor: pointer;
+
+	transition: opacity .3s;
+
+	.#{$gelect-selector}[data-searching] & {
+		opacity: .6;
+		pointer-events: initial;
+
+		&:focus,
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+//---------------------------------------------search###
