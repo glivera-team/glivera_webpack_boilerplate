@@ -1,5 +1,4 @@
 # Welcome to glivera-webpack-boilerplate
-![Logo](https://glivera-team.com/wp-content/uploads/2018/09/og_logo.jpg "")
 ## Get started
 
 1. Install [node.js](https://nodejs.org/)
@@ -76,11 +75,11 @@ readme.md                    # Documentation template
 
 **File naming:**
 
-| Type                         | Naming                | Exuals to           |
-| ---------------------------- | :--------------------:| -------------------:|
-| Pug files                    | your_file.pug         |                     |
-| Pug files (built-in blocks)  | _your_file.pug        |                     |
-| Sass files                   | _your_file.scss       |                     |
-| Pug mixin (pug/templates)    | _m_your_component.pug | *name of component* |
-| JS component (js/components) | nameOfYourFunction.js | *name of function*  |
+| Type                          | Naming                | Exuals to           |
+| ----------------------------  | :--------------------:| -------------------:|
+| Pug files                     | your_file.pug         |                     |
+| Pug files (built-in blocks)   | _your_file.pug        |                     |
+| Sass files                    | _your_file.scss       |                     |
+| Pug mixin (pug/templates)     | _m_your_component.pug | *name of component* |
+| JS component (js/components)  | nameOfYourFunction.js | *name of function*  |
 
