@@ -27,14 +27,19 @@
 	}
 }
 
-@mixin bp($width,$direction:max) {
-	@if $direction == min {
+@mixin bp($width,$value:max) {
+	@if $value == min {
 		@media screen and (min-width: $width) {
 			@content;
 		}
 	}
-	@else {
+	@else if $value == max {
 		@media screen and (max-width: $width) {
+			@content;
+		}
+	}
+	@else {
+		@media (max-width: $width) and (min-width: $value) {
 			@content;
 		}
 	}
