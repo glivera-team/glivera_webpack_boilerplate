@@ -122,7 +122,7 @@ mixin social(socialArray)
 		each item in socialArray.items
 			- mod_link = item.mod_link || ''
 			li.social_item
-				a.social_link(href="#" class= `${mod_link}`)
+				a.social_link(href="#" class= `${mod_link}` target='_blanc')
 					+icon(item.name_icon, item.mod_icon)
 
 //- works
