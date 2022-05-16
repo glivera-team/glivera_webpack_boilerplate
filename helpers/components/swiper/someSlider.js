@@ -3,6 +3,8 @@ import 'swiper/css';
 import 'swiper/scss/scrollbar';
 import buildSliders from './buildSwiper';
 
+Swiper.use([Navigation, Pagination]);
+
 const someSlider = () => {
 	const sliderClass = '.someSlider';
 	buildSliders(sliderClass);
@@ -11,7 +13,6 @@ const someSlider = () => {
 
 	if (typeof (slideEl) !== 'undefined' && slideEl != null) {
 		let sliderEl = new Swiper(sliderClass, {
-			modules: [Navigation, Pagination],
 			observer: true,
 			observeParents: true,
 			speed: 800,
