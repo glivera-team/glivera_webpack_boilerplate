@@ -21,6 +21,7 @@
     "babel-polyfill": "^6.26.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^10.2.0",
+    "critters": "^0.0.16",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.1.1",
     "css-mqpacker": "^7.0.0",
@@ -32,7 +33,7 @@
     "eslint-plugin-react": "^7.27.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-webpack-plugin": "^3.1.1",
-    "html-webpack-plugin": "^5.5.0",
+    "html-critical-webpack-plugin": "^2.1.0",
     "image-minimizer-webpack-plugin": "^3.2.2",
     "image-webpack-loader": "^8.1.0",
     "imagemin": "^8.0.1",
@@ -57,9 +58,13 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "critical-css-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.3",
     "gsap": "^3.9.1",
+    "html-webpack-plugin": "^5.5.0",
     "ismobilejs": "^1.1.1",
-    "jquery": "^2.2.4"
+    "jquery": "^2.2.4",
+    "regenerator-runtime": "^0.13.9"
   },
   "resolutions": {
     "mini-css-extract-plugin": "2.4.5"

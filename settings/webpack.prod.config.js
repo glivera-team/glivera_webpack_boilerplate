@@ -5,8 +5,19 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin');
 const webpackConfiguration = require('../webpack.config');
 const environment = require('./environment');
+
+const HtmlCriticalWebpackPluginEntries = environment.paths.PAGES.map(
+	(page) =>
+		new HtmlCriticalWebpackPlugin({
+			base: environment.paths.build,
+			src: `./${page.replace(/\.pug/, '.html')}`,
+			dest: `./${page.replace(/\.pug/, '.html')}`,
+			inline: true,
+		}),
+);
 
 module.exports = merge(webpackConfiguration, {
 	mode: 'production',
@@ -37,9 +48,12 @@ module.exports = merge(webpackConfiguration, {
 		],
 	},
 
+	plugins: [].concat(HtmlCriticalWebpackPluginEntries),
+
 	/* Optimization configuration */
 	optimization: {
 		minimize: true,
+		chunkIds: 'named',
 		minimizer: [
 			new TerserPlugin({
 				parallel: true,
@@ -49,6 +63,9 @@ module.exports = merge(webpackConfiguration, {
 				config: [
 					{
 						test: /\.(jpe?g|png)/,
+						options: {
+							quality: 70,
+						},
 					},
 				],
 				overrideExtension: false,
@@ -57,12 +74,17 @@ module.exports = merge(webpackConfiguration, {
 				strict: true,
 			}),
 			new ImageMinimizerPlugin({
+				test: /\.(png|jpe?g)$/i,
 				minimizer: {
 					implementation: ImageMinimizerPlugin.squooshMinify,
 					options: {
 						encodeOptions: {
 							mozjpeg: {
-								quality: 100,
+								quality: 75,
+							},
+							oxipng: {
+								level: 4,
+								interlace: false,
 							},
 						},
 					},

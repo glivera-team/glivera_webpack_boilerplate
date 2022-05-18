@@ -1,42 +1,38 @@
-// ------------------- imports
-import $ from 'jquery';
-import { GLOBAL_VARS } from 'utils/constants';
-import { documentReady, pageLoad } from 'utils';
-import pageWidgetInit from './dev_vendors/dev_widget';
-// ------------------- imports###
+import Layout from 'layout/Layout';
 
-// ------------------  import components
-// ------------------  import components###
+export default class App {
+	constructor() {
+		this.$htmlTag = document.querySelector('html');
+		this.pageClass =
+			this.$htmlTag.dataset.templateName &&
+			this.$htmlTag.dataset.templateName.length > 0
+				? this.$htmlTag.dataset.templateName
+				: null;
 
-window.jQuery = $;
-window.$ = $;
+		this.init = this.init.bind(this);
+		this.init();
+	}
 
-const styles = ['color: #fff', 'background: #cf8e1f'].join(';');
-const message = 'Developed by Glivera-team https://glivera-team.com/';
-// eslint-disable-next-line no-console
-console.info('%c%s', styles, message);
+	importPage() {
+		if (this.pageClass && this.pageClass !== null) {
+			import(`./pages/${this.pageClass}`)
+				.then(({ default: pageClass }) => {
+					const newPage = new pageClass();
+					newPage.init();
+				})
+				.catch((error) => {
+					console.error(
+						'Failed to load page, check data-template-name at root if correct',
+					);
+					console.dir(error, error.stack);
+				});
+		}
+	}
 
-// -------------------  dev widget
-if (GLOBAL_VARS.projectDevStatus) {
-	pageWidgetInit();
-	console.log(process.env.NODE_ENV);
+	init() {
+		const initLayout = new Layout();
+		setTimeout(() => {
+			this.importPage();
+		}, 0);
+	}
 }
-// -------------------  dev widget###
-
-// -------------------  global variables
-
-const readyFunc = () => {
-	console.log('ready');
-};
-
-const loadFunc = () => {
-	console.log('page load');
-};
-
-documentReady(() => {
-	readyFunc();
-});
-
-pageLoad(() => {
-	loadFunc();
-});

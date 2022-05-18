@@ -12,21 +12,19 @@ require('babel-polyfill');
 const isProduction = process.env.NODE_ENV === 'production';
 const environment = require('./settings/environment');
 
-const currentOutput = isProduction ? environment.paths.build : environment.paths.output;
+const currentOutput = isProduction
+	? environment.paths.build
+	: environment.paths.output;
 
-const PAGES_DIR = `${path.resolve(environment.paths.source)}/pug/pages/`;
-const PAGES = fs
-	.readdirSync(PAGES_DIR)
-	.filter((fileName) => fileName.endsWith('.pug'));
-
-const htmlPluginEntries = PAGES.map(
-	(page) => new HTMLWebpackPlugin({
-		template: `${PAGES_DIR}/${page}`,
-		filename: `./${page.replace(/\.pug/, '.html')}`,
-		environment: process.env.NODE_ENV,
-		minify: false,
-		inject: 'body',
-	}),
+const htmlPluginEntries = environment.paths.PAGES.map(
+	(page) =>
+		new HTMLWebpackPlugin({
+			template: `${environment.paths.PAGES_DIR}/${page}`,
+			filename: `./${page.replace(/\.pug/, '.html')}`,
+			environment: process.env.NODE_ENV,
+			minify: false,
+			inject: 'body',
+		}),
 );
 
 module.exports = {
@@ -37,6 +35,11 @@ module.exports = {
 		app: path.resolve(environment.paths.source, 'index.js'),
 	},
 	resolve: {
+		alias: {
+			ScssHelpers: path.resolve(__dirname, 'src/scss/helpers/'),
+			ScssComponents: path.resolve(__dirname, 'src/scss/components/'),
+			ScssPlugins: path.resolve(__dirname, 'src/scss/plugins/'),
+		},
 		extensions: ['.ts', '.js', '*'],
 		modules: [path.resolve(environment.paths.source, 'js'), 'node_modules'],
 	},
@@ -122,7 +125,7 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.DefinePlugin({
-			PAGES: JSON.stringify(PAGES),
+			PAGES: JSON.stringify(environment.paths.PAGES),
 		}),
 		new webpack.ProvidePlugin({
 			$: 'jquery',
@@ -138,6 +141,7 @@ module.exports = {
 		new SpriteLoaderPlugin(),
 		new MiniCssExtractPlugin({
 			filename: 'css/[name].css',
+			chunkFilename: 'css/chunks/[name].chunk.css',
 		}),
 		new CopyWebpackPlugin({
 			patterns: [
@@ -148,10 +152,7 @@ module.exports = {
 					noErrorOnMissing: true,
 					globOptions: {
 						dot: true,
-						ignore: [
-							'**/icons/other_icons/**',
-							'**/icons/sprite_icons/**',
-						],
+						ignore: ['**/icons/other_icons/**', '**/icons/sprite_icons/**'],
 					},
 				},
 				{
