@@ -1,7 +1,7 @@
 extends ../layout/_layout
 
 block vars
-	- array = {body_class:'', layout_mod:'', sub_keywords:'', title_inner:'Index'}
+	- array = {body_class:'', layout_mod:'', sub_keywords:'', title_inner:'Index', template_name: 'IndexPage'}
 block content_block
-	section.section.demo_mod
+	section.section.index_section.demo_mod
 		h1.section_title Hola #[a.test(href='https://glivera-team.com/') Maketodor] :)

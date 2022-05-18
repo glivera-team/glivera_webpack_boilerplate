@@ -3,17 +3,11 @@
 
 1. Install [node.js](https://nodejs.org/)
 
-2. If Windows
-
-Install cross-env global
-
-`npm i cross-env -g`
-
-3. Install npm packages
+2. Install npm packages
 
 `npm i` or `npm ci`
 
-4. Let's code!
+3. Let's code!
 
 * `npm run dev` -  File watching + server
 * `npm run dev-build` - Build (development mode) + file watching

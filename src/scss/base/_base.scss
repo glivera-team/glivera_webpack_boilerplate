@@ -1,3 +1,8 @@
+@import "family";
+@import "reset";
+@import "fonts";
+@import "print";
+
 //------------------------------------------------------------base styles
 :root {
 	--full-screen: calc(var(--vh, 1vh) * 100);
@@ -61,10 +66,6 @@ a {
 		text-decoration: underline;
 	}
 
-}
-
-.elements_list {
-	padding: 3rem;
 }
 
 //------------------------------------------------------------base styles###
