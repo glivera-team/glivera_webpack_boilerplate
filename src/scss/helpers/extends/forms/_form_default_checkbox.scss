@@ -14,25 +14,48 @@
 		width: 2rem;
 		height: 2rem;
 		cursor:pointer;
+		content: '';
 	}
 
 	&:before {
-		content: '';
 		border-radius: 2px;
 		border: 1px solid $black;
-	}
 
-	&:after {
-		@extend %icon-check;
-		@extend %transition_opacity;
-
-		text-align: center;
-		line-height: 2rem;
-		opacity: 0;
-		color: $black;
+		transition: transform .2s, opacity .2s;
+		will-change: transform;
 
 		.form_checkbox__element:checked + & {
+			opacity: 0;
+			transform: rotateZ(40deg) scaleX(.6);
+		}
+	}
+
+	&::after {
+		opacity: 0;
+
+		border-bottom: 2px solid $black;
+		border-right: 3px solid $black;
+
+		transition: transform .2s, opacity .2s;
+
+		.form_checkbox__element:checked + & {
+			transform: rotateZ(40deg) scaleX(.6);
 			opacity: 1;
 		}
 	}
+
+	//--------------------------------------------- Font icon version
+	// &:after {
+	// 	@extend %icon-check;
+	// 	@extend %transition_opacity;
+
+	// 	text-align: center;
+	// 	line-height: 2rem;
+	// 	opacity: 0;
+	// 	color: $black;
+
+	// 	.form_checkbox__element:checked + & {
+	// 		opacity: 1;
+	// 	}
+	// }
 }
