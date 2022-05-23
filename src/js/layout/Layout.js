@@ -1,9 +1,10 @@
 // ------------------- imports
 import { GLOBAL_VARS } from 'utils/constants';
-import { documentReady, pageLoad } from 'utils';
+import { documentReady, pageLoad, onWindowResize } from 'utils';
 // ------------------- imports###
 
 // ------------------  import components
+import { calcViewportHeight } from '../utils';
 // ------------------  import components###
 
 export default class Layout {
@@ -14,11 +15,16 @@ export default class Layout {
 
 	loadFunc() {
 		console.log('layout load');
+		calcViewportHeight();
 	}
 
 	init() {
 		pageLoad(() => {
 			this.loadFunc();
+		});
+
+		onWindowResize(() => {
+			calcViewportHeight();
 		});
 	}
 }
