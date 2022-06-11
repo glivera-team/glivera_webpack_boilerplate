@@ -157,24 +157,23 @@ mixin pagination(config)
 				li.pag_item.next_mod
 					a.pag_link.next_mod(href='#' class= config.mod)
 
-
-
+//- picture
 mixin picture(data)
 	//- define type of image
-	- reversedImgPath = data.img.split('').reverse()
-	- indexOfDot = reversedImgPath.indexOf('.')
-	- type = reversedImgPath.join('').substring(0, indexOfDot).split('').reverse().join('')
-	- imgPath = reversedImgPath.join('').substring(indexOfDot + 1, data.img.length).split('').reverse().join('')
+	- imgPathDedicated = data.img.split('.')
+	- type = imgPathDedicated.pop();
+	- imgPath = imgPathDedicated.join('.')
 
 	if data.img_mob
-		- reversedMobImgPath = data.img_mob.split('').reverse()
-		- indexOfMobDot = reversedMobImgPath.indexOf('.')
-		- imgMobPath = reversedImgPath.join('').substring(indexOfDot + 1, data.img.length).split('').reverse().join('')
+		- imgMobPathDedicated = data.img_mob.split('.')
+		- typeMob = imgMobPathDedicated.pop();
+		- imgMobPath = imgMobPathDedicated.join('.')
 	//- define type of image##
 	- is2x = data.is2x ? true : false
 	- media = data.media
 	- imgFit = data.contain ? 'contain_img' : 'cover_img'
 	- imgClass = data.img_class || imgFit
+	- environment = 'production'
 	- mediaArray = (environment === 'production') ? ['webp', type] : [type];
 
 	picture(class = data.class)
@@ -191,29 +190,4 @@ mixin picture(data)
 					source(srcset=`${assetsImage}${imgPath}.${type}.${imgType}${is2x ? `, ${imgPath}@2x.${type}.${imgType} 2x` : ''}` type=`image/${imgType}`)
 				else
 					source(srcset=`${assetsImage}${imgPath}.${imgType}${is2x ? `, ${assetsImage}${imgPath}@2x.${imgType} 2x` : ''}` type=`image/${imgType}`)
-		img(class= imgClass src=`${assetsImage}${imgPath}.${type}` alt="")
-
-//- //- picture
-//- mixin picture(data)
-//- 	- typeJpeg = data.jpeg ? 'jpeg' : 'jpg'
-//- 	- type = data.png ? 'png' : typeJpeg
-//- 	- is2x = data.is2x ? true : false
-//- 	- media = data.media
-//- 	- imgFit = data.contain ? 'contain_img' : 'cover_img'
-//- 	- imgClass = data.img_class || imgFit
-//- 	- mediaArray = (environment === 'production') ? ['webp', type] : [type];
-//- 	picture(class = data.class)
-//- 		each imgType in mediaArray
-//- 			if media
-//- 				if imgType === 'webp' && environment === 'production'
-//- 					source(media=`(min-width: ${media}px)` srcset=`${assetsImage}${data.img}.${type}.${imgType}${is2x ? `, ${assetsImage}${data.img}@2x.${type}.${imgType} 2x` : ''}` type=`image/${imgType}`)
-//- 					source(media=`(max-width: ${media - 1}px)` srcset=`${assetsImage}${data.img_mob}.${type}.${imgType}${is2x ? `, ${assetsImage}${data.img_mob}@2x.${type}.${imgType} 2x` : ''}` type=`image/${imgType}`)
-//- 				else
-//- 					source(media=`(min-width: ${media}px)` srcset=`${assetsImage}${data.img}.${imgType}${is2x ? `, ${assetsImage}${data.img}@2x.${imgType} 2x` : ''}` type=`image/${imgType}`)
-//- 					source(media=`(max-width: ${media - 1}px)` srcset=`${assetsImage}${data.img_mob}.${imgType}${is2x ? `, ${assetsImage}${data.img_mob}@2x.${imgType} 2x` : ''}` type=`image/${imgType}`)
-//- 			else
-//- 				if imgType === 'webp' && environment === 'production'
-//- 					source(srcset=`${assetsImage}${data.img}.${type}.${imgType}${is2x ? `, ${data.img}@2x.${type}.${imgType} 2x` : ''}` type=`image/${imgType}`)
-//- 				else
-//- 					source(srcset=`${assetsImage}${data.img}.${imgType}${is2x ? `, ${assetsImage}${data.img}@2x.${imgType} 2x` : ''}` type=`image/${imgType}`)
-//- 		img(class= imgClass src=`${assetsImage}${data.img}.${type}` alt="")
+		img(class= imgClass src=`${assetsImage}${imgPath}.${type}` alt=data.alt)
