@@ -173,7 +173,6 @@ mixin picture(data)
 	- media = data.media
 	- imgFit = data.contain ? 'contain_img' : 'cover_img'
 	- imgClass = data.img_class || imgFit
-	- environment = 'production'
 	- mediaArray = (environment === 'production') ? ['webp', type] : [type];
 
 	picture(class = data.class)
