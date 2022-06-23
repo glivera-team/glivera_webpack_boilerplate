@@ -40,7 +40,7 @@ mixin form_input(data)
 		if data.label
 			label(for=data.id class= labelClass)= data.label
 		div(class = fieldClass)
-			input(type=data.type class = elClass placeholder=data.placeholder value=data.value name=data.name required=data.required)
+			input(type=data.type class = elClass id=data.id placeholder=data.placeholder value=data.value name=data.name required=data.required)
 			block
 
 mixin form_textarea(data)
