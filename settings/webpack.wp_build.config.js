@@ -1,10 +1,13 @@
-const path = require('path');
+/* eslint-disable import/no-extraneous-dependencies */
 const { merge } = require('webpack-merge');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpackConfiguration = require('../webpack.config');
 const environment = require('./environment');
 
@@ -36,6 +39,24 @@ module.exports = merge(webpackConfiguration, {
 			},
 		],
 	},
+
+	/* Additional plugins configuration */
+	plugins: [
+		new CleanWebpackPlugin({
+			verbose: false,
+			cleanStaleWebpackAssets: false,
+			cleanOnceBeforeBuildPatterns: ['**/*', '!stats.json'],
+		}),
+		new CopyWebpackPlugin({
+			patterns: [
+				{
+					from: path.resolve(environment.paths.source, 'wp-theme'),
+					to: path.resolve(environment.paths.wpOutput, ''),
+					noErrorOnMissing: true,
+				},
+			],
+		}),
+	],
 
 	/* Optimization configuration */
 	optimization: {

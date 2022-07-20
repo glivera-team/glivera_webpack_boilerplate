@@ -1,9 +1,7 @@
-const fs = require('fs');
 const path = require('path');
 const portFinderSync = require('portfinder-sync');
 
 const servPort = portFinderSync.getPort(8080);
-const PAGES_FOLDER = path.resolve(__dirname, '../src/pug/pages/');
 
 module.exports = {
 	paths: {
@@ -15,12 +13,10 @@ module.exports = {
 		build: path.resolve(__dirname, '../build/'),
 
 		/* Path to built files to wp directory */
-		wpOutput: path.resolve(__dirname, '../wp_files/wp-content/themes/mytheme/'),
-
-		PAGES_DIR: PAGES_FOLDER,
-		PAGES: fs
-			.readdirSync(PAGES_FOLDER)
-			.filter((fileName) => fileName.endsWith('.pug')),
+		wpOutput: path.resolve(
+			__dirname,
+			'../public/wp-content/themes/traduciamo/',
+		),
 	},
 	server: {
 		host: '0.0.0.0',

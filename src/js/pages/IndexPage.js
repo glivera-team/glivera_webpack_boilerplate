@@ -11,8 +11,6 @@ export default class IndexPage {
 	}
 
 	init() {
-		pageLoad(() => {
-			this.loadFunc();
-		});
+		this.loadFunc();
 	}
 }

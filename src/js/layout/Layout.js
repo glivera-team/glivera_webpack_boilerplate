@@ -19,12 +19,10 @@ export default class Layout {
 	}
 
 	init() {
-		pageLoad(() => {
-			this.loadFunc();
-		});
-
 		onWindowResize(() => {
 			calcViewportHeight();
 		});
+
+		this.loadFunc();
 	}
 }

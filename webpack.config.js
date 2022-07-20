@@ -10,17 +10,31 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 require('babel-polyfill');
 
 const isProduction = process.env.NODE_ENV === 'production';
+const isWp = process.env.NODE_ENV === 'wp';
 const environment = require('./settings/environment');
 
-const currentOutput = isProduction
-	? environment.paths.build
-	: environment.paths.output;
+let currentOutput;
 
-const htmlPluginEntries = environment.paths.PAGES.map(
+if (isProduction) {
+	currentOutput = environment.paths.build;
+} else if (isWp) {
+	currentOutput = environment.paths.wpOutput;
+} else {
+	currentOutput = environment.paths.output;
+}
+
+const PAGES_DIR = `${path.resolve(environment.paths.source)}/pug/pages/`;
+const PAGES = fs
+	.readdirSync(PAGES_DIR)
+	.filter((fileName) => fileName.endsWith('.pug'));
+
+const htmlPluginEntries = PAGES.map(
 	(page) =>
 		new HTMLWebpackPlugin({
-			template: `${environment.paths.PAGES_DIR}/${page}`,
-			filename: `./${page.replace(/\.pug/, '.html')}`,
+			template: `${PAGES_DIR}/${page}`,
+			filename: isWp
+				? `../../../html/${page.replace(/\.pug/, '.html')}`
+				: `./${page.replace(/\.pug/, '.html')}`,
 			environment: process.env.NODE_ENV,
 			minify: false,
 			inject: 'body',
@@ -35,16 +49,11 @@ module.exports = {
 		app: path.resolve(environment.paths.source, 'index.js'),
 	},
 	resolve: {
-		alias: {
-			ScssHelpers: path.resolve(__dirname, 'src/scss/helpers/'),
-			ScssComponents: path.resolve(__dirname, 'src/scss/components/'),
-			ScssPlugins: path.resolve(__dirname, 'src/scss/plugins/'),
-		},
 		extensions: ['.ts', '.js', '*'],
 		modules: [path.resolve(environment.paths.source, 'js'), 'node_modules'],
 	},
 	output: {
-		filename: 'js/[name].js',
+		filename: isWp ? 'assets/js/[name].js' : 'js/[name].js',
 		path: currentOutput,
 		// assetModuleFilename: 'images/[name][ext]',
 	},
@@ -101,7 +110,7 @@ module.exports = {
 						loader: 'svg-sprite-loader',
 						options: {
 							extract: true,
-							publicPath: '/images/sprite/',
+							publicPath: isWp ? '/assets/images/sprite/' : '/images/sprite/',
 						},
 					},
 					{
@@ -118,14 +127,14 @@ module.exports = {
 					},
 				},
 				generator: {
-					filename: 'fonts/[name][ext]',
+					filename: isWp ? 'assets/fonts/[name][ext]' : 'fonts/[name][ext]',
 				},
 			},
 		],
 	},
 	plugins: [
 		new webpack.DefinePlugin({
-			PAGES: JSON.stringify(environment.paths.PAGES),
+			PAGES: JSON.stringify(PAGES),
 		}),
 		new webpack.ProvidePlugin({
 			$: 'jquery',
@@ -140,14 +149,15 @@ module.exports = {
 		}),
 		new SpriteLoaderPlugin(),
 		new MiniCssExtractPlugin({
-			filename: 'css/[name].css',
-			chunkFilename: 'css/chunks/[name].chunk.css',
+			filename: isWp ? 'assets/css/[name].css' : 'css/[name].css',
 		}),
 		new CopyWebpackPlugin({
 			patterns: [
 				{
 					from: path.resolve(environment.paths.source, 'images'),
-					to: path.resolve(currentOutput, 'images'),
+					to: isWp
+						? path.resolve(currentOutput, 'assets', 'images')
+						: path.resolve(currentOutput, 'images'),
 					toType: 'dir',
 					noErrorOnMissing: true,
 					globOptions: {
@@ -157,7 +167,9 @@ module.exports = {
 				},
 				{
 					from: path.resolve(environment.paths.source, 'static'),
-					to: path.resolve(currentOutput),
+					to: isWp
+						? path.resolve(currentOutput, 'assets')
+						: path.resolve(currentOutput),
 					toType: 'dir',
 					noErrorOnMissing: true,
 					globOptions: {
