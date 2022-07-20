@@ -1,15 +1,16 @@
-const path = require('path');
+/* eslint-disable import/no-extraneous-dependencies */
 const { merge } = require('webpack-merge');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const webpackConfiguration = require('../webpack.config');
 const environment = require('./environment');
 
 module.exports = merge(webpackConfiguration, {
-	mode: 'production',
+	mode: 'development',
 
 	/* Manage source maps generation process. Refer to https://webpack.js.org/configuration/devtool/#production */
 	devtool: false,
@@ -30,8 +31,12 @@ module.exports = merge(webpackConfiguration, {
 							modules: false,
 						},
 					},
-					'postcss-loader',
-					'sass-loader',
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: false,
+						},
+					},
 				],
 			},
 		],
@@ -45,35 +50,25 @@ module.exports = merge(webpackConfiguration, {
 				parallel: true,
 			}),
 			new CssMinimizerPlugin(),
-			new ImageminWebpWebpackPlugin({
-				config: [
-					{
-						test: /\.(jpe?g|png)/,
-					},
-				],
-				overrideExtension: false,
-				detailedLogs: true,
-				silent: false,
-				strict: true,
-			}),
-			new ImageMinimizerPlugin({
-				minimizer: {
-					implementation: ImageMinimizerPlugin.squooshMinify,
-					options: {
-						encodeOptions: {
-							mozjpeg: {
-								quality: 100,
-							},
-						},
-					},
-				},
-			}),
 		],
 	},
 
-	performance: {
-		hints: false,
-		maxEntrypointSize: 512000,
-		maxAssetSize: 512000,
-	},
+	/* Additional plugins configuration */
+	plugins: [
+		new CleanWebpackPlugin({
+			verbose: true,
+			cleanOnceBeforeBuildPatterns: [
+				path.resolve(environment.paths.wpOutput, ''),
+			],
+		}),
+		new CopyWebpackPlugin({
+			patterns: [
+				{
+					from: path.resolve(environment.paths.source, 'wp-theme'),
+					to: path.resolve(environment.paths.wpOutput, ''),
+					noErrorOnMissing: true,
+				},
+			],
+		}),
+	],
 });
