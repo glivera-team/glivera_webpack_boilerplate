@@ -15,7 +15,7 @@ module.exports = {
 		/* Path to built files to wp directory */
 		wpOutput: path.resolve(
 			__dirname,
-			'../public/wp-content/themes/traduciamo/',
+			'../public/wp-content/themes/some_theme/',
 		),
 	},
 	server: {
