@@ -49,6 +49,11 @@ module.exports = {
 		app: path.resolve(environment.paths.source, 'index.js'),
 	},
 	resolve: {
+		alias: {
+			ScssHelpers: path.resolve(__dirname, 'src/scss/helpers/'),
+			ScssComponents: path.resolve(__dirname, 'src/scss/components/'),
+			ScssPlugins: path.resolve(__dirname, 'src/scss/plugins/'),
+		},
 		extensions: ['.ts', '.js', '*'],
 		modules: [path.resolve(environment.paths.source, 'js'), 'node_modules'],
 	},
