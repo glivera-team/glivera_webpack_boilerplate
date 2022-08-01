@@ -154,6 +154,7 @@ module.exports = {
 		}),
 		new SpriteLoaderPlugin(),
 		new MiniCssExtractPlugin({
+			ignoreOrder: true,
 			filename: isWp ? 'assets/css/[name].css' : 'css/[name].css',
 		}),
 		new CopyWebpackPlugin({
