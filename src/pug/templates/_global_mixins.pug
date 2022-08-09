@@ -174,19 +174,20 @@ mixin picture(data)
 	- imgFit = data.contain ? 'contain_img' : 'cover_img'
 	- imgClass = data.img_class || imgFit
 	- mediaArray = (environment === 'production') ? ['webp', type] : [type];
+	- const mimeType = type === 'jpg' ? 'jpeg' : type;
 
 	picture(class = data.class)
 		each imgType in mediaArray
 			if media
 				if imgType === 'webp' && environment === 'production'
-					source(media=`(min-width: ${media}px)` srcset=`${assetsImage}${imgPath}.${type}.${imgType}${is2x ? `, ${assetsImage}${imgPath}@2x.${type}.${imgType} 2x` : ''}` type=`image/${imgType}`)
-					source(media=`(max-width: ${media - 1}px)` srcset=`${assetsImage}${imgMobPath}.${type}.${imgType}${is2x ? `, ${assetsImage}${imgMobPath}@2x.${type}.${imgType} 2x` : ''}` type=`image/${imgType}`)
+					source(media=`(min-width: ${media}px)` srcset=`${assetsImage}${imgPath}.${type}.${imgType}${is2x ? `, ${assetsImage}${imgPath}@2x.${type}.${imgType} 2x` : ''}` type=`image/webp`)
+					source(media=`(max-width: ${media - 1}px)` srcset=`${assetsImage}${imgMobPath}.${type}.${imgType}${is2x ? `, ${assetsImage}${imgMobPath}@2x.${type}.${imgType} 2x` : ''}` type=`image/webp`)
 				else
-					source(media=`(min-width: ${media}px)` srcset=`${assetsImage}${imgPath}.${imgType}${is2x ? `, ${assetsImage}${imgPath}@2x.${imgType} 2x` : ''}` type=`image/${imgType}`)
-					source(media=`(max-width: ${media - 1}px)` srcset=`${assetsImage}${imgMobPath}.${imgType}${is2x ? `, ${assetsImage}${imgMobPath}@2x.${imgType} 2x` : ''}` type=`image/${imgType}`)
+					source(media=`(min-width: ${media}px)` srcset=`${assetsImage}${imgPath}.${imgType}${is2x ? `, ${assetsImage}${imgPath}@2x.${imgType} 2x` : ''}` type=`image/${mimeType}`)
+					source(media=`(max-width: ${media - 1}px)` srcset=`${assetsImage}${imgMobPath}.${imgType}${is2x ? `, ${assetsImage}${imgMobPath}@2x.${imgType} 2x` : ''}` type=`image/${mimeType}`)
 			else
 				if imgType === 'webp' && environment === 'production'
-					source(srcset=`${assetsImage}${imgPath}.${type}.${imgType}${is2x ? `, ${imgPath}@2x.${type}.${imgType} 2x` : ''}` type=`image/${imgType}`)
+					source(srcset=`${assetsImage}${imgPath}.${type}.${imgType}${is2x ? `, ${imgPath}@2x.${type}.${imgType} 2x` : ''}` type=`image/webp`)
 				else
-					source(srcset=`${assetsImage}${imgPath}.${imgType}${is2x ? `, ${assetsImage}${imgPath}@2x.${imgType} 2x` : ''}` type=`image/${imgType}`)
+					source(srcset=`${assetsImage}${imgPath}.${imgType}${is2x ? `, ${assetsImage}${imgPath}@2x.${imgType} 2x` : ''}` type=`image/${mimeType}`)
 		img(class= imgClass src=`${assetsImage}${imgPath}.${type}` alt=data.alt)
