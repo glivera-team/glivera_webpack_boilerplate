@@ -159,35 +159,73 @@ mixin pagination(config)
 
 //- picture
 mixin picture(data)
-	//- define type of image
-	- imgPathDedicated = data.img.split('.')
-	- type = imgPathDedicated.pop();
-	- imgPath = imgPathDedicated.join('.')
+	- imagesArray = data.img_mob ? [data.img, data.img_mob] : [data.img];
+	- dedicatedPaths = imagesArray.map(path => path && path.split('.')); // array contains [path, type]
+	- typesArray = dedicatedPaths.map(path => path && [path.pop()]); // get and remove type from path
+	- pathArray = dedicatedPaths.map(path => path && assetsImage + path.join('.')); // full paths array
 
-	if data.img_mob
-		- imgMobPathDedicated = data.img_mob.split('.')
-		- typeMob = imgMobPathDedicated.pop();
-		- imgMobPath = imgMobPathDedicated.join('.')
-	//- define type of image##
 	- is2x = data.is2x ? true : false
 	- media = data.media
-	- imgFit = data.contain ? 'contain_img' : 'cover_img'
-	- imgClass = data.img_class || imgFit
-	- mediaArray = (environment === 'production') ? ['webp', type] : [type];
-	- const mimeType = type === 'jpg' ? 'jpeg' : type;
+	- alt = data.alt = ' '
+	- loading = data.lazy ? 'lazy' : 'eager'
 
-	picture(class = data.class)
-		each imgType in mediaArray
-			if media
-				if imgType === 'webp' && environment === 'production'
-					source(media=`(min-width: ${media}px)` srcset=`${assetsImage}${imgPath}.${type}.${imgType}${is2x ? `, ${assetsImage}${imgPath}@2x.${type}.${imgType} 2x` : ''}` type=`image/webp`)
-					source(media=`(max-width: ${media - 1}px)` srcset=`${assetsImage}${imgMobPath}.${type}.${imgType}${is2x ? `, ${assetsImage}${imgMobPath}@2x.${type}.${imgType} 2x` : ''}` type=`image/webp`)
-				else
-					source(media=`(min-width: ${media}px)` srcset=`${assetsImage}${imgPath}.${imgType}${is2x ? `, ${assetsImage}${imgPath}@2x.${imgType} 2x` : ''}` type=`image/${mimeType}`)
-					source(media=`(max-width: ${media - 1}px)` srcset=`${assetsImage}${imgMobPath}.${imgType}${is2x ? `, ${assetsImage}${imgMobPath}@2x.${imgType} 2x` : ''}` type=`image/${mimeType}`)
-			else
-				if imgType === 'webp' && environment === 'production'
-					source(srcset=`${assetsImage}${imgPath}.${type}.${imgType}${is2x ? `, ${imgPath}@2x.${type}.${imgType} 2x` : ''}` type=`image/webp`)
-				else
-					source(srcset=`${assetsImage}${imgPath}.${imgType}${is2x ? `, ${assetsImage}${imgPath}@2x.${imgType} 2x` : ''}` type=`image/${mimeType}`)
-		img(class= imgClass src=`${assetsImage}${imgPath}.${type}` alt=data.alt)
+	picture(class=data.class)
+		//- array of types, ex:[[jpg], [png]]
+		each type, i in typesArray
+			if (environment === 'production')
+				- type.push('webp')
+			//- sub array of types, ex:[[jpg], [webp]]
+			each subType, j in type
+				- mimeType = subType === 'jpg' ? 'jpeg' : subType;
+				- isWebp = subType === 'webp' ? '.webp' : ''
+				if media
+					- mediaAttr = i === 0 ? `(min-width: ${media}px)` : `(max-width: ${media - 1}px)`
+				source(
+					media=mediaAttr
+					srcset=`${pathArray[i]}.${type[0]}${isWebp}${is2x ? `, ${pathArray[i]}@2x.${type[0]}${isWebp} 2x` : ''}`
+					type=`image/${mimeType}`
+				)
+		img(
+			class= imgClass
+			src=`${pathArray[0]}.${typesArray[0][0]}`
+			alt=alt
+			loading=loading
+		)
+
+
+//- old picture mixin
+//- mixin picture(data)
+//- 	//- define type of image
+//- 	- imgPathDedicated = data.img.split('.')
+//- 	- type = imgPathDedicated.pop();
+//- 	- imgPath = imgPathDedicated.join('.')
+//- 	if data.img_mob
+//- 		- imgMobPathDedicated = data.img_mob.split('.')
+//- 		- typeMob = imgMobPathDedicated.pop();
+//- 		- imgMobPath = imgMobPathDedicated.join('.')
+
+//- 	//- define type of image##
+//- 	- is2x = data.is2x ? true : false
+//- 	- media = data.media
+//- 	- imgFit = data.contain ? 'contain_img' : 'cover_img'
+//- 	- imgClass = data.img_class || imgFit
+//- 	- mediaArray = (environment === 'production') ? ['webp', type] : [type];
+//- 	- const mimeType = type === 'jpg' ? 'jpeg' : type;
+
+//- 	picture(class = data.class)
+//- 		div= typesArray
+//- 		div= pathArray
+//- 		each imgType in mediaArray
+//- 			if media
+//- 				if imgType === 'webp' && environment === 'production'
+//- 					source(media=`(min-width: ${media}px)` srcset=`${assetsImage}${imgPath}.${type}.${imgType}${is2x ? `, ${assetsImage}${imgPath}@2x.${type}.${imgType} 2x` : ''}` type=`image/webp`)
+//- 					source(media=`(max-width: ${media - 1}px)` srcset=`${assetsImage}${imgMobPath}.${type}.${imgType}${is2x ? `, ${assetsImage}${imgMobPath}@2x.${type}.${imgType} 2x` : ''}` type=`image/webp`)
+//- 				else
+//- 					source(media=`(min-width: ${media}px)` srcset=`${assetsImage}${imgPath}.${imgType}${is2x ? `, ${assetsImage}${imgPath}@2x.${imgType} 2x` : ''}` type=`image/${mimeType}`)
+//- 					source(media=`(max-width: ${media - 1}px)` srcset=`${assetsImage}${imgMobPath}.${imgType}${is2x ? `, ${assetsImage}${imgMobPath}@2x.${imgType} 2x` : ''}` type=`image/${mimeType}`)
+//- 			else
+//- 				if imgType === 'webp' && environment === 'production'
+//- 					source(srcset=`${assetsImage}${imgPath}.${type}.${imgType}${is2x ? `, ${imgPath}@2x.${type}.${imgType} 2x` : ''}` type=`image/webp`)
+//- 				else
+//- 					source(srcset=`${assetsImage}${imgPath}.${imgType}${is2x ? `, ${assetsImage}${imgPath}@2x.${imgType} 2x` : ''}` type=`image/${mimeType}`)
+//- 		img(class= imgClass src=`${assetsImage}${imgPath}.${type}` alt=data.alt)
