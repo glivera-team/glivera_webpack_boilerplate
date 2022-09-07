@@ -1,4 +1,5 @@
 import Layout from 'layout/Layout';
+import { pageLoad } from './utils';
 
 export default class App {
 	constructor() {
@@ -31,6 +32,9 @@ export default class App {
 
 	init() {
 		const initLayout = new Layout();
+		pageLoad(() => {
+			document.body.classList.add('body--loaded');
+		});
 		setTimeout(() => {
 			this.importPage();
 		}, 0);
