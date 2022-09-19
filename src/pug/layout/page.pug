@@ -4,7 +4,9 @@ block vars
 	- pageData = htmlWebpackPlugin.options.pageData
 	- array = {body_class: pageData.bodyClass, layout_mod: pageData.layoutMod, page_keywords: pageData.page_keywords, page_description: pageData.page_description, title_inner: pageData.title, template_name: pageData.templateName, headerArray: pageData.header, footerArray: pageData.footer}
 block content_block
-	each section, index in pageData.sections
-		if section.sectionType === 'demo_section'
-			- global.sectionArray = section
-			include ../blocks/demo_section
+	- let sectionsHtml = '';
+
+	each section in pageData.sections
+		- sectionsHtml += require(`../blocks/${section.sectionType}.pug`)(section);
+
+	div!= sectionsHtml
