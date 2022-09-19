@@ -7,8 +7,6 @@
     "dev": "cross-env NODE_ENV=development webpack serve --config settings/webpack.dev.config.js --mode=development",
     "dev-build": "cross-env NODE_ENV=development webpack --config settings/webpack.dev.config.js --mode=development --watch",
     "build": "cross-env NODE_ENV=production webpack --config settings/webpack.prod.config.js --mode=production",
-    "wp-build": "cross-env NODE_ENV=wp webpack --config settings/webpack.wp_build.config.js",
-    "wp-dev": "cross-env NODE_ENV=wp webpack --config settings/webpack.wp_dev.config.js --watch",
     "stats": "webpack --config settings/webpack.prod.config.js --mode=production --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json"
   },
   "devDependencies": {
@@ -17,6 +15,7 @@
     "@babel/preset-env": "^7.16.0",
     "@squoosh/lib": "^0.4.0",
     "autoprefixer": "^10.4.0",
+    "axios": "^0.27.2",
     "babel-loader": "^8.2.3",
     "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-polyfill": "^6.26.0",

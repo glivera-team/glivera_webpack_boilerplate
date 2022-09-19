@@ -5,6 +5,8 @@ mixin head(array)
 	meta(name="SKYPE_TOOLBAR", content="SKYPE_TOOLBAR_PARSER_COMPATIBLE")
 	meta(name="apple-mobile-web-app-capable", content="yes")
 	meta(name="format-detection", content="telephone=no")
+	meta(name="description" content= array.page_description)
+	meta(name="keywords" content= array.page_keywords)
 
 	link(rel='shortcut icon' href=`${assetsImage}favicon.ico`)
 

@@ -1,0 +1,37 @@
+{
+	"title": "test title",
+	"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas delectus eveniet amet velit esse nihil accusantium reprehenderit porro assumenda unde!",
+	"pages": [
+		{
+			"page": "index",
+			"title": "Home page",
+			"page_description": "",
+			"page_keywords": "",
+			"bodyClass": "test_mod",
+			"layoutMod": "",
+			"templateName": "IndexPage",
+			"sections": [
+				{
+					"sectionType": "demo_section",
+					"title": "Index hero"
+				}
+			]
+		},
+		{
+			"page": "about",
+			"title": "About page",
+			"page_description": "",
+			"page_keywords": "",
+			"bodyClass": "",
+			"layoutMod": "",
+			"templateName": "AboutPage",
+			"sections": [
+				{
+					"sectionType": "demo_section",
+					"title": "About hero",
+					"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit"
+				}
+			]
+		}
+	]
+}

@@ -11,6 +11,7 @@ module.exports = {
 		/* Path to built files directory */
 		output: path.resolve(__dirname, '../dist/'),
 		build: path.resolve(__dirname, '../build/'),
+		siteData: path.resolve(__dirname, '../site_data/'),
 
 		/* Path to built files to wp directory */
 		wpOutput: path.resolve(

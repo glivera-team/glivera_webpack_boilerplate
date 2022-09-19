@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const pug = require('pug')
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
@@ -11,7 +12,10 @@ require('babel-polyfill');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isWp = process.env.NODE_ENV === 'wp';
+const { async } = require('regenerator-runtime');
 const environment = require('./settings/environment');
+
+const siteData = require('./site_data/SITE_DATA.json');
 
 let currentOutput;
 
@@ -23,19 +27,16 @@ if (isProduction) {
 	currentOutput = environment.paths.output;
 }
 
-const PAGES_DIR = `${path.resolve(environment.paths.source)}/pug/pages/`;
-const PAGES = fs
-	.readdirSync(PAGES_DIR)
-	.filter((fileName) => fileName.endsWith('.pug'));
+const PAGES_DIR = `${path.resolve(environment.paths.source)}/pug/layout/`;
 
-const htmlPluginEntries = PAGES.map(
+const htmlPluginEntries = siteData.pages.map(
 	(page) =>
 		new HTMLWebpackPlugin({
-			template: `${PAGES_DIR}/${page}`,
-			filename: isWp
-				? `../../../html/${page.replace(/\.pug/, '.html')}`
-				: `./${page.replace(/\.pug/, '.html')}`,
+			template: `${PAGES_DIR}/page.pug`,
+			filename: `./${page.page}.html`,
 			environment: process.env.NODE_ENV,
+			dataSite: siteData,
+			pageData: page,
 			minify: false,
 			inject: 'body',
 		}),
@@ -135,11 +136,16 @@ module.exports = {
 					filename: isWp ? 'assets/fonts/[name][ext]' : 'fonts/[name][ext]',
 				},
 			},
+			{
+				test: /\.geojson$/,
+				type: 'json',
+			},
 		],
 	},
 	plugins: [
 		new webpack.DefinePlugin({
-			PAGES: JSON.stringify(PAGES),
+			PAGES: JSON.stringify(siteData.pages),
+			// SITE_DATA: JSON.stringify(siteData),
 		}),
 		new webpack.ProvidePlugin({
 			$: 'jquery',
