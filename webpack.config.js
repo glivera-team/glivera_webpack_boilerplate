@@ -29,17 +29,17 @@ if (isProduction) {
 
 const PAGES_DIR = `${path.resolve(environment.paths.source)}/pug/layout/`;
 
-const htmlPluginEntries = siteData.pages.map(
-	(page) =>
+const htmlPluginEntries = Object.entries(siteData.pages).map(
+	([pageId]) =>
 		new HTMLWebpackPlugin({
 			template: `${PAGES_DIR}/page.pug`,
-			filename: `./${page.page}.html`,
+			filename: `./${pageId}.html`,
 			environment: process.env.NODE_ENV,
 			dataSite: siteData,
-			pageData: page,
+			pageId,
 			minify: false,
 			inject: 'body',
-		}),
+		})
 );
 
 module.exports = {

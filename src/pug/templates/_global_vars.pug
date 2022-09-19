@@ -2,7 +2,9 @@ mixin no_use(array)
 	.no_use
 //--------------------------------------------------------------global vars
 - environment = htmlWebpackPlugin.options.environment;
-- dataSite = htmlWebpackPlugin.options.dataSite;
+- const siteData = require('../../../site_data/SITE_DATA.json');
+- const pageId = htmlWebpackPlugin.options.pageId
+- const pageData = siteData.pages[pageId];
 - array = '';
 - assetsImage = 'images/';
 

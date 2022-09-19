@@ -3,9 +3,8 @@
 		"logo_title": "Global logo title"
 	},
 	"footer": {},
-	"pages": [
-		{
-			"page": "index",
+	"pages": {
+		"index": {
 			"title": "Home page",
 			"page_description": "",
 			"page_keywords": "",
@@ -15,12 +14,15 @@
 			"sections": [
 				{
 					"sectionType": "demo_section",
-					"title": "Index hero"
+					"title": "Index page"
+				},
+				{
+					"sectionType": "demo_section",
+					"title": "Hello world"
 				}
 			]
 		},
-		{
-			"page": "about",
+		"about": {
 			"title": "About page",
 			"page_description": "",
 			"page_keywords": "",
@@ -38,5 +40,5 @@
 				}
 			]
 		}
-	]
+	}
 }
