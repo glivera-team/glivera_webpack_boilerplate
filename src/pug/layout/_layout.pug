@@ -1,7 +1,5 @@
 include ../templates/_global_vars
 include ../templates/_global_mixins
-include ../templates/mixins/_m_header
-include ../templates/mixins/_m_footer
 
 //- It is commented for optimization reasons
 //- include ../templates/_project_vars
@@ -16,9 +14,11 @@ html(lang="en" data-template-name= array.template_name)
 		+head(array)
 	body(class= array.body_class)
 		.preloader
-		+header
+		- global.headerArray = array.headerArray || dataSite.header
+		include ./header
 		.wrapper(class= array.layout_mod)
 			.base(class= array.layout_mod)
 				block content_block
-			+footer
+			- global.footerArray = array.footerArray || dataSite.footer
+			include ./footer
 		block local_popup
