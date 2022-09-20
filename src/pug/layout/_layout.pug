@@ -9,7 +9,11 @@ block vars
 block project_vars
 
 doctype
-html(lang="en" data-template-name= array.template_name)
+html(
+	lang="en"
+	data-page-id=pageId,
+	data-available-components=htmlWebpackPlugin.options.availableComponents
+)
 	head
 		+head(array)
 	body(class= array.body_class)

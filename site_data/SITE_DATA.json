@@ -10,14 +10,9 @@
 			"page_keywords": "",
 			"bodyClass": "test_mod",
 			"layoutMod": "",
-			"templateName": "IndexPage",
 			"sections": [
 				{
-					"sectionType": "demo_section",
-					"title": "Index page"
-				},
-				{
-					"sectionType": "demo_section",
+					"sectionType": "DemoSection",
 					"title": "Hello world"
 				}
 			]
@@ -28,13 +23,12 @@
 			"page_keywords": "",
 			"bodyClass": "",
 			"layoutMod": "",
-			"templateName": "AboutPage",
 			"header": {
 				"logo_title": "About logo title"
 			},
 			"sections": [
 				{
-					"sectionType": "demo_section",
+					"sectionType": "DemoSection",
 					"title": "About hero",
 					"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit"
 				}
