@@ -49,9 +49,9 @@ body {
 	transition: opacity .3s;
 
 	z-index: 1000;
-	pointer-events: none;
 
 	.body--loaded & {
+		pointer-events: none;
 		opacity: 0;
 	}
 }
