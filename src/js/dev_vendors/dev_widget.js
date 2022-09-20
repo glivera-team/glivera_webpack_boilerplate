@@ -15,22 +15,10 @@ const pageWidget = (pages) => {
 	widgetWrap.innerHTML += widgetStyles;
 };
 
-const pageWidgetArray = [];
-
-const pagesArray = PAGES;
-
 const pageWidgetInit = () => {
-	if (typeof pagesArray !== 'undefined' && pagesArray.length > 0) {
-		console.log('dev functions loaded');
+	console.log('dev functions loaded');
 
-		pagesArray.forEach((page) => {
-			const pageName = page.page;
-			pageWidgetArray.push(pageName);
-		});
-
-		// console.log(pageWidgetArray);
-		pageWidget(pageWidgetArray);
-	}
+	pageWidget(Object.keys(PAGES));
 };
 
 export default pageWidgetInit;
