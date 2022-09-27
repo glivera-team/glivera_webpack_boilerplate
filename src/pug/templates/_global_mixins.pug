@@ -173,21 +173,22 @@ mixin picture(data)
 		//- array of types, ex:[[jpg], [png]]
 		each type, i in typesArray
 			if (environment === 'production')
-				- type.push('webp')
+				- type.unshift('webp')
 			//- sub array of types, ex:[[jpg], [webp]]
 			each subType, j in type
 				- mimeType = subType === 'jpg' ? 'jpeg' : subType;
 				- isWebp = subType === 'webp' ? '.webp' : ''
+
 				if media
 					- mediaAttr = i === 0 ? `(min-width: ${media}px)` : `(max-width: ${media - 1}px)`
 				source(
 					media=mediaAttr
-					srcset=`${pathArray[i]}.${type[0]}${isWebp}${is2x ? `, ${pathArray[i]}@2x.${type[0]}${isWebp} 2x` : ''}`
+					srcset=`${pathArray[i]}.${type[1]}${isWebp}${is2x ? `, ${pathArray[i]}@2x.${type[1]}${isWebp} 2x` : ''}`
 					type=`image/${mimeType}`
 				)
 		img(
 			class= data.img_class
-			src=`${pathArray[0]}.${typesArray[0][0]}`
+			src=`${pathArray[0]}.${typesArray[0][1]}`
 			alt=alt
 			loading=loading
 		)
