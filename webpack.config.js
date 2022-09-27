@@ -30,16 +30,27 @@ if (isProduction) {
 const PAGES_DIR = `${path.resolve(environment.paths.source)}/pug/layout/`;
 
 const htmlPluginEntries = Object.entries(siteData.pages).map(
-	([pageId]) =>
-		new HTMLWebpackPlugin({
+	([pageId, pageData]) => {
+		// Array.from and Set make an array with unique elements
+		const components = Array.from(new Set(
+			pageData.sections.map(({ sectionType }) => sectionType),
+		));
+
+		const availableComponents = components.filter((component) => {
+			return fs.existsSync(`./src/js/components/${component}.js`);
+		});
+
+		return new HTMLWebpackPlugin({
 			template: `${PAGES_DIR}/page.pug`,
 			filename: `./${pageId}.html`,
 			environment: process.env.NODE_ENV,
 			dataSite: siteData,
 			pageId,
+			availableComponents: availableComponents.join(' '),
 			minify: false,
 			inject: 'body',
-		})
+		});
+	},
 );
 
 module.exports = {

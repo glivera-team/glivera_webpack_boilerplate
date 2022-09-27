@@ -1,42 +1,47 @@
-import Layout from 'layout/Layout';
-import { pageLoad } from './utils';
+import { pageLoad, onWindowResize, calcViewportHeight } from 'utils';
 
 export default class App {
-	constructor() {
-		this.$htmlTag = document.querySelector('html');
-		this.pageClass =
-			this.$htmlTag.dataset.templateName &&
-			this.$htmlTag.dataset.templateName.length > 0
-				? this.$htmlTag.dataset.templateName
-				: null;
-
-		this.init = this.init.bind(this);
-		this.init();
+	addEventListeners() {
+		onWindowResize(() => calcViewportHeight());
 	}
 
-	importPage() {
-		if (this.pageClass && this.pageClass !== null) {
-			import(`./pages/${this.pageClass}`)
-				.then(({ default: pageClass }) => {
-					const newPage = new pageClass();
-					newPage.init();
-				})
-				.catch((error) => {
-					console.error(
-						'Failed to load page, check data-template-name at root if correct',
-					);
-					console.dir(error, error.stack);
-				});
-		}
+	async loadSections() {
+		const { pageId, availableComponents } = document.documentElement.dataset;
+
+		if (!pageId || !availableComponents) return;
+
+		const siteData = await import('../../site_data/SITE_DATA.json');
+
+		const pageData = siteData.pages[pageId];
+
+		if (!pageData) return;
+
+		const availableComponentsArray = availableComponents.split(' ');
+
+		const availableSectionsData = pageData.sections.filter(({ sectionType }) => {
+			return availableComponentsArray.includes(sectionType);
+		});
+
+		availableSectionsData.forEach(async ({ sectionType, props }) => {
+			// It can import one component several times. Webpack will manage it correctly.
+			const { default: Component } = await import(`./components/${sectionType}.js`);
+
+			const component = new Component(props);
+			component.init();
+		});
+	}
+
+	addLoadedClass() {
+		document.body.classList.add('body--loaded');
 	}
 
 	init() {
-		const initLayout = new Layout();
-		pageLoad(() => {
-			document.body.classList.add('body--loaded');
+		pageLoad(async () => {
+			this.addEventListeners();
+
+			await this.loadSections();
+
+			this.addLoadedClass();
 		});
-		setTimeout(() => {
-			this.importPage();
-		}, 0);
 	}
 }
