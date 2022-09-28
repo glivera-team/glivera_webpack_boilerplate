@@ -160,9 +160,9 @@ mixin pagination(config)
 //- picture
 mixin picture(data)
 	- imagesArray = data.img_mob ? [data.img, data.img_mob] : [data.img];
-	- dedicatedPaths = imagesArray.map(path => path && path.split('.')); // array contains [path, type]
-	- typesArray = dedicatedPaths.map(path => path && [path.pop()]); // get and remove type from path
-	- pathArray = dedicatedPaths.map(path => path && assetsImage + path.join('.')); // full paths array
+	- dedicatedPaths = imagesArray.map(path => path.split('.')); // array contains [path, type]
+	- typesArray = dedicatedPaths.map(path => [path.pop()]); // get and remove type from path
+	- pathArray = dedicatedPaths.map(path => assetsImage + path.join('.')); // full paths array
 
 	- is2x = data.is2x ? true : false
 	- media = data.media
@@ -172,8 +172,12 @@ mixin picture(data)
 	picture(class=data.class)
 		//- array of types, ex:[[jpg], [png]]
 		each type, i in typesArray
-			if (environment === 'production')
+			if (global.environment === 'production' || environment === 'production')
 				- type.unshift('webp')
+				- defaultTypeIndex = 1
+			else
+				- defaultTypeIndex = 0
+
 			//- sub array of types, ex:[[jpg], [webp]]
 			each subType, j in type
 				- mimeType = subType === 'jpg' ? 'jpeg' : subType;
@@ -181,14 +185,15 @@ mixin picture(data)
 
 				if media
 					- mediaAttr = i === 0 ? `(min-width: ${media}px)` : `(max-width: ${media - 1}px)`
+
 				source(
 					media=mediaAttr
-					srcset=`${pathArray[i]}.${type[1]}${isWebp}${is2x ? `, ${pathArray[i]}@2x.${type[1]}${isWebp} 2x` : ''}`
+					srcset=`${pathArray[i]}.${type[defaultTypeIndex]}${isWebp}${is2x ? `, ${pathArray[i]}@2x.${type[defaultTypeIndex]}${isWebp} 2x` : ''}`
 					type=`image/${mimeType}`
 				)
 		img(
 			class= data.img_class
-			src=`${pathArray[0]}.${typesArray[0][1]}`
+			src=`${pathArray[0]}.${typesArray[0][defaultTypeIndex]}`
 			alt=alt
 			loading=loading
 		)
