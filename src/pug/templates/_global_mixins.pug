@@ -162,6 +162,7 @@ mixin pagination(config)
 //- picture
 mixin picture(data)
 	- imagesArray = data.img_mob ? [data.img, data.img_mob] : [data.img];
+	- assetsImages = 'images/'
 	- dedicatedPaths = imagesArray.map(path => path.split('.')); // array contains [path, type]
 	- typesArray = dedicatedPaths.map(path => [path.pop()]); // get and remove type from path
 	- pathArray = dedicatedPaths.map(path => assetsImage + path.join('.')); // full paths array
