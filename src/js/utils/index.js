@@ -1,4 +1,5 @@
 import isMobile from 'ismobilejs';
+import { GLOBAL_VARS } from './constants';
 
 export function debounce(delay, fn) {
 	let timerId;
@@ -66,6 +67,14 @@ export function isFunction(func) {
 	return func instanceof Function;
 }
 
+export const isTouchDevice = () => {
+	return (
+		('ontouchstart' in window)
+		|| (window.navigator.maxTouchPoints > 0)
+		|| (window.navigator.msMaxTouchPoints > 0)
+	);
+};
+
 export function getWindowSize() {
 	const windowWidth = window.innerWidth;
 	const windowHeight = window.innerHeight;
@@ -86,6 +95,22 @@ export const onWindowResize = cb => {
 	window.addEventListener('resize', debounce(15, handleResize));
 
 	handleResize();
+};
+
+export const onWindowChangeOrientation = cb => {
+	if ((!cb && !isFunction(cb)) || !isTouchDevice()) return;
+
+	let { windowWidth } = getWindowSize();
+
+	const handleResize = () => {
+		const { windowWidth: newWindowWidth } = getWindowSize();
+
+		if (windowWidth !== newWindowWidth) cb();
+
+		windowWidth = newWindowWidth;
+	};
+
+	window.addEventListener('resize', debounce(100, handleResize));
 };
 
 export const onWindowScroll = cb => {
