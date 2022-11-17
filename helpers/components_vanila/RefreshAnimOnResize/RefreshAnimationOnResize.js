@@ -10,7 +10,7 @@ class RefreshAnimationOnResize {
 	initMatchMedia() {
 		ScrollTrigger.matchMedia({
 			[`(max-width: ${this.windowWidth + 1}px) and (min-width: ${this.windowWidth - 1}px)`]: () => {
-				this.animation();
+				this.animation(this.windowWidth);
 			},
 		});
 	}

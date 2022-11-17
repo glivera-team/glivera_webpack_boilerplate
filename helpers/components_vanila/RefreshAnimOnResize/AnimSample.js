@@ -8,8 +8,8 @@ class AnimSample {
 		this.init();
 	}
 
-	initAnimation() {
-		if (this.windowWidth < GLOBAL_VARS.mediaPoint1) return; // If you need disable anim on mobile
+	initAnimation(windowWidth) {
+		if (windowWidth < GLOBAL_VARS.mediaPoint1) return; // If you need disable anim on mobile
 
 		const $trigger = document.querySelector('.test');
 
@@ -18,7 +18,7 @@ class AnimSample {
 				id: 'test',
 				trigger: $trigger,
 				start: 'top top',
-				end: `top+=${this.windowWidth} top`,
+				end: `top+=${windowWidth} top`,
 				scrub: true,
 				pin: true,
 				markers: true,
@@ -26,7 +26,7 @@ class AnimSample {
 		});
 
 		tl.to($trigger, {
-			y: this.windowWidth,
+			y: windowWidth,
 		});
 	}
 
