@@ -5,6 +5,7 @@ import { GLOBAL_VARS } from '../utils/constants';
 
 class AnimSample {
 	constructor() {
+		this.initAnimation = this.initAnimation.bind(this); // important
 		this.init();
 	}
 
