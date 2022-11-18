@@ -5,7 +5,6 @@ import { GLOBAL_VARS } from '../utils/constants';
 
 class AnimSample {
 	constructor() {
-		this.initAnimation = this.initAnimation.bind(this); // important
 		this.init();
 	}
 
@@ -32,7 +31,7 @@ class AnimSample {
 	}
 
 	init() {
-		const resize = new RefreshAnimationOnResize(this.initAnimation);
+		const resize = new RefreshAnimationOnResize(this.initAnimation.bind(this));
 	}
 }
 
