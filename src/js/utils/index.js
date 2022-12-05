@@ -1,8 +1,12 @@
 import isMobile from 'ismobilejs';
 import { GLOBAL_VARS } from './constants';
 
-export const length = (array) => {
-	return array && array.length;
+export const exist = (elementOrArray) => {
+	if (!elementOrArray && elementOrArray !== 0) return false;
+	if (elementOrArray.length === 0) {
+		return false;
+	}
+	return true;
 };
 
 export function debounce(delay, fn) {
