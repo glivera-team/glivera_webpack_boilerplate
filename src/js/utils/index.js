@@ -1,6 +1,10 @@
 import isMobile from 'ismobilejs';
 import { GLOBAL_VARS } from './constants';
 
+export const length = (array) => {
+	return array && array.length;
+};
+
 export function debounce(delay, fn) {
 	let timerId;
 	return (...args) => {
