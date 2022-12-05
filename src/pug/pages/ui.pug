@@ -1,0 +1,52 @@
+extends ../layout/_layout
+
+include ../templates/mixins/ui_page/_m_heading
+include ../templates/mixins/ui_page/_m_component
+include ../templates/mixins/ui_page/_m_typography_item
+include ../templates/mixins/ui_page/_m_form_item
+
+block vars
+	- array = {body_class:'', layout_mod:'', sub_keywords:'', title_inner:'Ui', template_name: 'ui'}
+
+block content_block
+	section.section.section_ui
+		.section_in
+
+			//- introducing
+			.section_ui__block
+				+heading({
+					title: 'Ui page',
+					text: 'This page is for showing project titles, buttons, forms, components.',
+				})
+
+			//- typography
+			.section_ui__block
+				+heading({
+					category: 'Typography',
+					text: 'This section contains all text elements: titles, texts.',
+				})
+				include ../blocks/universal/ui_page/typography
+
+			//- buttons
+			.section_ui__block
+				+heading({
+					category: 'Buttons',
+					text: 'This section contains all buttons.',
+				})
+				include ../blocks/universal/ui_page/buttons
+
+			//- forms
+			.section_ui__block
+				+heading({
+					category: 'Forms',
+					text: 'This section contains all form items: inputs, selects, textareas, checkboxes, radio buttons.',
+				})
+				include ../blocks/universal/ui_page/forms
+
+			//- components
+			.section_ui__block
+				+heading({
+					category: 'Components',
+					text: 'This section contains all components.',
+				})
+				include ../blocks/universal/ui_page/components
