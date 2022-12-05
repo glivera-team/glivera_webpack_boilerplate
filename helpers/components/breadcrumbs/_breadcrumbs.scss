@@ -1,5 +1,5 @@
 .breadcrumbs_list {
-	@extend %global_flex_block_row_nowrap_flex-start;
+	@include flex_block(row, nowrap, flex-start, center, center);
 
 	margin:50px;
 }

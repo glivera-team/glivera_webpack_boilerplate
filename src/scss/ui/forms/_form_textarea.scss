@@ -1,9 +1,9 @@
 .form_textarea__label {
-	@extend %form_el_label;
+	@include form_el_label;
 }
 
 .form_textarea__element {
-	@extend %form_el_default;
+	@include form_el_default;
 
 	padding-top: 2rem;
 	padding-bottom: 2rem;

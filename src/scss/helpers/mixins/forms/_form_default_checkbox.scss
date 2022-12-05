@@ -1,4 +1,5 @@
-%form_el_checkbox {
+
+@mixin form_el_checkbox {
 	position: relative;
 
 	padding-left: 3rem;
@@ -46,8 +47,8 @@
 
 	//--------------------------------------------- Font icon version
 	// &:after {
-	// 	@extend %icon-check;
-	// 	@extend %transition_opacity;
+	// 	@include icon-check;
+	// 	@include transition_opacity;
 
 	// 	text-align: center;
 	// 	line-height: 2rem;

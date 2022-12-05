@@ -7,5 +7,5 @@
 }
 
 .form_checkbox__label {
-	@extend %form_el_checkbox;
+	@include form_el_checkbox();
 }

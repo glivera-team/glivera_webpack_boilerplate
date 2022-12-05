@@ -1,8 +1,8 @@
 @import "helpers/helpers_all";
-@import "helpers/extends/iconfonts";
-@import "helpers/extends/forms/form_default_input";
-@import "helpers/extends/forms/form_default_checkbox";
-@import "helpers/extends/forms/form_default_radio";
+@import "helpers/mixins/iconfonts";
+@import "helpers/mixins/forms/form_default_input";
+@import "helpers/mixins/forms/form_default_checkbox";
+@import "helpers/mixins/forms/form_default_radio";
 // base
 @import "base/base";
 //layout

@@ -1,4 +1,4 @@
-%form_el_radio {
+@mixin form_el_radio {
 	position: relative;
 
 	padding-left: 3rem;
@@ -20,7 +20,7 @@
 	}
 
 	&:after {
-		@extend %transition_opacity;
+		@include transition_opacity;
 
 		content:'';
 		position: absolute;

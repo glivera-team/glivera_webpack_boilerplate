@@ -1,10 +1,10 @@
-%h1 {
+@mixin h1 {
 	font-size: 4rem;
 	text-transform: uppercase;
 }
 
 // offsets
 
-%title_offset {
+@mixin title_offset {
 	margin-bottom: 2rem;
 }

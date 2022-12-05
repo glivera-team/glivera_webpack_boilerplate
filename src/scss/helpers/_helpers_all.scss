@@ -16,9 +16,9 @@ $holydat_var:none;
 
 @import "mixins";
 @import "variables";
-@import "extends/others_extends";
-@import "extends/project_extends";
-@import "extends/buttons_extends";
-@import "extends/flex_extends";
-@import "extends/transition_extends";
-@import "extends/typography/typography";
+@import "mixins/others_mixins";
+@import "mixins/project_mixins";
+@import "mixins/buttons_mixins";
+// @import "mixins/flex_extends";
+@import "mixins/transition_mixins";
+@import "mixins/typography/typography";

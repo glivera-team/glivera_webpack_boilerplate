@@ -8,7 +8,7 @@
 
 	//remove this demo style
 	&.demo_mod {
-		@extend %global_flex_block_row_nowrap_center_center;
+		@include flex_block(row, nowrap, center, center, center);
 
 		height: calc(100vh - (var(--height-footer) + var(--height-header)));
 

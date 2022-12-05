@@ -1,7 +1,7 @@
 .form_select__label {
-	@extend %form_el_label;
+	@include form_el_label;
 }
 
 .form_select__element {
-	@extend %form_el_default;
+	@include form_el_default;
 }

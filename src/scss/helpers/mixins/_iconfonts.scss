@@ -8,8 +8,7 @@ $icon_font_name: "iconfont";
 	url('../fonts/icons/iconfont.svg#iconfont') format('svg');
 }
 
-%icon-check,
-%last_selector {
+@mixin icon-check {
 	&:before {
 		font-family: $icon_font_name;
 		-webkit-font-smoothing: antialiased;
@@ -23,7 +22,21 @@ $icon_font_name: "iconfont";
 	}
 }
 
-%icons_before_after {
+@mixin last_selector {
+	&:before {
+		font-family: $icon_font_name;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		font-style: normal;
+		font-variant: normal;
+		font-weight: 400;
+		// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+		text-decoration: none;
+		text-transform: none;
+	}
+}
+
+@mixin icons_before_after {
 	&:before,
 	&:after {
 		font-family: $icon_font_name;
@@ -37,7 +50,7 @@ $icon_font_name: "iconfont";
 	}
 }
 
-%icons_after {
+@mixin icons_after {
 	&:after {
 		font-family: $icon_font_name;
 		speak: none;
@@ -50,7 +63,7 @@ $icon_font_name: "iconfont";
 	}
 }
 
-%icon-check {
+@mixin icon-check {
 	&:before {
 		content: '\E001';
 	}

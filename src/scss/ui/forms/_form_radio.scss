@@ -7,5 +7,5 @@
 }
 
 .form_radio__label {
-	@extend %form_el_radio;
+	@include form_el_radio;
 }
