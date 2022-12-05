@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-    - master
+    - main
 
 name: Deploy website to testing host 🚀
 jobs:
@@ -26,9 +26,9 @@ jobs:
     - name: Deploying to the server
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        server: ${{ secrets.SERVER }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
+        server: ${{ secrets.DEV_SERVER }}
+        username: ${{ secrets.DEV_USERNAME }}
+        password: ${{ secrets.DEV_PASSWORD }}
         
         local-dir: ./dist/
         server-dir: ./2022/unnamed_project/        
