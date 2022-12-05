@@ -1,7 +1,7 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import RefreshAnimationOnResize from './RefreshAnimationOnResize';
-import { GLOBAL_VARS } from '../utils/constants';
+import { BREAKPOINTS } from '../utils/constants';
 
 class AnimSample {
 	constructor() {
@@ -9,7 +9,7 @@ class AnimSample {
 	}
 
 	initAnimation(windowWidth) {
-		if (windowWidth < GLOBAL_VARS.mediaPoint1) return; // If you need disable anim on mobile
+		if (windowWidth < BREAKPOINTS.mediaPoint1) return; // If you need disable anim on mobile
 
 		const $trigger = document.querySelector('.test');
 
