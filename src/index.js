@@ -4,7 +4,7 @@ import './scss/main_global.scss';
 import { documentReady } from 'utils';
 import { ENV_STATUS } from 'utils/constants';
 import pageWidgetInit from 'dev_vendors/dev_widget';
-import App from './js/App';
+import App from './js/app';
 
 const styles = ['color: #fff', 'background: #cf8e1f'].join(';');
 const message = 'Developed by Glivera-team https://glivera-team.com/';
