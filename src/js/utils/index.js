@@ -1,5 +1,4 @@
 import isMobile from 'ismobilejs';
-import { GLOBAL_VARS } from './constants';
 
 export const exist = (elementOrArray) => {
 	if (!elementOrArray && elementOrArray !== 0) return false;

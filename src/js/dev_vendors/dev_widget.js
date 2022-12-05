@@ -20,7 +20,7 @@ const pagesArray = PAGES;
 
 const pageWidgetInit = () => {
 	if (typeof pagesArray !== 'undefined' && pagesArray.length > 0) {
-		console.log('dev functions loaded');
+		// console.log('dev functions loaded');
 
 		pagesArray.forEach((page) => {
 			const pageName = page.split('.').slice(0, -1).join('.');

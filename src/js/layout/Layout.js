@@ -1,6 +1,5 @@
 // ------------------- imports
-import { GLOBAL_VARS } from 'utils/constants';
-import { documentReady, pageLoad, onWindowResize } from 'utils';
+import { onWindowResize } from 'utils';
 // ------------------- imports###
 
 // ------------------  import components
@@ -11,8 +10,6 @@ const layout = () => {
 	onWindowResize(() => {
 		calcViewportHeight();
 	});
-
-	console.log('layout load');
 	calcViewportHeight();
 };
 
