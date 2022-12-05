@@ -1,10 +1,10 @@
-import Layout from 'layout/Layout';
+import layout from 'layout/layout';
 import { pageLoad } from './utils';
 
 export default class App {
 	constructor() {
 		this.$htmlTag = document.querySelector('html');
-		this.pageClass =
+		this.pageName =
 			this.$htmlTag.dataset.templateName &&
 			this.$htmlTag.dataset.templateName.length > 0
 				? this.$htmlTag.dataset.templateName
@@ -15,11 +15,10 @@ export default class App {
 	}
 
 	importPage() {
-		if (this.pageClass && this.pageClass !== null) {
-			import(`./pages/${this.pageClass}`)
-				.then(({ default: pageClass }) => {
-					const newPage = new pageClass();
-					newPage.init();
+		if (this.pageName && this.pageName !== null) {
+			import(`./pages/${this.pageName}`)
+				.then(({ default: pageFunc }) => {
+					const newPage = pageFunc();
 				})
 				.catch((error) => {
 					console.error(
@@ -31,7 +30,7 @@ export default class App {
 	}
 
 	init() {
-		const initLayout = new Layout();
+		const initLayout = layout();
 		pageLoad(() => {
 			document.body.classList.add('body--loaded');
 		});

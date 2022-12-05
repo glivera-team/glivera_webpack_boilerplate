@@ -7,22 +7,13 @@ import { documentReady, pageLoad, onWindowResize } from 'utils';
 import { calcViewportHeight } from '../utils';
 // ------------------  import components###
 
-export default class Layout {
-	constructor() {
-		this.init = this.init.bind(this);
-		this.init();
-	}
-
-	loadFunc() {
-		console.log('layout load');
+const layout = () => {
+	onWindowResize(() => {
 		calcViewportHeight();
-	}
+	});
 
-	init() {
-		onWindowResize(() => {
-			calcViewportHeight();
-		});
+	console.log('layout load');
+	calcViewportHeight();
+};
 
-		this.loadFunc();
-	}
-}
+export default layout;
