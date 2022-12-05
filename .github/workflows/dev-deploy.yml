@@ -1,0 +1,39 @@
+on:
+  push:
+    branches:
+    - main
+
+name: Deploy website to testing host 🚀
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v2
+
+    - name: Use Node.js 16
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Installing packages
+      run: npm install --legacy-peer-deps
+      
+    - name: Build Project
+      run: npm run dev-build-deploy
+    
+    - name: Deploying to the server
+      uses: SamKirkland/FTP-Deploy-Action@4.3.3
+      with:
+        server: ${{ secrets.DEV_SERVER }}
+        username: ${{ secrets.DEV_USERNAME }}
+        password: ${{ secrets.DEV_PASSWORD }}
+        
+        local-dir: ./dist/
+        server-dir: ./2022/unnamed_project/        
+        
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
