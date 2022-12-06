@@ -1,9 +1,7 @@
 on:
-  push:
-    branches:
-    - staging
-
-name: Deploy Build on the server 🚀
+  workflow_dispatch:
+  
+name: Handle Deploy Build on the server 🚀
 jobs:
   web-deploy:
     name: Build Deploy
