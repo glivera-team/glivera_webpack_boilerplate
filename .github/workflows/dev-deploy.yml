@@ -3,7 +3,7 @@ on:
     branches:
     - staging
 
-name: Deploy Dev-Build on the server 🚀
+name: Auto-Deploy Dev-Build / staging 🚀
 jobs:
   web-deploy:
     name: Dev-Build Deploy
