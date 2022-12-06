@@ -3,10 +3,10 @@ on:
     branches:
     - main
 
-name: Deploy website to testing host 🚀
+name: Deploy Dev-Build on the server 🚀
 jobs:
   web-deploy:
-    name: Deploy
+    name: Dev-Build Deploy
     runs-on: ubuntu-latest
     steps:
     - name: Get latest code
