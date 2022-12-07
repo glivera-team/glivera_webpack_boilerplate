@@ -27,8 +27,8 @@ jobs:
     - name: Deploying to the server
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        server: ${{ secrets.DEV_SERVER }}
-        username: ${{ secrets.DEV_USERNAME }}
+        server: ventura.ftp.tools
+        username: ventura_glivera
         password: ${{ secrets.DEV_PASSWORD }}
         
         local-dir: ./dist/
