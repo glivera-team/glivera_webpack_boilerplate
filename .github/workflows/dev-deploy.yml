@@ -9,7 +9,6 @@ jobs:
   web-deploy:
     name: Dev-Build Deploy
     runs-on: ubuntu-latest
-    if: secrets.DEV_FOLDER
     steps:
     - name: Get latest code
       uses: actions/checkout@v2
