@@ -22,19 +22,20 @@ jobs:
       run: npm install --legacy-peer-deps
       
     - name: Build Project
-      run:
-        | npm run build
-        | npm run wp-build
+      run: |
+        npm run build
+        npm run wp-build
     
     - name: Deploying to the server
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
+      if: ${{ secrets.WP_FOLDER }}
       with:
-        server: ventura.ftp.tools
-        username: ventura_glivera
+        server: ${{ secrets.HOST }}
+        username: ${{ secrets.WP_USER }}
         password: ${{ secrets.WP_PASSWORD }}
         
         local-dir: ./public/wp-content/themes/
-        server-dir: ./unnamed_project/wp-content/themes/    
+        server-dir: ./${{ secrets.WP_FOLDER }}/wp-content/themes/    
         
         exclude: |
           **/.git*
