@@ -23,7 +23,6 @@ jobs:
     
     - name: Deploying to the server
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
-      if: ${{ secrets.DEV_FOLDER }}
       with:
         server: ${{ secrets.HOST }}
         username: ${{ secrets.DEV_USER }}
