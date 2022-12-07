@@ -34,7 +34,7 @@ jobs:
         password: ${{ secrets.WP_PASSWORD }}
         
         local-dir: ./public/wp-content/themes/
-        server-dir: ./${{ secrets.WP_FOLDER }}/wp-content/themes/    
+        server-dir: ./${{ secrets.WP_FOLDER || 'unnamed_project' }}/wp-content/themes/    
         
         exclude: |
           **/.git*
