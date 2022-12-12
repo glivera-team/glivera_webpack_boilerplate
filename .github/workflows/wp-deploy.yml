@@ -28,14 +28,13 @@ jobs:
     
     - name: Deploying to the server
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
-      if: ${{ secrets.WP_FOLDER }}
       with:
         server: ${{ secrets.HOST }}
         username: ${{ secrets.WP_USER }}
         password: ${{ secrets.WP_PASSWORD }}
         
         local-dir: ./public/wp-content/themes/
-        server-dir: ./${{ secrets.WP_FOLDER }}/wp-content/themes/    
+        server-dir: ./${{ secrets.WP_FOLDER || 'unnamed_project' }}/wp-content/themes/    
         
         exclude: |
           **/.git*
