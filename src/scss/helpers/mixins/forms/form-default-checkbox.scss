@@ -27,7 +27,7 @@
 
 		.form_checkbox__element:checked + & {
 			opacity: 0;
-			transform: rotateZ(40deg) scaleX(.6);
+			transform: rotateZ(40deg) scaleX(.6) translateY(-3px);
 		}
 	}
 
@@ -40,7 +40,7 @@
 		transition: transform .2s, opacity .2s;
 
 		.form_checkbox__element:checked + & {
-			transform: rotateZ(40deg) scaleX(.6);
+			transform: rotateZ(40deg) scaleX(.6) translateY(-3px);
 			opacity: 1;
 		}
 	}
