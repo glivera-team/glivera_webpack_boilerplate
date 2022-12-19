@@ -14,11 +14,11 @@ $doc:false;
 $local_var:global;
 $holydat_var:none;
 
-@import "mixins";
+@import "global-mixins";
 @import "variables";
-@import "mixins/others_mixins";
-@import "mixins/project_mixins";
-@import "mixins/buttons_mixins";
-// @import "mixins/flex_extends";
-@import "mixins/transition_mixins";
+@import "mixins/others-mixins";
+@import "mixins/project-mixins";
+@import "mixins/buttons-mixins";
+// @import "mixins/flex-extends";
+@import "mixins/transition-mixins";
 @import "mixins/typography/typography";
