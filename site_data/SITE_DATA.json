@@ -12,25 +12,76 @@
 			"layoutMod": "",
 			"sections": [
 				{
-					"sectionType": "DemoSection",
+					"sectionType": "demo-section",
 					"title": "Hello world"
 				}
 			]
 		},
-		"about": {
-			"title": "About page",
+		"ui": {
+			"title": "UI page",
 			"page_description": "",
 			"page_keywords": "",
 			"bodyClass": "",
 			"layoutMod": "",
 			"header": {
-				"logo_title": "About logo title"
+				"logo_title": "Ui logo title"
 			},
 			"sections": [
 				{
-					"sectionType": "DemoSection",
-					"title": "About hero",
-					"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit"
+					"sectionType": "ui-section",
+					"ui_title" : "Ui page",
+					"ui_text" : "This page is for showing project titles, buttons, forms, components.",
+					"typography_title" : "Typography",
+					"typography_text" : "This section contains all text elements: titles, texts.",
+					"typography_items":  [
+						{
+							"tag": "h1",
+							"fz": "72",
+							"fw": "700"
+						},
+						{
+							"tag": "h2",
+							"fz": "56",
+							"fw": "700"
+						},
+						{
+							"tag": "h3",
+							"fz": "40",
+							"fw": "500"
+						},
+						{
+							"tag": "h4",
+							"fz": "32",
+							"fw": "400"
+						},
+						{
+							"tag": "h5",
+							"fz": "24",
+							"fw": "400"
+						},
+						{
+							"tag": "h6",
+							"fz": "20",
+							"fw": "400"
+						},
+						{
+							"type": "text",
+							"content": "Text",
+							"fz": "18",
+							"fw": "400"
+						}
+					],
+					"buttons_title" : "Buttons",
+					"buttons_text" : "This section contains all buttons.",
+					"buttons": [
+						"Button 1",
+						"Button 2",
+						"Button 3"
+					],
+					"forms_title" : "Forms",
+					"forms_text" : "This section contains all form items: inputs, selects, textareas, checkboxes, radio buttons.",
+					"components_title" : "Components",
+					"components_text" : "This section contains all components."
 				}
 			]
 		}

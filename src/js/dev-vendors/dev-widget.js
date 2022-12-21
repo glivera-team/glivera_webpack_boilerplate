@@ -16,8 +16,7 @@ const pageWidget = (pages) => {
 };
 
 const pageWidgetInit = () => {
-	if (typeof pagesArray !== 'undefined' && pagesArray.length > 0) {
-		// console.log('dev functions loaded');
+	console.log('dev functions loaded');
 
 	pageWidget(Object.keys(PAGES));
 };

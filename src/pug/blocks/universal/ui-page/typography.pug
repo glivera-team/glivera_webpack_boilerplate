@@ -1,42 +1,4 @@
--
-	typography_items = [
-		{
-			tag: 'h1',
-			fz: '72',
-			fw: '700',
-		},
-		{
-			tag: 'h2',
-			fz: '56',
-			fw: '700',
-		},
-		{
-			tag: 'h3',
-			fz: '40',
-			fw: '500',
-		},
-		{
-			tag: 'h4',
-			fz: '32',
-			fw: '400',
-		},
-		{
-			tag: 'h5',
-			fz: '24',
-			fw: '400',
-		},
-		{
-			tag: 'h6',
-			fz: '20',
-			fw: '400',
-		},
-		{
-			type: 'text',
-			content: 'Text',
-			fz: '18',
-			fw: '400',
-		},
-	];
+include ../../../templates/mixins/ui-page/m-typography-item
 
 //- headings
 +typography_item({
@@ -48,6 +10,7 @@
 	]
 })
 //- demo content
-ul.ui_typography
-	each item, index in typography_items
-		+typography_item(item)
+if typography_items
+	ul.ui_typography
+		each item, index in typography_items
+			+typography_item(item)
