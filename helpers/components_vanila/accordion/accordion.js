@@ -11,7 +11,6 @@ export default class Accordion {
 		triggers,
 		activeStateName,
 	}) {
-		console.log(triggers, activeStateName);
 		this.$allTriggers = triggers ? triggers : null; // eslint-disable-line
 		this.activeStateName = activeStateName ? activeStateName : this.CLASSNAMES.defaultActiveState; // eslint-disable-line
 
@@ -40,8 +39,6 @@ export default class Accordion {
 	}
 
 	onResize() {
-		// console.log('test resize');
-
 		if (this.isEnabled()) {
 			this.$allTriggers.forEach($item => {
 				const $parentEl = $item.parentNode;
@@ -108,7 +105,6 @@ export default class Accordion {
 		}
 	}
 }
-
 
 // ------------ how init
 // copy past this

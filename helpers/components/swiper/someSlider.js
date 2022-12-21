@@ -1,27 +1,43 @@
 import Swiper, { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/scss/scrollbar';
-import buildSliders from './buildSwiper';
+import { buildSwiper, removeSwiper } from './buildSwiper';
 
 const someSlider = () => {
-	const sliderClass = '.someSlider';
-	buildSliders(sliderClass);
+	const classNames = {
+		slider: '.someSlider',
+		wrapper: '.someSliderWrapper',
+		arrowNext: '.someSliderNext',
+		arrowPrev: '.someSliderPrev',
+		pagination: '.someSliderDots',
+	};
 
-	let slideEl = document.querySelectorAll(sliderClass);
+	const $sliderWrappers = document.querySelectorAll(classNames.wrapper);
 
-	if (typeof (slideEl) !== 'undefined' && slideEl != null) {
-		let sliderEl = new Swiper(sliderClass, {
+	if (!$sliderWrappers.length) return;
+
+	$sliderWrappers.forEach(($wrapper) => {
+		const $slider = $wrapper.querySelector(classNames.slider);
+		if (!$slider) return;
+
+		const $prevArrow = $wrapper.querySelector(classNames.arrowPrev);
+		const $nextArrow = $wrapper.querySelector(classNames.arrowNext);
+		const $pagination = $wrapper.querySelector(classNames.pagination);
+
+		buildSwiper($slider);
+
+		const sliderInstance = new Swiper($slider, {
 			modules: [Navigation, Pagination],
 			observer: true,
 			observeParents: true,
 			speed: 800,
 			// loop: true,
 			navigation: {
-				prevEl: '.slider_arrow--prev',
-				nextEl: '.slider_arrow--next',
+				prevEl: $prevArrow,
+				nextEl: $nextArrow,
 			},
 			pagination: {
-				el: '.slider_dots',
+				el: $pagination,
 				type: 'bullets',
 				clickable: true,
 			},
@@ -34,9 +50,8 @@ const someSlider = () => {
 					slidesPerView: 4,
 				},
 			},
-
 		});
-	}
+	});
 };
 
 export default someSlider;

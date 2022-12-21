@@ -1,5 +1,13 @@
 import isMobile from 'ismobilejs';
 
+export const exist = (elementOrArray) => {
+	if (!elementOrArray && elementOrArray !== 0) return false;
+	if (elementOrArray.length === 0) {
+		return false;
+	}
+	return true;
+};
+
 export function debounce(delay, fn) {
 	let timerId;
 	return (...args) => {
@@ -66,6 +74,14 @@ export function isFunction(func) {
 	return func instanceof Function;
 }
 
+export const isTouchDevice = () => {
+	return (
+		('ontouchstart' in window)
+		|| (window.navigator.maxTouchPoints > 0)
+		|| (window.navigator.msMaxTouchPoints > 0)
+	);
+};
+
 export function getWindowSize() {
 	const windowWidth = window.innerWidth;
 	const windowHeight = window.innerHeight;
@@ -86,6 +102,32 @@ export const onWindowResize = cb => {
 	window.addEventListener('resize', debounce(15, handleResize));
 
 	handleResize();
+};
+
+export const detectUsersOS = () => {
+	if (window.navigator.userAgent.indexOf('Win') !== -1) return 'Windows OS';
+	if (window.navigator.userAgent.indexOf('Mac') !== -1) return 'Macintosh';
+	if (window.navigator.userAgent.indexOf('Linux') !== -1) return 'Linux OS';
+	if (window.navigator.userAgent.indexOf('Android') !== -1) return 'Android OS';
+	if (window.navigator.userAgent.indexOf('like Mac') !== -1) return 'iOS';
+
+	return null;
+};
+
+export const onWindowChangeOrientation = cb => {
+	if ((!cb && !isFunction(cb)) || !isTouchDevice()) return;
+
+	let { windowWidth } = getWindowSize();
+
+	const handleResize = () => {
+		const { windowWidth: newWindowWidth } = getWindowSize();
+
+		if (windowWidth !== newWindowWidth) cb();
+
+		windowWidth = newWindowWidth;
+	};
+
+	window.addEventListener('resize', debounce(100, handleResize));
 };
 
 export const onWindowScroll = cb => {

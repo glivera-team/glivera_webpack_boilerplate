@@ -1,0 +1,16 @@
+include ../../../templates/mixins/ui-page/m-typography-item
+
+//- headings
++typography_item({
+	type: 'heading',
+	content: [
+		'Text style',
+		'Size',
+		'Weight',
+	]
+})
+//- demo content
+if typography_items
+	ul.ui_typography
+		each item, index in typography_items
+			+typography_item(item)

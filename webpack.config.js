@@ -103,7 +103,7 @@ module.exports = {
 					environment.paths.source,
 					'images',
 					'icons',
-					'sprite_icons',
+					'sprite-icons',
 				),
 				parser: {
 					dataUrlCondition: {
@@ -120,7 +120,7 @@ module.exports = {
 					environment.paths.source,
 					'images',
 					'icons',
-					'sprite_icons',
+					'sprite-icons',
 				),
 				use: [
 					{
@@ -185,7 +185,7 @@ module.exports = {
 					noErrorOnMissing: true,
 					globOptions: {
 						dot: true,
-						ignore: ['**/icons/other_icons/**', '**/icons/sprite_icons/**'],
+						ignore: ['**/icons/other-icons/**', '**/icons/sprite-icons/**'],
 					},
 				},
 				{

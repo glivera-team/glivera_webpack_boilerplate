@@ -157,7 +157,6 @@ function initSlider() {
 
 	// slide change animation
 	sliderEl.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-		console.log(event, slick, checkAnim);
 		if (!currentSlide !== nextSlide) {
 			slider_w.toggleClass('animation_active_mod')
 			let currentSlideTl = sliderArray[currentSlide].timeline;
@@ -166,8 +165,6 @@ function initSlider() {
 
 			// animation delay
 			let delayTime = 1;
-
-			console.log(delayTime);
 
 			gsap.delayedCall(delayTime, function () {
 				sliderArray[nextSlide].timeline.tweenFromTo("start", "start_end", {

@@ -1,0 +1,12 @@
+include ../../../templates/mixins/ui-page/m-component
+
+ul.ui_components
+	+component({
+		title: 'Component name (include)',
+	})
+		//- include ../../your_component
+
+	+component({
+		title: 'Component name (mixin)',
+	})
+		//- +your_mixin

@@ -1,0 +1,38 @@
+include ../templates/mixins/ui-page/m-heading
+
+section.section.section_ui
+	.section_in
+		//- introducing
+		.section_ui__block
+			+heading({
+				title: ui_title || 'Ui page',
+				text: ui_text || 'This page is for showing project titles, buttons, forms, components.',
+			})
+		//- typography
+		.section_ui__block
+			+heading({
+				category: typography_title || 'Typography',
+				text: typography_text || 'This section contains all text elements: titles, texts.',
+			})
+			include ../blocks/universal/ui-page/typography
+		//- buttons
+		.section_ui__block
+			+heading({
+				category: buttons_title || 'Buttons',
+				text: buttons_text || 'This section contains all buttons.',
+			})
+			include ../blocks/universal/ui-page/buttons
+		//- forms
+		.section_ui__block
+			+heading({
+				category: forms_title || 'Forms',
+				text: forms_text || 'This section contains all form items: inputs, selects, textareas, checkboxes, radio buttons.',
+			})
+			include ../blocks/universal/ui-page/forms
+		//- components
+		.section_ui__block
+			+heading({
+				category: components_title || 'Components',
+				text: components_text || 'This section contains all components.',
+			})
+			include ../blocks/universal/ui-page/components

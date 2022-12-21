@@ -1,0 +1,10 @@
+.section_ui {
+	background-color: $white;
+	color: $black;
+}
+
+.section_ui__block {
+	&:not(:last-child) {
+		margin-bottom: 6rem;
+	}
+}
