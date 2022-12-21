@@ -1,10 +1,8 @@
-.slider_wrap
-	.slider_arrow.slider_arrow--prev
-	.slider_arrow.slider_arrow--next
-	.slider_list.someSlider
+.slider.someSliderWrapper
+	.slider__arrow.slider_arrow--prev.someSliderPrev
+	.slider__arrow.slider_arrow--next.someSliderNext
+	.slider__list.someSlider
 		+loop_while(14)
-			li.slider_item
-				h1= `hello ${i}`
-				p text here
-				img(src="images/slide5.jpg", alt="")
-	.slider_dots
+			.slider__item
+				p slide#{i}
+	.slider__dots.someSliderDots

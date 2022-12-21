@@ -1,0 +1,26 @@
+include ../templates/global-vars
+include ../templates/global-mixins
+include ../templates/mixins/m-header
+include ../templates/mixins/m-footer
+
+block vars
+block project_vars
+
+doctype
+html(
+	lang="en"
+	data-page-id=pageId,
+	data-available-components=htmlWebpackPlugin.options.availableComponents
+)
+	head
+		+head(array)
+	body(class= array.body_class)
+		.preloader
+		- global.headerArray = array.headerArray || siteData.header
+		include ./header
+		.wrapper(class= array.layout_mod)
+			.base(class= array.layout_mod)
+				block content_block
+			- global.footerArray = array.footerArray || siteData.footer
+			include ./footer
+		block local_popup

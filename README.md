@@ -19,6 +19,8 @@
 
 ```
 build                        # Production build
+dist                         # Dev build
+public                       # Production WP build
 helpers                      # All type samples and plugins
 ├── components               # Samples
 ├── components_vanilla       # Vanilla js helpers
@@ -28,13 +30,16 @@ src                          # Sources
 │   ├── icons                # Iconfont template
 ├── images                   # Images template
 │   ├── icons                # Icons template
-│   |   ├── other_icons      # Icons unused in sprite
-│   |   ├── sprite_icons     # Icons used in sprite
+│   |   ├── other-icons      # Icons unused in sprite
+│   |   ├── sprite-icons     # Icons used in sprite
 ├── js                       # Scripts template
-│   ├── components           # Functions for components
-│   ├── dev_vendors          # Functions for develop, unused in production
-│   ├── libs                 # Libriaries, plugins template
+│   ├── components           # JS-components
+│   ├── dev-vendors          # Functions for develop, unused in production
+│   ├── layout					     # Layout function for init global JS-components or Critical scripts
+│   ├── pages                # JS-pages for init specific components
 │   ├── utils                # Constants, helpers functions
+│   ├── vendors              # Libriaries, plugins template
+│   ├── app.js             	 # Global layout combining layout and page scripts
 ├── pug                      # Layout templates
 │   ├── blocks               # Layout of components
 │   │   ├── universal        # Layout of universal components
@@ -43,14 +48,16 @@ src                          # Sources
 │   ├── templates            # Base mixins, data arrays and variables for *.pug
 │   │   ├── mixins           # Mixins used in project
 ├── scss                     # Styles template
-│   ├── base_ui              # Styles for base elements
-│   │   ├── forms            # Styles for form elements
-│   ├── blocks               # Styles for all components
+│   ├── base                 # Styles for base elements, resets, fonts
+│   ├── components           # Styles for components
 │   │   ├── universal        # Styles for universal components
+│   ├── critical             # Critical components
 │   ├── helpers              # Style extends, mixins and variables
-│   │   ├── extends          # Extends for all components
-│   │   │   ├── forms        # Extends for forms
-│   │   │   ├── typography   # Extends for typography
+│   │   ├── mixins           # Specific mixins
+│   │   │   ├── forms        # Mixins for forms
+│   │   │   ├── typography   # Mixins for typography
+│   ├── layout             	 # Styles for layout components(header, footer, etc)
+│   ├── ui                   # Styles for global ui(forms, buttons, icons)
 │   ├── plugins              # Styles for plugins
 │   ├── static               # Static files
 .env                         # Environment configuration
@@ -68,12 +75,7 @@ readme.md                    # Documentation template
 ## Rules:
 
 **File naming:**
+Kebab-case for all files - foo-bar-baz.ex
+For pug mixins - m-foo-bar-baz.pug
 
-| Type                          | Naming                | Exuals to           |
-| ----------------------------  | :--------------------:| -------------------:|
-| Pug files                     | your_file.pug         |                     |
-| Pug files (built-in blocks)   | _your_file.pug        |                     |
-| Sass files                    | _your_file.scss       |                     |
-| Pug mixin (pug/templates)     | _m_your_component.pug | *name of component* |
-| JS component (js/components)  | nameOfYourFunction.js | *name of function*  |
 
