@@ -32,7 +32,7 @@ jobs:
         password: ${{ secrets.DEV_PASSWORD }}
 
         local-dir: ./dist/
-        server-dir: ./2022/${{ secrets.DEV_FOLDER || 'unnamed_project' }}/
+        server-dir: ./2023/${{ secrets.DEV_FOLDER || 'unnamed_project' }}/
 
         exclude: |
           **/.git*
