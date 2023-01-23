@@ -122,7 +122,7 @@
 
 	overflow: hidden;
 
-	&.animation_active_mod{
+	&.animation_active_mod {
 		pointer-events: none;
 	}
 }
@@ -132,13 +132,12 @@
 	width: 100%;
 	opacity: 0;
 
-	&.slick-initialized{
+	&.slick-initialized {
 		opacity: 1;
 	}
 
 	.slick-list,
 	.slick-track {
-
 		position: relative;
 
 		display: block;
@@ -161,7 +160,6 @@
 		z-index: 10 !important;
 		opacity: 1 !important;
 	}
-
 }
 
 .decor_item {
