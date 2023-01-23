@@ -16,6 +16,7 @@ export default class App {
 				.then(({ default: pageFunc }) => {
 					const newPage = pageFunc();
 				})
+
 				.catch((error) => {
 					console.error('Failed to load page, check data-template-name at root if correct');
 
