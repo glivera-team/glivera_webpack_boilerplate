@@ -4,11 +4,7 @@ import { pageLoad } from './utils';
 export default class App {
 	constructor() {
 		this.$htmlTag = document.querySelector('html');
-		this.pageName =
-			this.$htmlTag.dataset.templateName &&
-			this.$htmlTag.dataset.templateName.length > 0
-				? this.$htmlTag.dataset.templateName
-				: null;
+		this.pageName = this.$htmlTag.dataset.templateName && this.$htmlTag.dataset.templateName.length > 0 ? this.$htmlTag.dataset.templateName : null;
 
 		this.init = this.init.bind(this);
 		this.init();
@@ -21,9 +17,8 @@ export default class App {
 					const newPage = pageFunc();
 				})
 				.catch((error) => {
-					console.error(
-						'Failed to load page, check data-template-name at root if correct',
-					);
+					console.error('Failed to load page, check data-template-name at root if correct');
+
 					console.dir(error, error.stack);
 				});
 		}
