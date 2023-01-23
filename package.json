@@ -93,6 +93,11 @@
 		"svg sprite "
 	],
 	"target": "web",
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
 	"lint-staged": {
 		".{js,jsx}": "lint",
 		"**/*": "prettier --write --ignore-unknown"

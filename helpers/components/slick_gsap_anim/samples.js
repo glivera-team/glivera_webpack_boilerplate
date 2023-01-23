@@ -10,6 +10,7 @@ $(document).ready(function ($) {
 	slider_w = $('.slider_w');
 	sliderCounter = $('.slider_counter');
 });
+
 $(window).on('load', function () {
 	initSlider();
 });
