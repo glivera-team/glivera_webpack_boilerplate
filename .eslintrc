@@ -8,10 +8,7 @@
 	},
 	"ignorePatterns": ["srs/js/vendors/*.js", "srs/js/dev_vendors/*.js"],
 	"rules": {
-		"indent": [
-			2,
-			"tab"
-		],
+		"indent": [2, "tab"],
 		"no-tabs": 0,
 		"arrow-parens": "off",
 		"no-restricted-globals": "off",
@@ -31,7 +28,7 @@
 		"no-else-return": "off",
 		"no-lonely-if": "off",
 		"import/no-unresolved": "off",
-		"no-console": 0,
+		"no-console": "off",
 		"class-methods-use-this": "off",
 		"no-shadow": "off",
 		"new-cap": 0,
@@ -51,6 +48,6 @@
 	},
 	"parserOptions": {
 		"ecmaVersion": 12,
-		"sourceType": "module",
+		"sourceType": "module"
 	}
 }
