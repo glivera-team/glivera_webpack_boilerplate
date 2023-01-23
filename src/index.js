@@ -13,6 +13,7 @@ console.info('%c%s', styles, message);
 // -------------------  dev widget
 if (ENV_STATUS.projectDevStatus) {
 	pageWidgetInit();
+	dssdads;
 }
 // -------------------  dev widget###
 // -------------------  import sprite-icons svg
