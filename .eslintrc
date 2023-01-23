@@ -28,10 +28,11 @@
 		"no-else-return": "off",
 		"no-lonely-if": "off",
 		"import/no-unresolved": "off",
-		"no-console": "off",
+		// "no-console": "off",
 		"class-methods-use-this": "off",
 		"no-shadow": "off",
 		"new-cap": 0,
+		"no-console": ["warn", { "allow": ["warn", "dir", "error"] }],
 		"quotes": [
 			2,
 			"single",

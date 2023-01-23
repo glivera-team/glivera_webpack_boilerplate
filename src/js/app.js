@@ -22,8 +22,6 @@ export default class App {
 					console.dir(error, error.stack);
 				});
 		}
-
-		console.log('hey');
 	}
 
 	init() {
