@@ -14,7 +14,6 @@ function tabs(link, block) {
 
 		$(block + '[data-tab="' + currentData + '"]').addClass('active_tab');
 		$this.addClass('active_tab');
-
 	});
 }
 

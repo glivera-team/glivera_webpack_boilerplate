@@ -1,4 +1,3 @@
-const hello = () => {
-};
+const hello = () => {};
 
 export default hello;

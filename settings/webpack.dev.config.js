@@ -34,7 +34,7 @@ module.exports = merge(webpackConfiguration, {
 					},
 				],
 			},
-		]
+		],
 	},
 
 	/* Development Server Configuration */

@@ -14,18 +14,18 @@
 		left: 0;
 		width: 2rem;
 		height: 2rem;
-		border-radius:100%;
-		border:1px solid $black;
-		cursor:pointer;
+		border-radius: 100%;
+		border: 1px solid $black;
+		cursor: pointer;
 	}
 
 	&:after {
 		@include transition_opacity;
 
-		content:'';
+		content: '';
 		position: absolute;
-		top: .4rem;
-		left: .5rem;
+		top: 0.4rem;
+		left: 0.5rem;
 		width: 1rem;
 		height: 1rem;
 		border-radius: 100%;

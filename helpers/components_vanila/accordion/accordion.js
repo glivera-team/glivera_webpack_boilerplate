@@ -7,10 +7,7 @@ export default class Accordion {
 		};
 	}
 
-	constructor({
-		triggers,
-		activeStateName,
-	}) {
+	constructor({ triggers, activeStateName }) {
 		this.$allTriggers = triggers ? triggers : null; // eslint-disable-line
 		this.activeStateName = activeStateName ? activeStateName : this.CLASSNAMES.defaultActiveState; // eslint-disable-line
 
@@ -40,7 +37,7 @@ export default class Accordion {
 
 	onResize() {
 		if (this.isEnabled()) {
-			this.$allTriggers.forEach($item => {
+			this.$allTriggers.forEach(($item) => {
 				const $parentEl = $item.parentNode;
 
 				if ($parentEl.classList.contains(this.activeStateName)) {
@@ -52,7 +49,7 @@ export default class Accordion {
 	}
 
 	closeAllAccordion() {
-		this.$allTriggers.forEach($item => {
+		this.$allTriggers.forEach(($item) => {
 			this.closeAccordion($item.parentNode, $item.nextElementSibling);
 		});
 	}
@@ -89,7 +86,7 @@ export default class Accordion {
 	init() {
 		if (this.$allTriggers) {
 			onWindowResize(this.onResize);
-			this.$allTriggers.forEach($item => {
+			this.$allTriggers.forEach(($item) => {
 				const $parentEl = $item.parentNode;
 
 				if ($parentEl.classList.contains(this.activeStateName) && this.isEnabled()) {

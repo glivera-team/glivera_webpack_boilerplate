@@ -54,7 +54,7 @@
 
 @mixin hover_show {
 	opacity: 0;
-	transition: opacity .3s ease;
+	transition: opacity 0.3s ease;
 }
 
 @mixin hover_show_parent {
@@ -98,7 +98,6 @@
 	$index: 20;
 	$index2: 21;
 	@while $index > 0 {
-
 		&:nth-child(#{$index}) {
 			z-index: 10 + ($index2 - $index);
 		}
@@ -123,7 +122,7 @@
 	min-height: 100%;
 }
 
-@mixin responsive_animation_wrap{
+@mixin responsive_animation_wrap {
 	position: absolute;
 	width: 10%;
 	height: 10vh;

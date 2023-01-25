@@ -11,15 +11,16 @@
 	width: 6rem;
 	margin-right: -68.6rem;
 	background: black;
-	opacity: .4;
+	opacity: 0.4;
 	cursor: pointer;
 
-	&:hover, &:focus {
+	&:hover,
+	&:focus {
 		text-decoration: none;
 	}
 
 	&:hover {
-		opacity: .3;
+		opacity: 0.3;
 	}
 
 	&:before {
@@ -27,18 +28,17 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		margin-top: -.8rem;
+		margin-top: -0.8rem;
 		margin-left: -1rem;
 		border-radius: 3px;
 
-		@include arrow(top, $white, 2rem, .6rem);
+		@include arrow(top, $white, 2rem, 0.6rem);
 	}
 
 	&.hidden {
 		opacity: 0;
 		pointer-events: none;
 	}
-
 }
 
 //---------------------------------------------to top btn###

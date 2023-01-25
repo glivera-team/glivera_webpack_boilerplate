@@ -15,7 +15,6 @@ function initSelects() {
 			// search: {
 			// 	placeholder: '',
 			// },
-
 			// callBacks
 			// onInit: (gelect) => {},
 			// onClick: (gelect) => {},

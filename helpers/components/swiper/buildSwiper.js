@@ -6,7 +6,7 @@ export const buildSwiper = (sliderNode) => {
 
 	if (!$slides.length) return;
 	$slider.classList.add('swiper');
-	Array.from($slides).forEach($slide => $slide.classList.add('swiper-slide'));
+	Array.from($slides).forEach(($slide) => $slide.classList.add('swiper-slide'));
 
 	const htmlStructure = `<div class="swiper-wrapper">${$slider.innerHTML}</div>`;
 	$slider.innerHTML = htmlStructure;
@@ -23,6 +23,6 @@ export const removeSwiper = (sliderNode) => {
 	if (!$slides.length) return;
 
 	$slider.classList.remove('swiper');
-	Array.from($slides).forEach($slide => $slide.classList.remove('swiper-slide'));
+	Array.from($slides).forEach(($slide) => $slide.classList.remove('swiper-slide'));
 	$slider.innerHTML = $wrapper.innerHTML;
 };

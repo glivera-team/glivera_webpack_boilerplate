@@ -1,9 +1,9 @@
 // need ScrollToPlugin
 var $toTopBtn = $('.toTopBtn'),
-		$window = $(window);
+	$window = $(window);
 
-$toTopBtn.click(function(e) {
-	TweenLite.to($window, 1, {scrollTo:{y:0, x:0, autoKill: false}, ease:Power2.easeInOut});
+$toTopBtn.click(function (e) {
+	TweenLite.to($window, 1, { scrollTo: { y: 0, x: 0, autoKill: false }, ease: Power2.easeInOut });
 });
 
 // if you want the button to appear after scrolling

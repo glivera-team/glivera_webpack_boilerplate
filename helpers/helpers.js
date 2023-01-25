@@ -4,12 +4,12 @@ function splitSpan(target) {
 	target.each(function () {
 		var text = $.trim($(this).text()),
 			word = text.split(' '),
-			str = "";
+			str = '';
 		$.each(word, function (key, value) {
 			if (key != 0) {
-				str += " ";
+				str += ' ';
 			}
-			str += "<span>" + value + "</span>";
+			str += '<span>' + value + '</span>';
 		});
 		$(this).html(str);
 	});
@@ -59,7 +59,7 @@ var animationArray = [],
 // on document ready init your animation blocks/sections
 $animationSection = $('.animationSection');
 
-// define function for creating animation array 
+// define function for creating animation array
 function createAnimationArray() {
 	$animationSection.each(function (index, element) {
 		var section = new AnimationSection($(this));
@@ -79,15 +79,14 @@ function AnimationSection(section) {
 	};
 }
 
-
 // define function to play animation
 function playAnimation(position, version) {
 	if (animationArray.length) {
 		animationArray.forEach(function (item) {
-			if (position > (item.offsetTop - (windowHeight / 2.5) * version) && item.animationState == false) {
+			if (position > item.offsetTop - (windowHeight / 2.5) * version && item.animationState == false) {
 				item.animationState = true;
 
-				if (item.animName == "some_name") {
+				if (item.animName == 'some_name') {
 					// some stuff to action
 				}
 			}
@@ -117,6 +116,3 @@ function updateSizes() {
 //*******************************************animation method###
 
 //*******************************************
-
-
-

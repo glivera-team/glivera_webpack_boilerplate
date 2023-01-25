@@ -1,17 +1,17 @@
 var $video;
 
 $(document).ready(function ($) {
-  $video = $('.video');
+	$video = $('.video');
 });
 
 function insertVideo() {
-  var url = $video.data('srcvideo');
+	var url = $video.data('srcvideo');
 
-  $video.append('<source src="' + url + '" type="video/mp4" />');
+	$video.append('<source src="' + url + '" type="video/mp4" />');
 }
 
 $(window).on('load', function () {
-  if ($video) {
-    insertVideo();
-  }
+	if ($video) {
+		insertVideo();
+	}
 });

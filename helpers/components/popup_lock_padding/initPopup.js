@@ -12,7 +12,7 @@ const initPopup = (btn, popup, content, close) => {
 		const lockPaddingValue = window.innerWidth - document.body.offsetWidth;
 
 		if ($lockPadding.length > 0) {
-			$lockPadding.forEach(item => {
+			$lockPadding.forEach((item) => {
 				const el = item;
 				el.style.paddingRight = `${lockPaddingValue}px`;
 			});
@@ -29,7 +29,7 @@ const initPopup = (btn, popup, content, close) => {
 	function bodyUnLock() {
 		setTimeout(() => {
 			if ($lockPadding.length > 0) {
-				$lockPadding.forEach(item => {
+				$lockPadding.forEach((item) => {
 					const el = item;
 					el.style.paddingRight = '0px';
 				});
@@ -55,7 +55,7 @@ const initPopup = (btn, popup, content, close) => {
 	}
 
 	// Закрытие попапа при нажатии Esc
-	document.addEventListener('keydown', e => {
+	document.addEventListener('keydown', (e) => {
 		if (e.which === 27) {
 			const popupActive = document.querySelector('.active_state');
 			popupClose(popupActive);
@@ -73,7 +73,7 @@ const initPopup = (btn, popup, content, close) => {
 				curentPopup.classList.add('active_state');
 			}
 			// Закрытие при нажатии на темную область
-			curentPopup.addEventListener('click', e => {
+			curentPopup.addEventListener('click', (e) => {
 				if (!e.target.closest(content)) {
 					popupClose(e.target.closest(popup));
 					// bodyClass(false);
@@ -84,7 +84,7 @@ const initPopup = (btn, popup, content, close) => {
 
 	if (!$btn.length && !$popup) return null;
 
-	$btn.forEach(item => {
+	$btn.forEach((item) => {
 		item.addEventListener('click', (e) => {
 			e.preventDefault();
 			popupOpen($popup);
@@ -93,7 +93,7 @@ const initPopup = (btn, popup, content, close) => {
 
 	if (!$close) return null;
 
-	$close.forEach(item => {
+	$close.forEach((item) => {
 		item.addEventListener('click', () => {
 			popupClose(item.closest(popup));
 		});

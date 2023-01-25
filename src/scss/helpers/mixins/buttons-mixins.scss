@@ -9,7 +9,8 @@
 
 	cursor: pointer;
 
-	&:hover, &:focus {
+	&:hover,
+	&:focus {
 		text-decoration: none;
 	}
 }
@@ -19,7 +20,7 @@
 	font-weight: 700;
 	color: $white;
 	background-color: $color_link_base;
-	transition: background-color .3s ease;
+	transition: background-color 0.3s ease;
 
 	@include st_btn;
 

@@ -57,9 +57,7 @@ module.exports = merge(webpackConfiguration, {
 	plugins: [
 		new CleanWebpackPlugin({
 			verbose: true,
-			cleanOnceBeforeBuildPatterns: [
-				path.resolve(environment.paths.wpOutput, ''),
-			],
+			cleanOnceBeforeBuildPatterns: [path.resolve(environment.paths.wpOutput, '')],
 		}),
 		new CopyWebpackPlugin({
 			patterns: [

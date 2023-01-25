@@ -3,7 +3,7 @@
 	&.check_1_mod,
 	&.radio_1_mod {
 		display: inline-block;
-		cursor:pointer;
+		cursor: pointer;
 	}
 }
 
@@ -18,21 +18,22 @@
 	&.check_1_mod {
 		position: relative;
 		display: inline-block;
-		padding:0 0 0 3rem;
+		padding: 0 0 0 3rem;
 
-		&:before,&:after {
+		&:before,
+		&:after {
 			position: absolute;
 			top: -1px;
 			left: 0;
 			width: 20px;
 			height: 20px;
-			cursor:pointer;
+			cursor: pointer;
 		}
 
 		&:before {
 			content: '';
-			border-radius:2px;
-			border:1px solid black;
+			border-radius: 2px;
+			border: 1px solid black;
 		}
 
 		&:after {
@@ -42,7 +43,7 @@
 			text-align: center;
 			line-height: 20px;
 			opacity: 0;
-			color:green;
+			color: green;
 
 			.radio_check_input:checked + & {
 				opacity: 1;
@@ -53,7 +54,7 @@
 	&.radio_1_mod {
 		position: relative;
 		display: inline-block;
-		padding:0 0 0 3rem;
+		padding: 0 0 0 3rem;
 
 		&:before {
 			content: '';
@@ -62,15 +63,15 @@
 			left: 0;
 			width: 20px;
 			height: 20px;
-			border-radius:100%;
-			border:1px solid black;
-			cursor:pointer;
+			border-radius: 100%;
+			border: 1px solid black;
+			cursor: pointer;
 		}
 
 		&:after {
 			@extend %transition_opacity;
 
-			content:'';
+			content: '';
 			position: absolute;
 			top: 4px;
 			left: 5px;
@@ -109,13 +110,14 @@
 	font-size: 1.6rem;
 	color: $black;
 
-	&:before,&:after {
+	&:before,
+	&:after {
 		position: absolute;
 		top: -1px;
 		left: 0;
 		width: 2rem;
 		height: 2rem;
-		cursor:pointer;
+		cursor: pointer;
 	}
 
 	&:before {
@@ -153,18 +155,18 @@
 		left: 0;
 		width: 2rem;
 		height: 2rem;
-		border-radius:100%;
-		border:1px solid $black;
-		cursor:pointer;
+		border-radius: 100%;
+		border: 1px solid $black;
+		cursor: pointer;
 	}
 
 	&:after {
 		@extend %transition_opacity;
 
-		content:'';
+		content: '';
 		position: absolute;
-		top: .4rem;
-		left: .5rem;
+		top: 0.4rem;
+		left: 0.5rem;
 		width: 1rem;
 		height: 1rem;
 		border-radius: 100%;

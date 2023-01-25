@@ -1,16 +1,16 @@
 .breadcrumbs_list {
 	@include flex_block(row, nowrap, flex-start, center, center);
 
-	margin:50px;
+	margin: 50px;
 }
 
 .breadcrumbs_item {
-	padding:0 0 0 1rem;
+	padding: 0 0 0 1rem;
 
 	&:before {
 		content: '>';
 		display: inline-block;
-		margin:0 1rem 0 0;
+		margin: 0 1rem 0 0;
 	}
 
 	&:first-child {
@@ -23,11 +23,11 @@
 }
 
 .breadcrumbs_link {
-
 	&.current_mod {
-		color:$color_text_base;
+		color: $color_text_base;
 
-		&:hover, &:focus {
+		&:hover,
+		&:focus {
 			text-decoration: none;
 		}
 	}

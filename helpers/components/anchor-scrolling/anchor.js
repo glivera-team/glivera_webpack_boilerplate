@@ -1,13 +1,13 @@
 // need ScrollToPlugin
 var $mainNavLink = $('.main_nav_link'),
-		$header = $('.header'),
-		$window = $(window);
+	$header = $('.header'),
+	$window = $(window);
 
-$mainNavLink.on('click', function() {
+$mainNavLink.on('click', function () {
 	var $this = $(this),
-			href = $this.attr('href'),
-			topY = $(href).offset().top;
-			url = document.location.href;
+		href = $this.attr('href'),
+		topY = $(href).offset().top;
+	url = document.location.href;
 
 	$mainNavLink.removeClass('active_mod');
 	$(this).addClass('active_mod');
@@ -19,12 +19,12 @@ $mainNavLink.on('click', function() {
 	}
 
 	TweenMax.to($window, 1, {
-		scrollTo:{
+		scrollTo: {
 			y: topY,
 			offsetY: $header.height(),
-			autoKill: false
+			autoKill: false,
 		},
-		ease:Power3.easeOut
+		ease: Power3.easeOut,
 	});
 
 	return false;

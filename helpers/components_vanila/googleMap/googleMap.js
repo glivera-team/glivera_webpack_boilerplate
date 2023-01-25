@@ -30,7 +30,7 @@ const initMap = () => {
 					map,
 				});
 			})
-			.catch(e => {
+			.catch((e) => {
 				// console.log(e);
 			});
 	}

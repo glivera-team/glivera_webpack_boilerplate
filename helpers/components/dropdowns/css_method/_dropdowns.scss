@@ -5,9 +5,10 @@
 
 .dropdown_trigger {
 	position: relative;
-	padding-right:3rem;
+	padding-right: 3rem;
 
-	&:hover, &:focus {
+	&:hover,
+	&:focus {
 		text-decoration: none;
 	}
 
@@ -16,9 +17,9 @@
 		position: absolute;
 		right: 1rem;
 		top: 50%;
-		margin-top:-.4rem;
+		margin-top: -0.4rem;
 
-		@include triangle_narrow(bottom,#000,.8rem);
+		@include triangle_narrow(bottom, #000, 0.8rem);
 	}
 }
 
@@ -28,15 +29,15 @@
 	min-width: 20rem;
 	background: #fff;
 	border: 1px solid black;
-	border-radius: .3rem;
+	border-radius: 0.3rem;
 	opacity: 0;
 	pointer-events: none;
-	transition:.3s ease;
+	transition: 0.3s ease;
 
 	&.down_left_mod {
 		left: 0;
-		top: calc(100% + .5rem);
-		transform:translate(0,-1rem);
+		top: calc(100% + 0.5rem);
+		transform: translate(0, -1rem);
 
 		&:before {
 			content: '';
@@ -50,24 +51,24 @@
 
 	&.down_right_mod {
 		right: 0;
-		top: calc(100% + .5rem);
-		transform:translate(0,-1rem);
+		top: calc(100% + 0.5rem);
+		transform: translate(0, -1rem);
 	}
 
 	&.up_left_mod {
 		left: 0;
-		bottom: calc(100% + .5rem);
-		transform:translate(0,-1rem);
+		bottom: calc(100% + 0.5rem);
+		transform: translate(0, -1rem);
 	}
 
 	&.up_right_mod {
 		right: 0;
-		bottom: calc(100% + .5rem);
-		transform:translate(0,-1rem);
+		bottom: calc(100% + 0.5rem);
+		transform: translate(0, -1rem);
 	}
 
 	.dropdown_container:hover & {
-		transform:translate(0,0);
+		transform: translate(0, 0);
 		opacity: 1;
 		pointer-events: auto;
 	}
@@ -75,21 +76,22 @@
 
 .dropdown_list {
 	overflow: hidden;
-	border-radius: .3rem;
+	border-radius: 0.3rem;
 }
 
 .dropdown_link {
 	display: block;
-	padding:.5rem 2rem;
-	color:#000;
-	transition:.3s;
+	padding: 0.5rem 2rem;
+	color: #000;
+	transition: 0.3s;
 
 	&:hover {
 		background: #ccc;
-		color:#fff;
+		color: #fff;
 	}
 
-	&:hover, &:focus {
+	&:hover,
+	&:focus {
 		text-decoration: none;
 	}
 }

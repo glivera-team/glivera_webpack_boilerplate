@@ -47,10 +47,7 @@ export const calcViewportHeight = () => {
 	}
 };
 
-export const calcRemValue = ({
-	windowWidth,
-	windowHeight,
-}) => {
+export const calcRemValue = ({ windowWidth, windowHeight }) => {
 	const remValue = windowWidth * 0.5625 > windowHeight ? (windowHeight / 800) * 10 : (windowWidth / 1440) * 10;
 
 	document.documentElement.style.setProperty('--rem', `${remValue}px`);
@@ -75,11 +72,7 @@ export function isFunction(func) {
 }
 
 export const isTouchDevice = () => {
-	return (
-		('ontouchstart' in window)
-		|| (window.navigator.maxTouchPoints > 0)
-		|| (window.navigator.msMaxTouchPoints > 0)
-	);
+	return 'ontouchstart' in window || window.navigator.maxTouchPoints > 0 || window.navigator.msMaxTouchPoints > 0;
 };
 
 export function getWindowSize() {
@@ -92,7 +85,7 @@ export function getWindowSize() {
 	};
 }
 
-export const onWindowResize = cb => {
+export const onWindowResize = (cb) => {
 	if (!cb && !isFunction(cb)) return;
 
 	const handleResize = () => {
@@ -114,7 +107,7 @@ export const detectUsersOS = () => {
 	return null;
 };
 
-export const onWindowChangeOrientation = cb => {
+export const onWindowChangeOrientation = (cb) => {
 	if ((!cb && !isFunction(cb)) || !isTouchDevice()) return;
 
 	let { windowWidth } = getWindowSize();
@@ -130,7 +123,7 @@ export const onWindowChangeOrientation = cb => {
 	window.addEventListener('resize', debounce(100, handleResize));
 };
 
-export const onWindowScroll = cb => {
+export const onWindowScroll = (cb) => {
 	if (!cb && !isFunction(cb)) return;
 
 	const handleScroll = () => {
@@ -142,12 +135,12 @@ export const onWindowScroll = cb => {
 	handleScroll();
 };
 
-export const documentReady = cb => {
+export const documentReady = (cb) => {
 	if (!cb && !isFunction(cb)) return;
 	document.addEventListener('DOMContentLoaded', cb);
 };
 
-export const pageLoad = cb => {
+export const pageLoad = (cb) => {
 	if (!cb && !isFunction(cb)) return;
 	window.addEventListener('load', cb);
 };

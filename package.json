@@ -13,8 +13,8 @@
 		"stats": "webpack --config settings/webpack.prod.config.js --mode=production --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json",
 		"prepare": "husky install",
 		"js-lint": "eslint ./src --config",
-		"pretty": "npx prettier --check",
-		"pretty:fix": "npx prettier --write"
+		"pretty": "npx prettier --check .",
+		"pretty:fix": "npx prettier --write ."
 	},
 	"devDependencies": {
 		"@babel/core": "^7.16.0",

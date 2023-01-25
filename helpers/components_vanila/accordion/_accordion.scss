@@ -4,9 +4,9 @@
 	color: #727272;
 	font-weight: 400;
 
-// *
-// important style to work
-// *
+	// *
+	// important style to work
+	// *
 
 	max-height: 0;
 	opacity: 0;
@@ -21,10 +21,9 @@
 		pointer-events: auto;
 	}
 
-// *
-// important style to work /
-// *
-
+	// *
+	// important style to work /
+	// *
 }
 
 // ----------------------------------------------------------
@@ -46,7 +45,7 @@
 	border-bottom: 1px solid gray;
 	cursor: pointer;
 
-	transition: border-color .3s;
+	transition: border-color 0.3s;
 
 	.accordion__item_title {
 		padding-right: 2rem;
@@ -61,10 +60,10 @@
 		display: block;
 		margin: 0 0 0 auto;
 		width: 1.8rem;
-		height: .8rem;
+		height: 0.8rem;
 
 		transform-origin: center;
-		transition: .3s;
+		transition: 0.3s;
 		transform: rotateZ(180deg);
 
 		.accordion__item--active-mod & {
@@ -77,11 +76,10 @@
 	}
 }
 
-
 .accordion__item_body {
 	font-size: 1.6rem;
 }
 
 .accordion__item_body_in {
-	padding: .4rem 0 1rem;
+	padding: 0.4rem 0 1rem;
 }

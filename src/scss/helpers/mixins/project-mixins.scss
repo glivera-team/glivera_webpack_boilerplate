@@ -27,11 +27,11 @@
 
 	overflow-y: auto;
 
-	background-color: rgba($black, .75);
+	background-color: rgba($black, 0.75);
 
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity .3s;// значение милисекунд должно совпадать с "const timeout" (300) в initPopup.js
+	transition: opacity 0.3s; // значение милисекунд должно совпадать с "const timeout" (300) в initPopup.js
 
 	z-index: 1000;
 

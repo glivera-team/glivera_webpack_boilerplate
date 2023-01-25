@@ -13,10 +13,7 @@ module.exports = {
 		build: path.resolve(__dirname, '../build/'),
 
 		/* Path to built files to wp directory */
-		wpOutput: path.resolve(
-			__dirname,
-			'../public/wp-content/themes/some_theme/',
-		),
+		wpOutput: path.resolve(__dirname, '../public/wp-content/themes/some_theme/'),
 	},
 	server: {
 		host: '0.0.0.0',

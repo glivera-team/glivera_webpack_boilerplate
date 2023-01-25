@@ -12,11 +12,14 @@ $dropdownTrigger.on('click', function () {
 	return false;
 });
 
-$dropdownContainer.hover(function () {
-	mouseInDropdown = true;
-}, function () {
-	mouseInDropdown = false;
-});
+$dropdownContainer.hover(
+	function () {
+		mouseInDropdown = true;
+	},
+	function () {
+		mouseInDropdown = false;
+	},
+);
 
 $body.on('click', function () {
 	if (!mouseInDropdown) {

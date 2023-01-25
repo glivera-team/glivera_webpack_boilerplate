@@ -1,4 +1,3 @@
-const ui = () => {
-};
+const ui = () => {};
 
 export default ui;

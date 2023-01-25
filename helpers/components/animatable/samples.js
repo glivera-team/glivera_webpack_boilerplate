@@ -5,41 +5,35 @@ var $allAnimateElements = [],
 	yCoord = 0;
 
 function initAnim() {
-
-	$(".animatable").each(function (i, el) {
+	$('.animatable').each(function (i, el) {
 		var el = $(this);
 		var $position = el.offset().top;
 
 		var obj = {
-			'el': el,
-			'position': $position,
-			'shown': false,
-			'height': el.hasClass("parallaxElement") ? windowHeight : el.outerHeight(),
-			'startPoint': (el.data("start-point") === undefined) ? .8 : el.data("start-point"),
-			'shiftFactor': (el.data("shift-factor") === undefined) ? .1 : el.data("shift-factor"),
-			'animIndex': (el.data("anim-index") === undefined) ? undefined : el.data("anim-index"),
-			'startOnView': (el.data("start-onview") === undefined) ? 2 : parseFloat(el.data("start-onview")),
-			'animVariety': (el.data("anim-variety") === undefined) ? 'default' : el.data("anim-variety"),
-			'progress': (el.data("progress-anim") === undefined) ? false : el.data("progress-anim"),
-			'tl': false
+			el: el,
+			position: $position,
+			shown: false,
+			height: el.hasClass('parallaxElement') ? windowHeight : el.outerHeight(),
+			startPoint: el.data('start-point') === undefined ? 0.8 : el.data('start-point'),
+			shiftFactor: el.data('shift-factor') === undefined ? 0.1 : el.data('shift-factor'),
+			animIndex: el.data('anim-index') === undefined ? undefined : el.data('anim-index'),
+			startOnView: el.data('start-onview') === undefined ? 2 : parseFloat(el.data('start-onview')),
+			animVariety: el.data('anim-variety') === undefined ? 'default' : el.data('anim-variety'),
+			progress: el.data('progress-anim') === undefined ? false : el.data('progress-anim'),
+			tl: false,
 		};
 
 		obj.tl = animVarietyFunc(obj);
 
 		$allAnimateElements.push(obj);
-
 	});
 
 	function animFunc() {
-
 		if (pastHero_$scrollTop !== $scrollTop) {
-
 			$.each($allAnimateElements, function (key, val) {
-
 				if (val.progress) {
 					if (windowWidth > 1023) {
-
-						if  (val.tl) {
+						if (val.tl) {
 							var $progress = 0;
 							// var shift = 0;
 							var $position;
@@ -54,29 +48,24 @@ function initAnim() {
 								if ($scrollTop === 0) {
 									val.tl.progress(0);
 									$progress = 0;
-								}
-								else {
+								} else {
 									val.tl.progress($progress);
 								}
-							}
-							else if ($progress > 1) {
+							} else if ($progress > 1) {
 								val.tl.progress(1);
 								$progress = 1;
 							}
-
 						}
-
 					} else if (val.tl) {
 						val.tl.progress(0);
 					}
-
 				} else {
 					if (!val.shown && $scrollTop + windowHeight * val.startPoint > val.position) {
 						val.shown = true;
 
 						if (val.el.hasClass('some_class')) {
 						} else {
-							TweenMax.set(val.el, {className: '+=animated'})
+							TweenMax.set(val.el, { className: '+=animated' });
 						}
 					}
 				}
@@ -87,21 +76,25 @@ function initAnim() {
 
 	animFunc();
 
-	TweenLite.ticker.addEventListener("tick", animFunc);
+	TweenLite.ticker.addEventListener('tick', animFunc);
 
 	function animVarietyFunc(obj) {
 		var tl,
 			yCoord = obj.height * obj.shiftFactor;
 
 		if (obj.animVariety === 'parallax') {
-			tl = TweenMax.fromTo(obj.el, 1, {
-					y: 0
+			tl = TweenMax.fromTo(
+				obj.el,
+				1,
+				{
+					y: 0,
 				},
 				{
 					y: -yCoord,
 					ease: Sine.easeOut,
 					paused: true,
-				})
+				},
+			);
 		}
 		return tl;
 	}
@@ -117,6 +110,6 @@ $scrollTop = $(window).scrollTop();
 if ($allAnimateElements) {
 	$.each($allAnimateElements, function (key, value) {
 		value.position = value.el.offset().top;
-		value.height = value.el.hasClass("parallaxElement") ? windowHeight : value.el.outerHeight();
+		value.height = value.el.hasClass('parallaxElement') ? windowHeight : value.el.outerHeight();
 	});
 }

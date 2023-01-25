@@ -24,17 +24,13 @@ if (isProduction) {
 }
 
 const PAGES_DIR = `${path.resolve(environment.paths.source)}/pug/pages/`;
-const PAGES = fs
-	.readdirSync(PAGES_DIR)
-	.filter((fileName) => fileName.endsWith('.pug'));
+const PAGES = fs.readdirSync(PAGES_DIR).filter((fileName) => fileName.endsWith('.pug'));
 
 const htmlPluginEntries = PAGES.map(
 	(page) =>
 		new HTMLWebpackPlugin({
 			template: `${PAGES_DIR}/${page}`,
-			filename: isWp
-				? `../../../html/${page.replace(/\.pug/, '.html')}`
-				: `./${page.replace(/\.pug/, '.html')}`,
+			filename: isWp ? `../../../html/${page.replace(/\.pug/, '.html')}` : `./${page.replace(/\.pug/, '.html')}`,
 			environment: process.env.NODE_ENV,
 			minify: false,
 			inject: 'body',
@@ -87,12 +83,7 @@ module.exports = {
 			{
 				test: /\.(png|gif|webp|jpe?g|svg)$/i,
 				type: 'asset',
-				exclude: path.resolve(
-					environment.paths.source,
-					'images',
-					'icons',
-					'sprite-icons',
-				),
+				exclude: path.resolve(environment.paths.source, 'images', 'icons', 'sprite-icons'),
 				parser: {
 					dataUrlCondition: {
 						maxSize: environment.limits.images,
@@ -104,12 +95,7 @@ module.exports = {
 			},
 			{
 				test: /\.svg$/,
-				include: path.resolve(
-					environment.paths.source,
-					'images',
-					'icons',
-					'sprite-icons',
-				),
+				include: path.resolve(environment.paths.source, 'images', 'icons', 'sprite-icons'),
 				use: [
 					{
 						loader: 'svg-sprite-loader',
@@ -161,9 +147,7 @@ module.exports = {
 			patterns: [
 				{
 					from: path.resolve(environment.paths.source, 'images'),
-					to: isWp
-						? path.resolve(currentOutput, 'assets', 'images')
-						: path.resolve(currentOutput, 'images'),
+					to: isWp ? path.resolve(currentOutput, 'assets', 'images') : path.resolve(currentOutput, 'images'),
 					toType: 'dir',
 					noErrorOnMissing: true,
 					globOptions: {
@@ -173,9 +157,7 @@ module.exports = {
 				},
 				{
 					from: path.resolve(environment.paths.source, 'static'),
-					to: isWp
-						? path.resolve(currentOutput, 'assets')
-						: path.resolve(currentOutput),
+					to: isWp ? path.resolve(currentOutput, 'assets') : path.resolve(currentOutput),
 					toType: 'dir',
 					noErrorOnMissing: true,
 					globOptions: {

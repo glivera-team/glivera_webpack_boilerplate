@@ -8,9 +8,9 @@ $gray: #808080;
 	--g-height: 4rem;
 	--g-selected-fz: 1.8rem;
 	--g-option-fz: 1.6rem;
-	--g-border: .2rem solid #{$gray};
-	--g-indent: .4rem 3.4rem .4rem 1.6rem;
-	--g-list-indent: .4rem 1.6rem;
+	--g-border: 0.2rem solid #{$gray};
+	--g-indent: 0.4rem 3.4rem 0.4rem 1.6rem;
+	--g-list-indent: 0.4rem 1.6rem;
 }
 
 .#{$gelect-selector} {
@@ -37,11 +37,11 @@ $gray: #808080;
 
 	border: var(--g-border);
 	background-color: var(--g-bg-color);
-	border-radius: .6rem;
+	border-radius: 0.6rem;
 
 	cursor: pointer;
 
-	transition: box-shadow .2s ease;
+	transition: box-shadow 0.2s ease;
 
 	.#{$gelect-selector}[data-state='active'] & {
 		border-bottom-left-radius: 0;
@@ -53,14 +53,14 @@ $gray: #808080;
 	}
 
 	&:focus {
-		box-shadow: 0px 0px 6px 2px rgba($black, .2);
+		box-shadow: 0px 0px 6px 2px rgba($black, 0.2);
 	}
 
 	&::after {
 		position: absolute;
 		right: 1rem;
 		top: 50%;
-		margin-top: -.6rem;
+		margin-top: -0.6rem;
 
 		display: block;
 		width: 1.2rem;
@@ -69,7 +69,7 @@ $gray: #808080;
 		background: url('https://www.svgrepo.com/show/80156/down-arrow.svg') 0 0 / cover no-repeat;
 		content: '';
 
-		transition: transform .2s;
+		transition: transform 0.2s;
 	}
 }
 
@@ -82,8 +82,8 @@ $gray: #808080;
 	width: 100%;
 
 	overflow: hidden;
-	border-bottom-left-radius: .6rem;
-	border-bottom-right-radius: .6rem;
+	border-bottom-left-radius: 0.6rem;
+	border-bottom-right-radius: 0.6rem;
 	background-color: var(--g-bg-color);
 
 	.#{$gelect-selector}[data-state='active'] & {
@@ -102,8 +102,8 @@ $gray: #808080;
 		pointer-events: none;
 		border: var(--g-border);
 		border-top: 0;
-		border-bottom-left-radius: .6rem;
-		border-bottom-right-radius: .6rem;
+		border-bottom-left-radius: 0.6rem;
+		border-bottom-right-radius: 0.6rem;
 		content: '';
 	}
 }
@@ -152,7 +152,7 @@ $gray: #808080;
 
 	.#{$gelect-selector}_options__item[data-selected] & {
 		background-color: #bdbdbd;
-		color: rgba($black, .5);
+		color: rgba($black, 0.5);
 	}
 }
 
@@ -170,15 +170,25 @@ $gray: #808080;
 	@extend %options_item_button;
 
 	border: 0;
-	box-shadow: inset 0 0 .2rem rgba($black, .6);
+	box-shadow: inset 0 0 0.2rem rgba($black, 0.6);
 
 	// remove browser`s clear button
-	&::-ms-clear {  display: none; width : 0; height: 0; }
-	&::-ms-reveal {  display: none; width : 0; height: 0; }
+	&::-ms-clear {
+		display: none;
+		width: 0;
+		height: 0;
+	}
+	&::-ms-reveal {
+		display: none;
+		width: 0;
+		height: 0;
+	}
 	&::-webkit-search-decoration,
 	&::-webkit-search-cancel-button,
 	&::-webkit-search-results-button,
-	&::-webkit-search-results-decoration { display: none; }
+	&::-webkit-search-results-decoration {
+		display: none;
+	}
 	// remove browser`s clear button#
 }
 
@@ -198,10 +208,10 @@ $gray: #808080;
 	border: 0;
 	cursor: pointer;
 
-	transition: opacity .3s;
+	transition: opacity 0.3s;
 
 	.#{$gelect-selector}[data-searching] & {
-		opacity: .6;
+		opacity: 0.6;
 		pointer-events: initial;
 
 		&:focus,

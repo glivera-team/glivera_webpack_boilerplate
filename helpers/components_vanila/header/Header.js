@@ -52,9 +52,9 @@ class Header {
 	}
 
 	init() {
-		if (typeof (this.$header) !== 'undefined' && this.$header != null) {
+		if (typeof this.$header !== 'undefined' && this.$header != null) {
 			onWindowScroll(this.headerScroll);
-			this.$menuTrigger.forEach(item => {
+			this.$menuTrigger.forEach((item) => {
 				item.addEventListener('click', () => {
 					this.openMenu();
 				});
@@ -64,8 +64,6 @@ class Header {
 }
 
 export default Header;
-
-
 
 // ------------ how init
 // copy past this
