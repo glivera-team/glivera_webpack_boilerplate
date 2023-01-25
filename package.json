@@ -16,7 +16,7 @@
 		"pretty": "npx prettier --check .",
 		"pretty:fix": "npx prettier --write .",
 		"lint": "npx lint-staged --quiet",
-		"install": "npx husky-init && npm install"
+		"init": "npx husky-init && npm install"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.16.0",
