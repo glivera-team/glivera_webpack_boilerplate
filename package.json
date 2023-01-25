@@ -100,7 +100,7 @@
 		}
 	},
 	"lint-staged": {
-		"*.{js,jsx}": "eslint ./src --config",
+		"*.{js,jsx}": "eslint ./src --config --quiet",
 		"**/*": "npx prettier --check"
 	}
 }
