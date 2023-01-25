@@ -11,9 +11,10 @@
 		"wp-build": "cross-env NODE_ENV=wp webpack --config settings/webpack.wp_build.config.js",
 		"wp-dev": "cross-env NODE_ENV=wp webpack --config settings/webpack.wp_dev.config.js --watch",
 		"stats": "webpack --config settings/webpack.prod.config.js --mode=production --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json",
-		"lint": "eslint ./src",
-		"lint:fix": "eslint .src/ --fix",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"js-lint": "eslint ./src --config",
+		"pretty": "npx prettier --check",
+		"pretty:fix": "npx prettier --write"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.16.0",
@@ -38,12 +39,12 @@
 		"eslint-plugin-react": "^7.27.0",
 		"eslint-plugin-react-hooks": "^4.3.0",
 		"eslint-webpack-plugin": "^3.1.1",
-		"husky": "^8.0.3",
+		"husky": "^8.0.0",
 		"image-minimizer-webpack-plugin": "^3.2.2",
 		"image-webpack-loader": "^8.1.0",
 		"imagemin": "^8.0.1",
 		"imagemin-webp-webpack-plugin": "^3.3.6",
-		"lint-staged": "^13.1.0",
+		"lint-staged": "^12.4.0",
 		"mini-css-extract-plugin": "2.4.5",
 		"portfinder-sync": "0.0.2",
 		"postcss": "^8.3.11",
@@ -99,7 +100,7 @@
 		}
 	},
 	"lint-staged": {
-		".{js,jsx}": "lint",
-		"**/*": "prettier --write --ignore-unknown"
+		"*.{js,jsx}": "eslint ./src --config",
+		"**/*": "npx prettier --check"
 	}
 }
