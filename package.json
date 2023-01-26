@@ -15,8 +15,7 @@
 		"js-lint": "eslint ./src --config",
 		"pretty": "npx prettier --check .",
 		"pretty:fix": "npx prettier --write .",
-		"lint": "npx lint-staged --quiet",
-		"init": "npx husky-init && npm install"
+		"lint": "npx lint-staged --quiet"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.16.0",
