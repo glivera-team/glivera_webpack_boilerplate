@@ -16,7 +16,7 @@ export function debounce(delay, fn) {
 		}
 		timerId = setTimeout(() => {
 			fn(...args);
-			timerId = true;
+			timerId = null;
 		}, delay);
 	};
 }
