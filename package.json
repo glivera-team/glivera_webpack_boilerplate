@@ -101,7 +101,11 @@
 		}
 	},
 	"lint-staged": {
-		"**/*": "prettier --debug-check --config .prettierrc",
+		"**/*": [
+			"prettier --debug-check",
+			"prettier --write",
+			"prettier --check --config .prettierrc"
+		],
 		"*.{js,jsx}": "eslint --quiet"
 	}
 }
