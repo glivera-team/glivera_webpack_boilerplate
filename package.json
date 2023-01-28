@@ -101,7 +101,7 @@
 		}
 	},
 	"lint-staged": {
-		"**/*": "npx prettier --check",
-		"*.{js,jsx}": "eslint ./src --config"
+		"**/*": "prettier --debug-check --config .prettierrc",
+		"*.{js,jsx}": "eslint --quiet"
 	}
 }
