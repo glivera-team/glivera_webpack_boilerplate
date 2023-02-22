@@ -1,7 +1,7 @@
 mixin head(array)
 	meta(charset='UTF-8')
 	title!= (environment === 'development') ? `${environment} | ${array.title_inner}` : array.title_inner
-	meta(name="viewport", content="width=device-width")
+	meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
 	meta(name="SKYPE_TOOLBAR", content="SKYPE_TOOLBAR_PARSER_COMPATIBLE")
 	meta(name="apple-mobile-web-app-capable", content="yes")
 	meta(name="format-detection", content="telephone=no")
