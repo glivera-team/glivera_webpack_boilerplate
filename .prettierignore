@@ -1,2 +1,8 @@
 **/*.min.js
 package-lock.json
+
+**/*.woff
+**/*.woff2
+**/*.otf
+**/*.ttf
+**/*.prettierignore
