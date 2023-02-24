@@ -8,8 +8,6 @@ import 'ScssComponents/universal/popup.scss';
 // overflow: hidden;
 // }
 
-// Test commit
-
 const initPopup = (btnSelector, popupSelector) => {
 	const closeSelector = '.js-popup-close';
 	const popupActiveState = 'popup--open_state';
