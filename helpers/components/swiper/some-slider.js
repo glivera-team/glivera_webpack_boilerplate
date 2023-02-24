@@ -5,11 +5,11 @@ import { buildSwiper, removeSwiper } from './buildSwiper';
 
 const someSlider = () => {
 	const classNames = {
-		slider: '.someSlider',
-		wrapper: '.someSliderWrapper',
-		arrowNext: '.someSliderNext',
-		arrowPrev: '.someSliderPrev',
-		pagination: '.someSliderDots',
+		slider: '.js-some-slider',
+		wrapper: '.js-some-slider-wrapper',
+		arrowNext: '.js-some-slider-next',
+		arrowPrev: '.js-some-slider-prev',
+		pagination: '.js-some-slider-dots',
 	};
 
 	const $sliderWrappers = document.querySelectorAll(classNames.wrapper);
@@ -27,7 +27,6 @@ const someSlider = () => {
 		buildSwiper($slider);
 
 		const sliderInstance = new Swiper($slider, {
-			modules: [Navigation, Pagination],
 			observer: true,
 			observeParents: true,
 			speed: 800,
@@ -47,7 +46,8 @@ const someSlider = () => {
 					slidesPerView: 1,
 				},
 				1023: {
-					slidesPerView: 4,
+					slidesPerView: 3,
+					spaceBetween: 20,
 				},
 			},
 		});

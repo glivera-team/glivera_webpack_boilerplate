@@ -1,8 +1,10 @@
-.slider.someSliderWrapper
-	.slider__arrow.slider_arrow--prev.someSliderPrev
-	.slider__arrow.slider_arrow--next.someSliderNext
-	.slider__list.someSlider
+.slider.js-some-slider-wrapper
+	button.slider__arrow.slider_arrow--prev.js-some-slider-prev(type="button" aria-label="Prev slide")
+		+icon('arrow_prev', 'icon--size_mod')
+	button.slider__arrow.slider_arrow--next.js-some-slider-next(type="button" aria-label="Next slide")
+		+icon('arrow_prev', 'icon--size_mod')
+	ul.slider__list.js-some-slider(role='slider')
 		+loop_while(14)
-			.slider__item
+			li.slider__item
 				p slide#{i}
-	.slider__dots.someSliderDots
+	.slider__dots.js-some-slider-dots
