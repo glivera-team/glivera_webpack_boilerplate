@@ -38,14 +38,25 @@
 }
 
 .accordion__item_head {
-	@extend %global_flex_block_row_nowrap_flex-start_center;
+	@include flex_block(row, nowrap, flex-start, center, center);
+	
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	
+	width: 100%;
+	padding: 1rem 0;
 
 	font-size: 1.6rem;
 	font-weight: 700;
+	
+	border: none;
 	border-bottom: 1px solid gray;
+	background: none;
 	cursor: pointer;
 
-	transition: border-color 0.3s;
+	transition: border-color 0.3s, color 0.3s;
 
 	.accordion__item_title {
 		padding-right: 2rem;
@@ -53,7 +64,7 @@
 
 	&:focus,
 	&:hover {
-		color: red;
+		color: tomato;
 	}
 
 	.accordion__item_icon_w {

@@ -1,116 +1,62 @@
-import { onWindowResize } from '../utils/index';
+const accordion = (triggers, activeStateName) => {
+	const classNames =	{
+		defaultActiveState: 'accordion__item--active-mod',
+	};
 
-export default class Accordion {
-	get CLASSNAMES() {
-		return {
-			defaultActiveState: 'accordion__item--active-mod',
-		};
-	}
+	const $allTriggers = triggers ? document.querySelectorAll(triggers) : null;
+	const activeStateClass = activeStateName ? activeStateName : classNames.defaultActiveState;
 
-	constructor({ triggers, activeStateName }) {
-		this.$allTriggers = triggers ? triggers : null; // eslint-disable-line
-		this.activeStateName = activeStateName ? activeStateName : this.CLASSNAMES.defaultActiveState; // eslint-disable-line
-
-		this.enabled = true;
-
-		this.init = this.init.bind(this);
-		this.enable = this.enable.bind(this);
-		this.disable = this.disable.bind(this);
-		this.isEnabled = this.isEnabled.bind(this);
-		this.closeAllAccordion = this.closeAllAccordion.bind(this);
-		this.openAccordion = this.openAccordion.bind(this);
-		this.toggleActiveState = this.toggleActiveState.bind(this);
-		this.onResize = this.onResize.bind(this);
-	}
-
-	isEnabled() {
-		return this.enabled;
-	}
-
-	disable() {
-		this.enabled = false;
-	}
-
-	enable() {
-		this.enabled = true;
-	}
-
-	onResize() {
-		if (this.isEnabled()) {
-			this.$allTriggers.forEach(($item) => {
-				const $parentEl = $item.parentNode;
-
-				if ($parentEl.classList.contains(this.activeStateName)) {
-					const $nextElementSibling = $item.nextElementSibling;
-					$nextElementSibling.style.maxHeight = $nextElementSibling.scrollHeight + 'px'; // eslint-disable-line prefer-template
-				}
-			});
-		}
-	}
-
-	closeAllAccordion() {
-		this.$allTriggers.forEach(($item) => {
-			this.closeAccordion($item.parentNode, $item.nextElementSibling);
+	const closeAllAccordion = () => {
+		$allTriggers.forEach(($item) => {
+			closeAccordion($item.parentNode, $item.nextElementSibling);
 		});
 	}
 
-	closeAccordion($parentEl, $nextElementSibling) {
-		$parentEl.classList.remove(this.activeStateName);
-		$nextElementSibling.style.maxHeight = null; // eslint-disable-line no-param-reassign
-	}
-
-	openAccordion($parentEl, $nextElementSibling) {
+	const openAccordion = ($parentEl, $nextElementSibling) => {
 		setTimeout(() => {
-			this.closeAllAccordion();
+			closeAllAccordion(); // comment this if you want to not close the accordion element when one of it is open
 
-			$parentEl.classList.add(this.activeStateName);
+			$parentEl.classList.add(activeStateClass);
 			$nextElementSibling.style.maxHeight = $nextElementSibling.scrollHeight + 'px'; // eslint-disable-line
+			$nextElementSibling.removeAttribute('aria-hidden');
 		}, 100);
-	}
+	};
 
-	toggleActiveState($trigger) {
-		if (this.enabled) {
-			if (!$trigger) return;
+	const closeAccordion = ($parentEl, $nextElementSibling) => {
+		$parentEl.classList.remove(activeStateClass);
+		$nextElementSibling.style.maxHeight = null; // eslint-disable-line no-param-reassign
+		$nextElementSibling.setAttribute('aria-hidden', 'true');
+	};
 
-			const $parentEl = $trigger.parentNode;
-			const $nextElementSibling = $trigger.nextElementSibling;
+	const toggleActiveState = ($trigger) => {
+		if (!$trigger) return;
 
-			if ($parentEl.classList.contains(this.activeStateName)) {
-				this.closeAccordion($parentEl, $nextElementSibling);
-			} else {
-				this.openAccordion($parentEl, $nextElementSibling);
-			}
+		const $parentEl = $trigger.parentNode;
+		const $nextElementSibling = $trigger.nextElementSibling;
+
+		if ($parentEl.classList.contains(activeStateClass)) {
+			closeAccordion($parentEl, $nextElementSibling);
+			$trigger.setAttribute('aria-expanded', 'false');
+		} else {
+			openAccordion($parentEl, $nextElementSibling);
+			$trigger.setAttribute('aria-expanded', 'true');
 		}
 	}
 
-	init() {
-		if (this.$allTriggers) {
-			onWindowResize(this.onResize);
-			this.$allTriggers.forEach(($item) => {
-				const $parentEl = $item.parentNode;
 
-				if ($parentEl.classList.contains(this.activeStateName) && this.isEnabled()) {
-					const $nextElementSibling = $item.nextElementSibling;
-
-					this.openAccordion($parentEl, $nextElementSibling);
-				}
-
-				$item.addEventListener('click', () => {
-					this.toggleActiveState($item);
-				});
+	if ($allTriggers) {
+		$allTriggers.forEach(($item) => {
+			$item.addEventListener('click', (e) => {
+				toggleActiveState($item);
 			});
-		}
+		});
 	}
 }
 
-// ------------ how init
-// copy past this
+export default accordion;	
 
-// import this and if u need fix path
-// import Accordion from './components/accordion';
+//	How to use
 
-// add it in loadFunc
-// const acc = new Accordion({
-// 	triggers: document.querySelectorAll('.accordion__item_head'), // eslint-disable-line
-// 	activeStateName: 'accordion__item--active-mod' // eslint-disable-line
-// }).init();
+// 	Add this 
+//	accordion('.accordion__item_head', 'accordion__item--active-mod');
+//	where you add the accordion component

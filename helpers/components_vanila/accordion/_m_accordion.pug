@@ -1,16 +1,16 @@
-mixin accordion(data, mod, prefix)
+mixin accordion(data, prefix, mod)
 	- itemClass = prefix ||'accordion_';
 	- itemMod = mod || '';
 
 	ul(class= `${prefix || 'accordion'} ${itemMod} `)
-		each item in data
+		each item, index in data
 			li(class= `${itemClass}_item ${item.trigger || ''}`)
-				div(class= `${itemClass}_item_head`)
+				button(class= `${itemClass}_item_head` aria-controls=`item-${index + 1}` aria-expanded='false')
 					div(class= `${itemClass}_item_title`)= item.title
 					if item.icon
 						div(class= `${itemClass}_item_icon_w`)
 							+icon( item.icon, 'size-mod')
-				div(class= `${itemClass}_item_body`)
+				div(class= `${itemClass}_item_body` id=`item-${index + 1}` aria-hidden="true")
 					if item.descr
 						div(class= `${itemClass}_item_body_in`)= item.descr
 					block
