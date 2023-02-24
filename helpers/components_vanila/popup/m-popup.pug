@@ -1,0 +1,6 @@
+mixin popup(name)
+	.popup(class=`js-popup-${name}`)
+		.popup_in
+			button.popup_close.js-popup-close(type="button" aria-label="Close Popup" tabindex="0")
+				.popup_close__in
+			block
