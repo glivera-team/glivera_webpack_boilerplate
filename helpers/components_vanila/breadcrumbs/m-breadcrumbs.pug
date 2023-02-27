@@ -1,0 +1,14 @@
+//- example of usage
+//- +breadcrumbs(['Home', 'About'])
+
+mixin breadcrumbs(array)
+	.breadcrumbs
+		ul.breadcrumbs__list
+			each name, index in array
+				li.breadcrumbs__item
+					if (index === array.length - 1)
+						a(href="#").breadcrumbs__link.breadcrumbs__link--curent_mod!= name
+					else 
+						a(href="#").breadcrumbs__link!= name
+						.breadcrumbs__icon 
+							+icon('arrow', 'icon--size_mod')

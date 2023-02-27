@@ -1,0 +1,42 @@
+// import it in critical.scss
+
+.breadcrumbs {}
+
+.breadcrumbs__list {
+	display: flex;
+	align-items: center;
+
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.breadcrumbs__item {
+	flex-shrink: 0;
+
+	display: flex;
+	align-items: center;
+
+	&:not(:last-child) {
+		margin-right: 1rem;
+	}
+}
+
+.breadcrumbs__link {
+	flex-shrink: 0;
+
+	&.breadcrumbs__link--curent_mod {
+		pointer-events: none;
+	}
+
+	&:not(:last-child) {
+		margin-right: 1rem;
+	}
+}
+
+.breadcrumbs__icon {
+	flex-shrink: 0;
+
+	display: block;
+	width: 1rem;
+	height: 1rem;
+}
