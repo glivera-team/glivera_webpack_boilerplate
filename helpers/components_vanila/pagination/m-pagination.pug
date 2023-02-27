@@ -8,6 +8,7 @@ mixin pagination(data)
 	nav.pagination
 		if data.arrows
 			.pagination__arrow.pagination__arrow--prev_mod
+				a(href="#").pagination__link
 					+icon('arrow', 'icon--size_mod')
 		ul.pagination__list 
 			each item in data.pagination
