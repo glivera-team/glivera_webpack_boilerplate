@@ -96,15 +96,16 @@ mixin loop_while_sub(counter)
 			block
 
 //- works
-mixin breadcrumbs(array,add_class)
-	- add_class = add_class || ''
-	ul.breadcrumbs_list(class=add_class)
-		each crumb, index in array
-			li.breadcrumbs_item
-				if (index == array.length - 1)
-					a.breadcrumbs_link.current_mod=crumb.text
-				else
-					a.breadcrumbs_link(href= crumb.url)= crumb.text
+mixin breadcrumbs(data)
+	- mod = data.mod || ''
+	.breadcrumbs
+		ul.breadcrumbs__list(class=mod)
+			each crumb, index in data.list
+				li.breadcrumbs__item
+					if (index == array.length - 1)
+						a.breadcrumbs__link.breadcrumbs__link--current_mod=crumb.text
+					else
+						a.breadcrumbs__link(href=crumb.url)= crumb.text
 
 //- works
 mixin menu(menuArray)
@@ -134,28 +135,28 @@ mixin icon(name, mod)
 mixin pagination(config)
 	- config.mod = config.mod || ''
 	- config.active = config.active || 1
-	.pag_block(class= config.mod)
-		ul.pag_list(class= config.mod)
+	.pagination(class=config.mod)
+		ul.pagination__list
 			if config.arrows
-				li.pag_item.prev_mod(class= config.mod)
-					a.pag_link.prev_mod(href='#' class= config.mod)
+				li.pagination__item.pagination__item--prev_mod
+					a.pagination__link(href='#')
 			- i = 1;
 			while i <= config.pages
 				if i == config.pages - 1
-					li.pag_item(class= config.mod)
-						a.pag_link.dots_mod(class= config.mod) &hellip;
-					li.pag_item(class= config.mod)
-						a.pag_link(href='#' title= i class= config.mod)= i
+					li.pagination__item.pagination__item--dots_mod
+						a.pagination__link &hellip;
+					li.pagination__item
+						a.pagination__link(href='#' title=i)= i
 				else if i == config.active
-					li.pag_item(class= config.mod)
-						a.pag_link.active_mod(title= i class= config.mod)= i
+					li.pagination__item.pagination__item--active_mod
+						a.pagination__link(title=i)= i
 				else
-					li.pag_item(class= config.mod)
-						a.pag_link(href='#' title= i class= config.mod)= i
+					li.pagination__item
+						a.pagination__link(href='#' title=i)= i
 				-i++
 			if config.arrows
-				li.pag_item.next_mod
-					a.pag_link.next_mod(href='#' class= config.mod)
+				li.pagination__item.pagination__item--next_mod
+					a.pagination__link(href='#')
 
 //- picture
 mixin picture(data)
