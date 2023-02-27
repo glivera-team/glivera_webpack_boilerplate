@@ -1,24 +1,18 @@
-.pag_block {
-	margin: 2rem;
+.pagination {
+	display: flex;
+	justify-content: center;
 }
 
-.pag_list {
-	@extend %global_flex_block_row_nowrap_flex-start;
+.pagination__list {
+	display: flex;
+	margin-right: -2rem;
 }
 
-.pag_item {
-	padding: 0 0 0 0.5rem;
-
-	&:first-child {
-		padding: 0;
-	}
-
-	&.next_mod {
-		position: relative;
-	}
+.pagination__item {
+	padding-right: 2rem;
 }
 
-.pag_link {
+.pagination__link {
 	display: block;
 	height: 2.8rem;
 	line-height: 2.8rem;
@@ -27,19 +21,23 @@
 	border: 1px solid black;
 	border-radius: 2px;
 
-	&.active_mod,
-	&:hover {
-		color: $white;
-		background: gray;
-	}
-
 	&:hover,
 	&:focus {
 		text-decoration: none;
 	}
 
-	&.dots_mod {
-		border: 1px solid transparent;
+	.pagination__item--active_mod &,
+	&:hover {
+		color: $white;
+		background: gray;
+	}
+
+	.pagination__item--active_mod & {
+		pointer-events: none;
+	}
+
+	.pagination__item--dots_mod & {
+		border-color: transparent;
 
 		&:hover {
 			color: $black;
@@ -47,8 +45,8 @@
 		}
 	}
 
-	&.prev_mod,
-	&.next_mod {
+	.pagination__item--prev_mod &,
+	.pagination__item--next_mod & {
 		position: relative;
 
 		&:before {
@@ -60,23 +58,25 @@
 		}
 	}
 
-	&.prev_mod {
+	.pagination__item--prev_mod & {
 		&:before {
 			left: 0.7rem;
 
 			@include arrow(left, $black, 1rem, 0.2rem);
 		}
+
 		&:hover:before {
 			@include arrow(left, $white, 1rem, 0.2rem);
 		}
 	}
 
-	&.next_mod {
+	.pagination__item--next_mod & {
 		&:before {
 			right: 0.7rem;
 
 			@include arrow(right, $black, 1rem, 0.2rem);
 		}
+
 		&:hover:before {
 			@include arrow(right, $white, 1rem, 0.2rem);
 		}

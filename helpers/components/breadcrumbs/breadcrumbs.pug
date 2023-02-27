@@ -1,5 +1,36 @@
-// without mod
-+breadcrumbs(['some text','new page','current page'])
+//- without mod
++breadcrumbs({
+	list: [
+		{
+			text: 'some text',
+			url: "#"
+		},
+		{
+			text: 'new page',
+			url: "#"
+		},
+		{
+			text:'current page',
+			url: "#"
+		}
+	],
+})
 
-// with mod
-+breadcrumbs(['some text','new page','current page'],'mod')
+//- with mod
++breadcrumbs({
+	list: [
+		{
+			text: 'some text',
+			url: "#"
+		},
+		{
+			text: 'new page',
+			url: "#"
+		},
+		{
+			text:'current page',
+			url: "#"
+		}
+	],
+	mod: 'mod'
+})

@@ -9,6 +9,10 @@
 
 	cursor: pointer;
 
+	&[type='submit'] {
+		@include appearance(none);
+	}
+
 	&:hover,
 	&:focus {
 		text-decoration: none;
