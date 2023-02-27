@@ -63,13 +63,6 @@
 	&:focus {
 		opacity: .8;
 	}
-}
-
-.popup_close__in {
-	position: relative;
-
-	width: 100%;
-	height: 100%;
 
 	&::before,
 	&::after {
@@ -81,7 +74,7 @@
 		width: 3.4rem;
 
 		content: '';
-		background-color: $black;
+		background-color: #fff;
 
 		.popup_close:hover & {}
 	}
