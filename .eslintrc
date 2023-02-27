@@ -1,5 +1,5 @@
 {
-	"extends": "airbnb",
+	"extends": ["airbnb", "prettier"],
 	"env": {
 		"node": true,
 		"jasmine": true,
@@ -7,6 +7,7 @@
 		"es2021": true
 	},
 	"ignorePatterns": ["srs/js/vendors/*.js", "srs/js/dev_vendors/*.js"],
+	"plugins": ["prettier"],
 	"rules": {
 		"indent": [2, "tab"],
 		"no-tabs": 0,
@@ -32,6 +33,12 @@
 		"class-methods-use-this": "off",
 		"no-shadow": "off",
 		"new-cap": 0,
+		"prettier/prettier": [
+			"error",
+			{
+				"endOfLine": "auto"
+			}
+		],
 		// "no-console": ["warn", { "allow": ["warn", "dir", "error"] }],
 		"quotes": [
 			2,
