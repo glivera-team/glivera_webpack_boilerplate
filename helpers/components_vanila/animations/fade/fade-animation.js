@@ -6,7 +6,10 @@ gsap.registerPlugin(ScrollTrigger);
 const fadeAnim = () => {
 	const $fadeItems = document.querySelectorAll('.js-fade-item');
 
-	if (!$fadeItems.length) return;
+	if (!exist($fadeItems)) {
+		console.error('Fade elements not found!');
+		return;
+	}
 
 	$fadeItems.forEach(($item) => {
 		const fadeTrigger = $item.dataset.fadeTrigger || $item;
