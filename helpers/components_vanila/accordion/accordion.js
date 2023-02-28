@@ -5,7 +5,6 @@ const DEFAULT_CLASSES =	{
 const accordion = ({triggersSelector, activeStateName}) => {
 	if (!exist(triggersSelector)) return;
 
-
 	const $allTriggers = document.querySelectorAll(triggersSelector);
 	const activeStateClass = activeStateName || DEFAULT_CLASSES.activeState;
 
@@ -21,7 +20,7 @@ const accordion = ({triggersSelector, activeStateName}) => {
 
 	const openAccordion = ({$parentEl, $nextElementSibling, $trigger}) => {
 		const openAccordionDelay = 100;
-
+		
 		setTimeout(() => {
 			closeAllAccordion();
 

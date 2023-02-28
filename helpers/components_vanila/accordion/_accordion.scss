@@ -29,13 +29,6 @@
 // ----------------------------------------------------------
 
 //---------------------------------------------accordion
-.icon {
-	&.size-mod {
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
-}
 
 .accordion__item_head {
 	@include flex_block(row, nowrap, flex-start, center, center);
@@ -53,28 +46,9 @@
 
 	transition: border-color 0.3s, color 0.3s;
 
-	.accordion__item_title {
-		padding-right: 2rem;
-	}
-
 	&:focus,
 	&:hover {
 		color: tomato;
-	}
-
-	.accordion__item_icon_w {
-		display: block;
-		margin: 0 0 0 auto;
-		width: 1.8rem;
-		height: 0.8rem;
-
-		transform-origin: center;
-		transition: 0.3s;
-		transform: rotateZ(180deg);
-
-		.accordion__item--active-mod & {
-			transform: rotateZ(0deg);
-		}
 	}
 
 	.accordion__item--active-mod & {
@@ -88,4 +62,23 @@
 
 .accordion__item_body_in {
 	padding: 0.4rem 0 1rem;
+}
+
+.accordion__item_title {
+	padding-right: 2rem;
+}
+
+.accordion__item_icon_w {
+	display: block;
+	margin: 0 0 0 auto;
+	width: 1.8rem;
+	height: 0.8rem;
+	
+	transform-origin: center;
+	transition: 0.3s;
+	transform: rotateZ(180deg);
+
+	.accordion__item--active-mod & {
+		transform: rotateZ(0deg);
+	}
 }

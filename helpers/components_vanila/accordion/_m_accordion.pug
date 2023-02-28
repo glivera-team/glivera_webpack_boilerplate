@@ -7,16 +7,17 @@ mixin accordion(data, prefix, mod)
 	- itemIconWrap = `${itemClass}__item_icon_w`;
 	- itemBody = `${itemClass}__item_body`;
 	- itemBodyIn = `${itemClass}__item_body_in`;
-
-	ul(class= `${prefix || 'accordion'} ${itemMod} `)
+	
+	ul(class= `${itemClass} ${itemMod} `)
 		each item, index in data
+			- itemIndex = `item-${index + 1}`;
 			li(class=itemEl)
-				button(class=itemHead aria-controls=`item-${index + 1}` aria-expanded='false')
+				button(class=itemHead aria-controls=itemIndex aria-expanded='false')
 					div(class=itemTitle)= item.title
 					if item.icon
 						div(class=itemIconWrap)
-							+icon( item.icon, 'size-mod')
-				div(class=itemBody id=`item-${index + 1}` aria-hidden="true")
+							+icon(item.icon, 'icon--size_mod')
+				div(class=itemBody id=itemIndex aria-hidden="true")
 					if item.descr
 						div(class=itemBodyIn)= item.descr
 					block
