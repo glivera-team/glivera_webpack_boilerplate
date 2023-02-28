@@ -1,62 +1,70 @@
-const accordion = (triggers, activeStateName) => {
-	const classNames =	{
-		defaultActiveState: 'accordion__item--active-mod',
-	};
+const DEFAULT_CLASSES =	{
+	activeState: 'accordion__item--active-mod',
+};
 
-	const $allTriggers = triggers ? document.querySelectorAll(triggers) : null;
-	const activeStateClass = activeStateName ? activeStateName : classNames.defaultActiveState;
+const accordion = ({triggersSelector, activeStateName}) => {
+	if (!exist(triggersSelector)) return;
+
+
+	const $allTriggers = document.querySelectorAll(triggersSelector);
+	const activeStateClass = activeStateName || DEFAULT_CLASSES.activeState;
 
 	const closeAllAccordion = () => {
 		$allTriggers.forEach(($item) => {
-			closeAccordion($item.parentNode, $item.nextElementSibling);
-		});
-	}
-
-	const openAccordion = ($parentEl, $nextElementSibling) => {
-		setTimeout(() => {
-			closeAllAccordion(); // comment this if you want to not close the accordion element when one of it is open
-
-			$parentEl.classList.add(activeStateClass);
-			$nextElementSibling.style.maxHeight = $nextElementSibling.scrollHeight + 'px'; // eslint-disable-line
-			$nextElementSibling.removeAttribute('aria-hidden');
-		}, 100);
-	};
-
-	const closeAccordion = ($parentEl, $nextElementSibling) => {
-		$parentEl.classList.remove(activeStateClass);
-		$nextElementSibling.style.maxHeight = null; // eslint-disable-line no-param-reassign
-		$nextElementSibling.setAttribute('aria-hidden', 'true');
-	};
-
-	const toggleActiveState = ($trigger) => {
-		if (!$trigger) return;
-
-		const $parentEl = $trigger.parentNode;
-		const $nextElementSibling = $trigger.nextElementSibling;
-
-		if ($parentEl.classList.contains(activeStateClass)) {
-			closeAccordion($parentEl, $nextElementSibling);
-			$trigger.setAttribute('aria-expanded', 'false');
-		} else {
-			openAccordion($parentEl, $nextElementSibling);
-			$trigger.setAttribute('aria-expanded', 'true');
-		}
-	}
-
-
-	if ($allTriggers) {
-		$allTriggers.forEach(($item) => {
-			$item.addEventListener('click', (e) => {
-				toggleActiveState($item);
+			closeAccordion({
+				$parentEl: $item.parentNode, 
+				$nextElementSibling: $item.nextElementSibling, 
+				$trigger: $item,
 			});
 		});
 	}
-}
 
-export default accordion;	
+	const openAccordion = ({$parentEl, $nextElementSibling, $trigger}) => {
+		const openAccordionDelay = 100;
+
+		setTimeout(() => {
+			closeAllAccordion();
+
+			$parentEl.classList.add(activeStateClass);
+			$nextElementSibling.style.maxHeight = $nextElementSibling.scrollHeight?.toString().concat('px');
+			$nextElementSibling.removeAttribute('aria-hidden');
+			$trigger.setAttribute('aria-expanded', 'true');
+		}, openAccordionDelay);
+	};
+
+	const closeAccordion = ({$parentEl, $nextElementSibling, $trigger}) => {
+		$parentEl.classList.remove(activeStateClass);
+		$nextElementSibling.style.maxHeight = null;
+		$nextElementSibling.setAttribute('aria-hidden', 'true');
+		$trigger.setAttribute('aria-expanded', 'false');
+	};
+
+	const toggleAccordion = ($trigger) => {
+		const accordionElements = {
+			$parentEl: $trigger.parentNode, 
+			$nextElementSibling: $trigger.nextElementSibling, 
+			$trigger: $trigger,
+		}
+
+		if (accordionElements.$parentEl.classList.contains(activeStateClass)) {
+			closeAccordion(accordionElements);
+		} else {
+			openAccordion(accordionElements);
+		}
+	}
+
+	$allTriggers.forEach(($item) => {
+		$item.addEventListener('click', () => {
+			toggleAccordion($item);
+		});
+	});
+};
 
 //	How to use
 
 // 	Add this 
-//	accordion('.accordion__item_head', 'accordion__item--active-mod');
+//	accordion({
+//			triggersSelector: '.accordion__item_head', 
+//			activeStateName: 'accordion__item--active-mod',
+//	});
 //	where you add the accordion component

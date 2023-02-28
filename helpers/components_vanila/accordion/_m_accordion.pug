@@ -1,18 +1,24 @@
 mixin accordion(data, prefix, mod)
-	- itemClass = prefix ||'accordion_';
+	- itemClass = prefix ||'accordion';
 	- itemMod = mod || '';
+	-	itemEl = `${itemClass}__item`;
+	- itemHead = `${itemClass}__item_head`;
+	-	itemTitle = `${itemClass}__item_title`;
+	- itemIconWrap = `${itemClass}__item_icon_w`;
+	- itemBody = `${itemClass}__item_body`;
+	- itemBodyIn = `${itemClass}__item_body_in`;
 
 	ul(class= `${prefix || 'accordion'} ${itemMod} `)
 		each item, index in data
-			li(class= `${itemClass}_item ${item.trigger || ''}`)
-				button(class= `${itemClass}_item_head` aria-controls=`item-${index + 1}` aria-expanded='false')
-					div(class= `${itemClass}_item_title`)= item.title
+			li(class=itemEl)
+				button(class=itemHead aria-controls=`item-${index + 1}` aria-expanded='false')
+					div(class=itemTitle)= item.title
 					if item.icon
-						div(class= `${itemClass}_item_icon_w`)
+						div(class=itemIconWrap)
 							+icon( item.icon, 'size-mod')
-				div(class= `${itemClass}_item_body` id=`item-${index + 1}` aria-hidden="true")
+				div(class=itemBody id=`item-${index + 1}` aria-hidden="true")
 					if item.descr
-						div(class= `${itemClass}_item_body_in`)= item.descr
+						div(class=itemBodyIn)= item.descr
 					block
 
 +accordion([

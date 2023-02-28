@@ -40,11 +40,6 @@
 .accordion__item_head {
 	@include flex_block(row, nowrap, flex-start, center, center);
 	
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: center;
-	
 	width: 100%;
 	padding: 1rem 0;
 
