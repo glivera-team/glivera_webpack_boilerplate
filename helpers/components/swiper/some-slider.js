@@ -1,7 +1,7 @@
 import Swiper, { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/scss/scrollbar';
-import { buildSwiper, removeSwiper } from './buildSwiper';
+import { buildSwiper, removeSwiper } from './build-swiper';
 
 const someSlider = () => {
 	const classNames = {
@@ -12,14 +12,14 @@ const someSlider = () => {
 		pagination: '.js-some-slider-dots',
 	};
 
+	Swiper.use([Navigation, Pagination]);
+
 	const $sliderWrappers = document.querySelectorAll(classNames.wrapper);
 
 	if (!$sliderWrappers.length) return;
 
 	$sliderWrappers.forEach(($wrapper) => {
 		const $slider = $wrapper.querySelector(classNames.slider);
-		if (!$slider) return;
-
 		const $prevArrow = $wrapper.querySelector(classNames.arrowPrev);
 		const $nextArrow = $wrapper.querySelector(classNames.arrowNext);
 		const $pagination = $wrapper.querySelector(classNames.pagination);
@@ -55,3 +55,9 @@ const someSlider = () => {
 };
 
 export default someSlider;
+
+//	How to use
+
+// 	Optionally rename classes wich variable 'classNames' contains and add to your html elements wich should be a slider elements.
+//  Import some-slider.js to page or block with slider.
+//  Init slider by someSlider();
