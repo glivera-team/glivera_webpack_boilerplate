@@ -5,9 +5,11 @@ import { exist } from '../utils/index';
 gsap.registerPlugin(ScrollTrigger);
 
 const animConfigDefault = {
-	start: 'top 50%',
+	start: 'top 80%',
 	duration: 1,
 	ease: 'none',
+	elementStartPosition: 100,
+	elementEndPosition: 0,
 }
 
 const createAnimConfig = ($fadeElement) => {
@@ -16,13 +18,17 @@ const createAnimConfig = ($fadeElement) => {
 	const duration = $fadeElement.dataset.fadeDuration || animConfigDefault.duration;
 	const ease = $fadeElement.dataset.fadeEase || animConfigDefault.ease;
 	const direction = $fadeElement.dataset.fadeDirection;
-	
+	const elementStartPosition = $fadeElement.dataset.elementStartPosition || animConfigDefault.elementStartPosition
+	const elementEndPosition = $fadeElement.dataset.elementStartPosition || animConfigDefault.elementEndPosition
+
 	return {
 		trigger,
 		start,
 		duration,
 		ease,
-		direction
+		direction,
+		elementStartPosition,
+		elementEndPosition,
 	};
 };
 
@@ -36,11 +42,7 @@ const fadeAnim = () => {
 
 	$fadeItems.forEach(($item) => {
 		const ANIM_CONFIG = createAnimConfig($item);
-		
-		const DIRECTIONS_MAP = new Map();
-		DIRECTIONS_MAP.set('animStartEnd', {start: 100, end: 0});
-		const animStartEnd = DIRECTIONS_MAP.get('animStartEnd');
-		
+
 		const setAnimDirection = (value) => {
 			return ANIM_CONFIG.direction === value;
 		};
@@ -58,19 +60,19 @@ const fadeAnim = () => {
 				ease: ANIM_CONFIG.ease,
 			}
 		};
-			
+
 		if (setAnimDirection('up')) {
-			gsap.set($item, gsapSet({y: animStartEnd.start}));
-		} 
+			gsap.set($item, gsapSet({y: ANIM_CONFIG.elementStartPosition}));
+		}
 		else if (setAnimDirection('down')) {
-			gsap.set($item, gsapSet({y: -animStartEnd.start}));
-		}  
+			gsap.set($item, gsapSet({y: -ANIM_CONFIG.elementStartPosition}));
+		}
 		else if (setAnimDirection('right')) {
-			gsap.set($item, gsapSet({x: -animStartEnd.start}));
-		} 
+			gsap.set($item, gsapSet({x: -ANIM_CONFIG.elementStartPosition}));
+		}
 		else if (setAnimDirection('left')) {
-			gsap.set($item, gsapSet({x: animStartEnd.start}));
-		} 
+			gsap.set($item, gsapSet({x: ANIM_CONFIG.elementStartPosition}));
+		}
 		else {
 			gsap.set($item, gsapSet());
 		}
@@ -83,9 +85,9 @@ const fadeAnim = () => {
 			//markers: true,
 			onEnter: () => {
 				if (setAnimDirection('up') || setAnimDirection('down')) {
-					gsap.to($item, gsapTo({y: animStartEnd.end}));
+					gsap.to($item, gsapTo({y: ANIM_CONFIG.elementEndPosition}));
 				}  else if (setAnimDirection('right') || setAnimDirection('left')) {
-					gsap.to($item, gsapTo({x: animStartEnd.end}));
+					gsap.to($item, gsapTo({x: ANIM_CONFIG.elementEndPosition}));
 				} else {
 					gsap.to($item, gsapTo());
 				}
