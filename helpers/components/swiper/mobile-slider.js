@@ -6,31 +6,29 @@ import 'swiper/css';
 import 'swiper/scss/scrollbar';
 import { buildSwiper, removeSwiper } from './build-swiper';
 
-import { BREAKPOINTS } from '../utils/constants';
 import 'ScssComponents/mobile-slider.scss';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const mobileSlider = () => {
-	const classNames = {
-		slider: '.js-mobile-slider',
-		wrapper: '.js-mobile-slider-wrapper',
-		arrowNext: '.js-mobile-slider-next',
-		arrowPrev: '.js-mobile-slider-prev',
-	};
+const CLASS_NAMES = {
+	slider: '.js-mobile-slider',
+	wrapper: '.js-mobile-slider-wrapper',
+	arrowNext: '.js-mobile-slider-next',
+	arrowPrev: '.js-mobile-slider-prev',
+};
 
-	Swiper.use([Navigation, Pagination]);
+Swiper.use([Navigation]);
 
-	const { mediaPoint1 } = BREAKPOINTS;
-	const $sliderWrappers = document.querySelectorAll(classNames.wrapper);
+const mobileSlider = (breakpoint) => {
+	const $sliderWrappers = document.querySelectorAll(CLASS_NAMES.wrapper);
 
 	$sliderWrappers.forEach(($wrapper) => {
 		let sliderEl;
 		let isInit = false;
 
-		const $slider = $wrapper.querySelector(classNames.slider);
-		const $prevArrow = $wrapper.querySelector(classNames.arrowPrev);
-		const $nextArrow = $wrapper.querySelector(classNames.arrowNext);
+		const $slider = $wrapper.querySelector(CLASS_NAMES.slider);
+		const $prevArrow = $wrapper.querySelector(CLASS_NAMES.arrowPrev);
+		const $nextArrow = $wrapper.querySelector(CLASS_NAMES.arrowNext);
 
 		const init = () => {
 			if (!isInit) {
@@ -54,8 +52,8 @@ const mobileSlider = () => {
 				});
 			}
 		};
-		
-		const removeInit = () => {
+
+		const destroySlider = () => {
 			if (isInit) {
 				removeSwiper($slider);
 				sliderEl.destroy();
@@ -63,12 +61,12 @@ const mobileSlider = () => {
 			}
 		};
 
-		const mMedia = gsap.matchMedia();
-		
-		mMedia.add([`(min-width: ${mediaPoint1}px)`], () => {
-			removeInit();
+		const matchMedia = gsap.matchMedia();
+
+		matchMedia.add([`(min-width: ${breakpoint}px)`], () => {
+			destroySlider();
 		});
-		mMedia.add([`(max-width: ${mediaPoint1 - 1}px)`], () => {
+		matchMedia.add([`(max-width: ${breakpoint - 1}px)`], () => {
 			init();
 		});
 	});
