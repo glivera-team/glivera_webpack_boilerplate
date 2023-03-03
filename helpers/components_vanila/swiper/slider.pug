@@ -1,0 +1,10 @@
+.slider
+	button.slider__arrow.slider__arrow--prev.js-slider-prev(type="button" aria-label="Prev slide")
+		+icon('arrow_prev', 'icon--size_mod')
+	button.slider__arrow.slider__arrow--next.js-slider-next(type="button" aria-label="Next slide")
+		+icon('arrow_prev', 'icon--size_mod')
+	.slider__list.js-slider(role='slider')
+		+loop_while(14)
+			.slider__item
+				p slide#{i}
+	.slider__dots.js-slider-dots
