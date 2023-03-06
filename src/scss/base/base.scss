@@ -71,7 +71,7 @@ body {
 .base {
 	width: 100%;
 	position: relative;
-	padding: var(--height-header) 0 0;
+	// padding: var(--height-header) 0 0;
 
 	flex: 1 0 auto;
 }
@@ -84,6 +84,14 @@ a {
 	&:focus {
 		text-decoration: underline;
 	}
+}
+
+canvas {
+	display: block;
+}
+#container {
+	width: 100vw;
+	height: 100vh;
 }
 
 //------------------------------------------------------------base styles###
