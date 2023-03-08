@@ -31,6 +31,7 @@ export default class Sketch {
 		// this.camera = new T.OrthographicCamera((frustumSize * aspect) / -2, (frustumSize * aspect) / 2, frustumSize / 2, frustumSize / -2, -1000, 1000);
 
 		this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+
 		// --------------------------------------------- Camera###
 
 		// --------------------------------------------- Variables
@@ -143,7 +144,7 @@ export default class Sketch {
 					value: new T.Vector2(1, 1),
 				},
 			},
-			// wireframe: true,
+			wireframe: true,
 			// transparent: true, // если в текстурке используется альфа-канал
 			vertexShader: this.vertex,
 			fragmentShader: this.fragment,
@@ -151,7 +152,7 @@ export default class Sketch {
 	}
 
 	setGeometries() {
-		this.geometry = new T.PlaneGeometry(1, 1, 1, 1);
+		this.geometry = new T.BoxGeometry(2, 1, 1);
 	}
 
 	addObjects() {
