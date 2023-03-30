@@ -37,6 +37,14 @@ body {
 	}
 }
 
+canvas {
+	display: block;
+}
+#container {
+	width: 100vw;
+	height: 100vh;
+}
+
 .preloader {
 	position: fixed;
 	top: 0;
