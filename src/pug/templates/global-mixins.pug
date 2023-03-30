@@ -1,140 +1,269 @@
 mixin head(array)
 	meta(charset='UTF-8')
-	title!= (environment === 'development') ? `${environment} | ${array.title_inner}` : array.title_inner
-	meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
-	meta(name="SKYPE_TOOLBAR", content="SKYPE_TOOLBAR_PARSER_COMPATIBLE")
-	meta(name="apple-mobile-web-app-capable", content="yes")
-	meta(name="format-detection", content="telephone=no")
+	title!= environment === 'development' ? `${environment} | ${array.title_inner}` : array.title_inner
+	meta(
+		name='viewport',
+		content='width=device-width, initial-scale=1, maximum-scale=1'
+	)
+	meta(
+		name='SKYPE_TOOLBAR',
+		content='SKYPE_TOOLBAR_PARSER_COMPATIBLE'
+	)
+	meta(
+		name='apple-mobile-web-app-capable',
+		content='yes'
+	)
+	meta(
+		name='format-detection',
+		content='telephone=no'
+	)
 
-	link(rel='shortcut icon' href=`${assetsImage}favicon.ico`)
+	link(
+		rel='shortcut icon',
+		href=`${assetsImage}favicon.ico`
+	)
 
 	if environment === 'production'
-		link(rel='icon' sizes='16x16 32x32 64x64' href=`${assetsImage}favicon.ico`)
-		link(rel='icon' type='image/png' sizes='196x196' href='/favicon-192.png')
-		link(rel='icon' type='image/png' sizes='160x160' href='/favicon-160.png')
-		link(rel='icon' type='image/png' sizes='96x96' href='/favicon-96.png')
-		link(rel='icon' type='image/png' sizes='64x64' href='/favicon-64.png')
-		link(rel='icon' type='image/png' sizes='32x32' href='/favicon-32.png')
-		link(rel='icon' type='image/png' sizes='16x16' href='/favicon-16.png')
-		link(rel='apple-touch-icon' href='/favicon-57.png')
-		link(rel='apple-touch-icon' sizes='114x114' href='/favicon-114.png')
-		link(rel='apple-touch-icon' sizes='72x72' href='/favicon-72.png')
-		link(rel='apple-touch-icon' sizes='144x144' href='/favicon-144.png')
-		link(rel='apple-touch-icon' sizes='60x60' href='/favicon-60.png')
-		link(rel='apple-touch-icon' sizes='120x120' href='/favicon-120.png')
-		link(rel='apple-touch-icon' sizes='76x76' href='/favicon-76.png')
-		link(rel='apple-touch-icon' sizes='152x152' href='/favicon-152.png')
-		link(rel='apple-touch-icon' sizes='180x180' href='/favicon-180.png')
-		meta(name='msapplication-TileColor' content='#FFFFFF')
-		meta(name='msapplication-TileImage' content='/favicon-144.png')
-		meta(name='msapplication-config' content='/browserconfig.xml')
+		link(
+			rel='icon',
+			sizes='16x16 32x32 64x64',
+			href=`${assetsImage}favicon.ico`
+		)
+		link(
+			rel='icon',
+			type='image/png',
+			sizes='196x196',
+			href='/favicon-192.png'
+		)
+		link(
+			rel='icon',
+			type='image/png',
+			sizes='160x160',
+			href='/favicon-160.png'
+		)
+		link(
+			rel='icon',
+			type='image/png',
+			sizes='96x96',
+			href='/favicon-96.png'
+		)
+		link(
+			rel='icon',
+			type='image/png',
+			sizes='64x64',
+			href='/favicon-64.png'
+		)
+		link(
+			rel='icon',
+			type='image/png',
+			sizes='32x32',
+			href='/favicon-32.png'
+		)
+		link(
+			rel='icon',
+			type='image/png',
+			sizes='16x16',
+			href='/favicon-16.png'
+		)
+		link(
+			rel='apple-touch-icon',
+			href='/favicon-57.png'
+		)
+		link(
+			rel='apple-touch-icon',
+			sizes='114x114',
+			href='/favicon-114.png'
+		)
+		link(
+			rel='apple-touch-icon',
+			sizes='72x72',
+			href='/favicon-72.png'
+		)
+		link(
+			rel='apple-touch-icon',
+			sizes='144x144',
+			href='/favicon-144.png'
+		)
+		link(
+			rel='apple-touch-icon',
+			sizes='60x60',
+			href='/favicon-60.png'
+		)
+		link(
+			rel='apple-touch-icon',
+			sizes='120x120',
+			href='/favicon-120.png'
+		)
+		link(
+			rel='apple-touch-icon',
+			sizes='76x76',
+			href='/favicon-76.png'
+		)
+		link(
+			rel='apple-touch-icon',
+			sizes='152x152',
+			href='/favicon-152.png'
+		)
+		link(
+			rel='apple-touch-icon',
+			sizes='180x180',
+			href='/favicon-180.png'
+		)
+		meta(
+			name='msapplication-TileColor',
+			content='#FFFFFF'
+		)
+		meta(
+			name='msapplication-TileImage',
+			content='/favicon-144.png'
+		)
+		meta(
+			name='msapplication-config',
+			content='/browserconfig.xml'
+		)
 
 //- form element v3
 
 mixin form_input(data)
-	- labelClass = data.label_class || 'form_input__label'
-	- elClass = data.class || 'form_input__element'
-	- blockClass = data.block_class || 'form_input'
-	- fieldClass = data.field_class || 'form_input__field'
-	div(class = blockClass)
+	- labelClass = data.label_class || 'form_input__label';
+	- elClass = data.class || 'form_input__element';
+	- blockClass = data.block_class || 'form_input';
+	- fieldClass = data.field_class || 'form_input__field';
+	div(class=blockClass)
 		if data.label
-			label(for=data.id class= labelClass)= data.label
-		div(class = fieldClass)
-			input(type=data.type class = elClass id=data.id placeholder=data.placeholder value=data.value name=data.name required=data.required)
+			label(for=data.id, class=labelClass)= data.label
+		div(class=fieldClass)
+			input(
+				type=data.type,
+				class=elClass,
+				id=data.id,
+				placeholder=data.placeholder,
+				value=data.value,
+				name=data.name,
+				required=data.required
+			)
 			block
 
 mixin form_textarea(data)
-	- labelClass = data.label_class || 'form_textarea__label'
-	- elClass = data.class || 'form_textarea__element'
-	.form_textarea(class = data.mod)
+	- labelClass = data.label_class || 'form_textarea__label';
+	- elClass = data.class || 'form_textarea__element';
+	.form_textarea(class=data.mod)
 		if data.label
-			label(for=data.id class= labelClass)= data.label
+			label(for=data.id, class=labelClass)= data.label
 		.form_textarea__field
-			textarea(class = elClass placeholder=data.placeholder name=data.name required=data.required)
+			textarea(
+				class=elClass,
+				placeholder=data.placeholder,
+				name=data.name,
+				required=data.required
+			)
 
 mixin form_select(data)
-	- labelClass = data.label_class || 'form_select__label'
-	- elClass = data.class || 'form_select__element'
-	.form_select(class = data.mod)
+	- labelClass = data.label_class || 'form_select__label';
+	- elClass = data.class || 'form_select__element';
+	.form_select(class=data.mod)
 		if data.label
-			label(for=data.id class= labelClass)= data.label
+			label(for=data.id, class=labelClass)= data.label
 		.form_select__field
-			select(class =`${elClass}` placeholder=data.placeholder name=data.name required=data.required)&attributes(data.attrs)
+			select(
+				class=`${elClass}`,
+				placeholder=data.placeholder,
+				name=data.name,
+				required=data.required
+			)&attributes(data.attrs)
 				each item in data.options
 					option(value=item)&attributes(item.attrs)= item.title
 
 mixin form_checkbox(data)
-	- labelClass = data.label_class || 'form_checkbox__label'
-	- elClass = data.class || 'form_checkbox__element'
-	.form_checkbox(class = data.mod)
+	- labelClass = data.label_class || 'form_checkbox__label';
+	- elClass = data.class || 'form_checkbox__element';
+	.form_checkbox(class=data.mod)
 		label.form_checkbox__block
-			input(class=elClass type="checkbox" name=data.name checked=data.checked || false)
-			span(class = labelClass)!= data.label
+			input(
+				class=elClass,
+				type='checkbox',
+				name=data.name,
+				checked=data.checked || false
+			)
+			span(class=labelClass)!= data.label
 
 mixin form_radio(data)
-	- labelClass = data.label_class || 'form_radio__label'
-	- elClass = data.class || 'form_radio__element'
-	.form_radio(class = data.mod)
+	- labelClass = data.label_class || 'form_radio__label';
+	- elClass = data.class || 'form_radio__element';
+	.form_radio(class=data.mod)
 		label.form_radio__block
-			input(class=elClass type="radio" name=data.name checked=data.checked || false)
-			span(class = labelClass)!= data.label
+			input(
+				class=elClass,
+				type='radio',
+				name=data.name,
+				checked=data.checked || false
+			)
+			span(class=labelClass)!= data.label
 //- form element v3###
-
 
 //- works
 mixin loop_while(counter)
-	- i=0;
+	- i = 0;
 	while i < counter
-		-i++;
+		- i++;
 		block
 
 //- works
 mixin loop_while_sub(counter)
 	- j = 0;
 		while j < counter
-			-j++;
+			- j++;
 			block
 
 //- works
 mixin breadcrumbs(data)
-	- mod = data.mod || ''
+	- mod = data.mod || '';
 	.breadcrumbs
 		ul.breadcrumbs__list(class=mod)
 			each crumb, index in data.list
 				li.breadcrumbs__item
 					if (index == array.length - 1)
-						a.breadcrumbs__link.breadcrumbs__link--current_mod=crumb.text
+						a.breadcrumbs__link.breadcrumbs__link--current_mod= crumb.text
 					else
 						a.breadcrumbs__link(href=crumb.url)= crumb.text
 
 //- works
 mixin menu(menuArray)
-	- gl_mod = menuArray.gl_mod || ''
+	- gl_mod = menuArray.gl_mod || '';
 	ul(class=`${menuArray.gl_class}__list `)
 		each item in menuArray.items
-			- url = item.url || '#'
-			li(class= `${menuArray.gl_class}__item ${item.active ? `${menuArray.gl_class}__item--active_mod` : ''} ${gl_mod ? `${menuArray.gl_class}__item--${gl_mod}` : ''}`)
-				a(href= url class= `${menuArray.gl_class}__link ${gl_mod ? `${menuArray.gl_class}__link--${gl_mod}` : ''}`)= item.title
+			- url = item.url || '#';
+			li(
+				class=`${menuArray.gl_class}__item ${item.active ? `${menuArray.gl_class}__item--active_mod` : ''} ${gl_mod ? `${menuArray.gl_class}__item--${gl_mod}` : ''}`
+			)
+				a(
+					href=url,
+					class=`${menuArray.gl_class}__link ${gl_mod ? `${menuArray.gl_class}__link--${gl_mod}` : ''}`
+				)= item.title
 
 //- works
 mixin social(socialArray)
-	- mod_block = socialArray.mod_block || ''
-	ul.social_list(class= `${mod_block}`)
+	- mod_block = socialArray.mod_block || '';
+	ul.social_list(class=`${mod_block}`)
 		each item in socialArray.items
-			- mod_link = item.mod_link || ''
+			- mod_link = item.mod_link || '';
 			li.social_item
-				a.social_link(href="#" class= `${mod_link}` target='_blank')
+				a.social_link(
+					href='#',
+					class=`${mod_link}`,
+					target='_blank'
+				)
 					+icon(item.name_icon, item.mod_icon)
 
 //- works
 mixin icon(name, mod)
-	- mod = mod || ''
+	- mod = mod || '';
 	svg(class=`icon icon_${name} ${mod}`)
 		use(xlink:href=`${assetsImage}sprite/sprite.svg#${name}`)
 
 mixin pagination(config)
-	- config.mod = config.mod || ''
-	- config.active = config.active || 1
+	- config.mod = config.mod || '';
+	- config.active = config.active || 1;
 	.pagination(class=config.mod)
 		ul.pagination__list
 			if config.arrows
@@ -146,14 +275,20 @@ mixin pagination(config)
 					li.pagination__item.pagination__item--dots_mod
 						a.pagination__link &hellip;
 					li.pagination__item
-						a.pagination__link(href='#' title=i)= i
+						a.pagination__link(
+							href='#',
+							title=i
+						)= i
 				else if i == config.active
 					li.pagination__item.pagination__item--active_mod
 						a.pagination__link(title=i)= i
 				else
 					li.pagination__item
-						a.pagination__link(href='#' title=i)= i
-				-i++
+						a.pagination__link(
+							href='#',
+							title=i
+						)= i
+				- i++;
 			if config.arrows
 				li.pagination__item.pagination__item--next_mod
 					a.pagination__link(href='#')
@@ -161,44 +296,43 @@ mixin pagination(config)
 //- picture
 mixin picture(data)
 	- imagesArray = data.img_mob ? [data.img, data.img_mob] : [data.img];
-	- dedicatedPaths = imagesArray.map(path => path.split('.')); // array contains [path, type]
-	- typesArray = dedicatedPaths.map(path => [path.pop()]); // get and remove type from path
-	- pathArray = dedicatedPaths.map(path => assetsImage + path.join('.')); // full paths array
+	- dedicatedPaths = imagesArray.map((path) => path.split('.')); // array contains [path, type]
+	- typesArray = dedicatedPaths.map((path) => [path.pop()]); // get and remove type from path
+	- pathArray = dedicatedPaths.map((path) => assetsImage + path.join('.')); // full paths array
 
-	- is2x = data.is2x ? true : false
-	- media = data.media
-	- alt = data.alt = ' '
-	- loading = data.lazy ? 'lazy' : 'eager'
+	- is2x = data.is2x ? true : false;
+	- media = data.media;
+	- alt = data.alt || ' ';
+	- loading = data.lazy ? 'lazy' : 'eager';
 
 	picture(class=data.class)
 		//- array of types, ex:[[jpg], [png]]
 		each type, i in typesArray
 			if (global.environment === 'production' || environment === 'production')
-				- type.unshift('webp')
-				- defaultTypeIndex = 1
+				- type.unshift('webp');
+				- defaultTypeIndex = 1;
 			else
-				- defaultTypeIndex = 0
+				- defaultTypeIndex = 0;
 
 			//- sub array of types, ex:[[jpg], [webp]]
 			each subType, j in type
 				- mimeType = subType === 'jpg' ? 'jpeg' : subType;
-				- isWebp = subType === 'webp' ? '.webp' : ''
+				- isWebp = subType === 'webp' ? '.webp' : '';
 
 				if media
-					- mediaAttr = i === 0 ? `(min-width: ${media}px)` : `(max-width: ${media - 1}px)`
+					- mediaAttr = i === 0 ? `(min-width: ${media}px)` : `(max-width: ${media - 1}px)`;
 
 				source(
-					media=mediaAttr
-					srcset=`${pathArray[i]}.${type[defaultTypeIndex]}${isWebp}${is2x ? `, ${pathArray[i]}@2x.${type[defaultTypeIndex]}${isWebp} 2x` : ''}`
+					media=mediaAttr,
+					srcset=`${pathArray[i]}.${type[defaultTypeIndex]}${isWebp}${is2x ? `, ${pathArray[i]}@2x.${type[defaultTypeIndex]}${isWebp} 2x` : ''}`,
 					type=`image/${mimeType}`
 				)
 		img(
-			class= data.img_class
-			src=`${pathArray[0]}.${typesArray[0][defaultTypeIndex]}`
-			alt=alt
+			class=data.img_class,
+			src=`${pathArray[0]}.${typesArray[0][defaultTypeIndex]}`,
+			alt=alt,
 			loading=loading
 		)
-
 
 //- old picture mixin
 //- mixin picture(data)
