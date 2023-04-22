@@ -6,5 +6,7 @@
 	"singleQuote": true,
 	"endOfLine": "auto",
 	"bracketSpacing": true,
-	"pugWrapAttributesThreshold": 1
+	"pugWrapAttributesThreshold": 2,
+	"pugBracketSameLine": false,
+	"pugClassNotation": "literal"
 }

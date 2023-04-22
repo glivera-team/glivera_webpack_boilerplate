@@ -7,7 +7,11 @@
 		"es2021": true
 	},
 
-	"ignorePatterns": ["srs/js/vendors/*.js", "srs/js/dev_vendors/*.js", "helpers/*.*"],
+	"ignorePatterns": [
+		"srs/js/vendors/*.js",
+		"srs/js/dev_vendors/*.js",
+		"helpers/*.*"
+	],
 	"plugins": ["prettier"],
 	"rules": {
 		"indent": [2, "tab"],
