@@ -36,9 +36,7 @@ export function debounceImmediate(delay, fn) {
 
 export const isTouchDevice = () => {
 	return (
-		'ontouchstart' in window ||
-		window.navigator.maxTouchPoints > 0 ||
-		window.navigator.msMaxTouchPoints > 0
+		'ontouchstart' in window || window.navigator.maxTouchPoints > 0 || window.navigator.msMaxTouchPoints > 0
 	);
 };
 
@@ -57,9 +55,7 @@ export const calcViewportHeight = () => {
 
 export const calcRemValue = ({ windowWidth, windowHeight }) => {
 	const remValue =
-		windowWidth * 0.5625 > windowHeight
-			? (windowHeight / 800) * 10
-			: (windowWidth / 1440) * 10;
+		windowWidth * 0.5625 > windowHeight ? (windowHeight / 800) * 10 : (windowWidth / 1440) * 10;
 
 	document.documentElement.style.setProperty('--rem', `${remValue}px`);
 };
@@ -67,10 +63,7 @@ export const calcRemValue = ({ windowWidth, windowHeight }) => {
 export const calcMobileRemValue = ({ windowHeight }) => {
 	const mobileRemValue = (windowHeight / 800) * 10;
 
-	document.documentElement.style.setProperty(
-		'--mobile-rem',
-		`${mobileRemValue}px`,
-	);
+	document.documentElement.style.setProperty('--mobile-rem', `${mobileRemValue}px`);
 };
 
 export const getRandomInt = (min, max) => {
