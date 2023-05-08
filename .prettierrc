@@ -6,8 +6,5 @@
 	"semi": true,
 	"singleQuote": true,
 	"endOfLine": "auto",
-	"bracketSpacing": true,
-	"pugWrapAttributesThreshold": 2,
-	"pugBracketSameLine": false,
-	"pugClassNotation": "literal"
+	"bracketSpacing": true
 }
