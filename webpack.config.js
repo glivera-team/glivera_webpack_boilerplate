@@ -30,7 +30,9 @@ const htmlPluginEntries = PAGES.map(
 	(page) =>
 		new HTMLWebpackPlugin({
 			template: `${PAGES_DIR}/${page}`,
-			filename: isWp ? `../../../html/${page.replace(/\.pug/, '.html')}` : `./${page.replace(/\.pug/, '.html')}`,
+			filename: isWp
+				? `../../../html/${page.replace(/\.pug/, '.html')}`
+				: `./${page.replace(/\.pug/, '.html')}`,
 			environment: process.env.NODE_ENV,
 			minify: false,
 			inject: 'body',
@@ -168,6 +170,11 @@ module.exports = {
 				},
 			],
 		}),
+
+		// new webpack.optimize.LimitChunkCountPlugin({
+		// 	maxChunks: 1
+		// }),
+
 		new ESLintPlugin(),
 	].concat(htmlPluginEntries),
 	target: 'web',
