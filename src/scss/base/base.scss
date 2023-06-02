@@ -86,4 +86,17 @@ a {
 	}
 }
 
+// for wp
+
+.editor-styles-wrapper .wp-block {
+	margin-bottom: 5rem;
+}
+html :where(.wp-block) {
+	max-width: 1200px;
+}
+
+.editor-styles-wrapper {
+	overflow-x: hidden;
+}
+
 //------------------------------------------------------------base styles###
