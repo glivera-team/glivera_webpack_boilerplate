@@ -331,16 +331,20 @@ mixin picture(data)
 				if media
 					- mediaAttr = i === 0 ? `(min-width: ${media}px)` : `(max-width: ${media - 1}px)`;
 
+				- srcSet = `${pathArray[i]}.${type[defaultTypeIndex]}${isWebp}${is2x ? `, ${pathArray[i]}@2x.${type[defaultTypeIndex]}${isWebp} 2x` : ''}`
+
 				source(
 					media=mediaAttr,
-					srcset=`${pathArray[i]}.${type[defaultTypeIndex]}${isWebp}${is2x ? `, ${pathArray[i]}@2x.${type[defaultTypeIndex]}${isWebp} 2x` : ''}`,
+					data-srcset={loading === 'lazy' ? srcSet : undefined}
+					srcset={loading === 'lazy' ? undefined : srcSet},
 					type=`image/${mimeType}`
 				)
+		- source = `${pathArray[0]}.${typesArray[0][defaultTypeIndex]}`
 		img(
 			class=data.img_class,
-			src=`${pathArray[0]}.${typesArray[0][defaultTypeIndex]}`,
+			src={loading === 'lazy' ? undefined : source},
+			data-src={loading === 'lazy' ? source : undefined}
 			alt=alt,
-			loading=loading
 		)
 
 //- old picture mixin
