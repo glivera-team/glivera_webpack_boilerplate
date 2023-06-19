@@ -335,15 +335,15 @@ mixin picture(data)
 
 				source(
 					media=mediaAttr,
-					data-srcset={loading === 'lazy' ? srcSet : undefined}
-					srcset={loading === 'lazy' ? undefined : srcSet},
+					data-srcset=loading === 'lazy' ? srcSet : undefined
+					srcset=loading === 'lazy' ? undefined : srcSet,
 					type=`image/${mimeType}`
 				)
 		- source = `${pathArray[0]}.${typesArray[0][defaultTypeIndex]}`
 		img(
 			class=data.img_class,
-			src={loading === 'lazy' ? undefined : source},
-			data-src={loading === 'lazy' ? source : undefined}
+			src=loading === 'lazy' ? undefined : source,
+			data-src=loading === 'lazy' ? source : undefined
 			alt=alt,
 		)
 
