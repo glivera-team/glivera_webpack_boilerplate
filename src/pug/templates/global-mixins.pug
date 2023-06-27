@@ -140,7 +140,8 @@ mixin form_input(data)
 				placeholder=data.placeholder,
 				value=data.value,
 				name=data.name,
-				required=data.required
+				required=data.required,
+				title=data.title
 			)
 			block
 
@@ -155,7 +156,8 @@ mixin form_textarea(data)
 				class=elClass,
 				placeholder=data.placeholder,
 				name=data.name,
-				required=data.required
+				required=data.required,
+				title=data.title
 			)
 
 mixin form_select(data)
