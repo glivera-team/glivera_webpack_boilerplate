@@ -40,7 +40,7 @@ mixin form_input(data)
 		if data.label
 			label(for=data.id class= labelClass)= data.label
 		div(class = fieldClass)
-			input(type=data.type class = elClass id=data.id placeholder=data.placeholder value=data.value name=data.name required=data.required)
+			input(type=data.type class = elClass id=data.id placeholder=data.placeholder value=data.value name=data.name required=data.required title=data.title)
 			block
 
 mixin form_textarea(data)
@@ -50,7 +50,7 @@ mixin form_textarea(data)
 		if data.label
 			label(for=data.id class= labelClass)= data.label
 		.form_textarea__field
-			textarea(class = elClass placeholder=data.placeholder name=data.name required=data.required)
+			textarea(class = elClass placeholder=data.placeholder name=data.name required=data.required title=data.title)
 
 mixin form_select(data)
 	- labelClass = data.label_class || 'form_select__label'
