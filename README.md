@@ -77,3 +77,4 @@ readme.md                    # Documentation template
 **File naming:**
 Kebab-case for all files - foo-bar-baz.ex
 For pug mixins - m-foo-bar-baz.pug
+#

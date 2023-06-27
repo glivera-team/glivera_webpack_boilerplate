@@ -4,7 +4,10 @@ import { pageLoad } from './utils';
 export default class App {
 	constructor() {
 		this.$htmlTag = document.querySelector('html');
-		this.pageName = this.$htmlTag.dataset.templateName && this.$htmlTag.dataset.templateName.length > 0 ? this.$htmlTag.dataset.templateName : null;
+		this.pageName =
+			this.$htmlTag.dataset.templateName && this.$htmlTag.dataset.templateName.length > 0
+				? this.$htmlTag.dataset.templateName
+				: null;
 
 		this.init = this.init.bind(this);
 		this.init();

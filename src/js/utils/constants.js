@@ -3,9 +3,16 @@ export const ENV_STATUS = {
 	projectWpBuildStatus: process.env.NODE_ENV === 'wp',
 };
 
+const phpVars = {
+	themeUrl: '',
+};
+
 export const BUILD_PATHS = {
 	// eslint-disable-next-line no-undef
-	spritePath: process.env.NODE_ENV === 'wp' ? `${phpVars.themeUrl}/assets/images/sprite/sprite.svg` : 'images/sprite/sprite.svg',
+	spritePath:
+		process.env.NODE_ENV === 'wp'
+			? `${phpVars.themeUrl}/assets/images/sprite/sprite.svg`
+			: 'images/sprite/sprite.svg',
 };
 
 export const RADIAN = Math.PI / 180;

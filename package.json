@@ -11,7 +11,7 @@
 		"wp-build": "cross-env NODE_ENV=wp webpack --config settings/webpack.wp_build.config.js",
 		"wp-dev": "cross-env NODE_ENV=wp webpack --config settings/webpack.wp_dev.config.js --watch",
 		"stats": "webpack --config settings/webpack.prod.config.js --mode=production --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json",
-		"prepare": "husky install",
+		"prepare": "npx husky install",
 		"js-lint": "eslint ./src --config",
 		"pretty": "npx prettier --check .",
 		"pretty:fix": "npx prettier --write .",
@@ -104,7 +104,7 @@
 		}
 	},
 	"lint-staged": {
-		"**/*": [
+		"**/*.{js,jsx,tsx,ts,scss,css,json,html,pug}": [
 			"prettier --debug-check",
 			"prettier --write",
 			"prettier --check --config .prettierrc"
