@@ -2,6 +2,9 @@ mixin head(array)
 	meta(charset='UTF-8')
 	title!= environment === 'development' ? `${environment} | ${array.title_inner}` : array.title_inner
 	meta(
+		name="description"
+		content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+	meta(
 		name='viewport',
 		content='width=device-width, initial-scale=1, maximum-scale=1'
 	)
