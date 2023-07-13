@@ -1,5 +1,14 @@
 @use 'sass:math';
 
+@mixin overflow-text($line) {
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	-webkit-line-clamp: $line;
+	-webkit-box-orient: vertical;
+}
+
 @function z-index($key) {
 	@return map-get($z-index, $key);
 }
