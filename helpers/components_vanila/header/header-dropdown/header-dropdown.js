@@ -1,35 +1,30 @@
 import { onWindowScroll, exist } from '../utils';
-
-// Example of usage
-// * Import and init this component into layout.js
-
-// * Some styles
-// body--open_menu_state {
-// 	overflow: hidden;
-// }
-
-// &.header--scroll_state {
-// 	background-color: rgba($white, 0.6);
-// }
-
-// &.header--pos_state {
-// 	transform: translateY(-100%);
-// }
+import HeaderDropDown from './header-accordion';
 
 const header = () => {
+	const acc = new HeaderDropDown({
+		wrapper: '.header__nav_item', // eslint-disable-line
+		triggers: document.querySelectorAll('.js-dropdown-menu'), // eslint-disable-line
+		activeStateName: 'header__nav_sub_item--active-mod', // eslint-disable-line
+	});
+
+	acc.init();
+
 	const SELECTORS = {
-		header: '.header',
-		menuTrigger: '.js-header-menu-trigger',
+		header: '.js-header',
+		menuTrigger: '.js-menu-trigger',
 	};
 
 	const CLASSNAMES = {
 		bodyOpenMenuState: 'body--open_menu_state',
 		headerScrollState: 'header--scroll_state',
+		headerScrollPos: 'header--pos_state',
 	};
 
 	const $body = document.body;
 	const $header = document.querySelector(SELECTORS.header);
 	const $menuTriggers = document.querySelectorAll(SELECTORS.menuTrigger);
+	let prevScrollPos = window.pageYOffset;
 
 	let isMenuOpen = false;
 
@@ -50,17 +45,16 @@ const header = () => {
 			$header.classList.remove(CLASSNAMES.headerScrollState);
 		}
 
-		// if you need header dissapear
-		// 1. Add this to CLASSNAMES: headerScrollPos: 'header--pos_state',
-		// 2. Add this variable: let prevScrollPos = window.scrollY;
-		// 3. Uncomment me
-		// if (prevScrollPos < window.scrollY) {
-		// 	$header.classList.add(CLASSNAMES.headerScrollPos);
-		// } else {
-		// 	$header.classList.remove(CLASSNAMES.headerScrollPos);
-		// }
+		if (window.scrollY === 0) {
+			$header.classList.remove(CLASSNAMES.headerScrollPos);
+		} else if (prevScrollPos < window.scrollY) {
+			$header.classList.add(CLASSNAMES.headerScrollPos);
+			acc.closeAllAccordion();
+		} else {
+			$header.classList.remove(CLASSNAMES.headerScrollPos);
+		}
 
-		// prevScrollPos = window.scrollY;
+		prevScrollPos = window.scrollY;
 	};
 
 	if (!exist($header)) return;
