@@ -316,7 +316,7 @@ mixin picture(data)
 
 	- is2x = data.is2x ? true : false;
 	- media = data.media;
-	- alt = data.alt || ' ';
+	- alt = data.alt || 'some image';
 	- loading = data.lazy ? 'lazy' : 'eager';
 
 	picture(class=data.class)
