@@ -22,7 +22,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build Project
-        run: npm run dev-build-deploy
+        run: npm run build-preview
 
       - name: Deploying to the server
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
