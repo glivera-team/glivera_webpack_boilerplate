@@ -1,10 +1,7 @@
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - staging
 
-name: Auto-Deploy WP-Build / staging 🚀
+name: Handle Deploy WP-Build
 jobs:
   web-deploy:
     name: WP-Build Deploy
