@@ -11,11 +11,12 @@ require('babel-polyfill');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isWp = process.env.NODE_ENV === 'wp';
+const isPreview = process.env.NODE_ENV === 'preview';
 const environment = require('./settings/environment');
 
 let currentOutput;
 
-if (isProduction) {
+if (isProduction || isPreview) {
 	currentOutput = environment.paths.build;
 } else if (isWp) {
 	currentOutput = environment.paths.wpOutput;
@@ -60,6 +61,7 @@ module.exports = {
 		path: currentOutput,
 		// assetModuleFilename: 'images/[name][ext]',
 	},
+
 	module: {
 		rules: [
 			{

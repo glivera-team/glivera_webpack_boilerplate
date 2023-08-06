@@ -13,7 +13,8 @@
 - `npm run dev` - File watching + server
 - `npm run dev-build` - Build (development mode) + file watching
 - `npm run build` - Build (production mode)
-- `npm run wp_build` - Copies the files (css/js/fonts/static) to wp_theme directory
+- `npm run build-preview` - Build + dev widget (production mode)
+- `npm run wp-build` - Copies the files (css/js/fonts/static) to wp_theme directory
 
 ## Template structure
 
@@ -77,4 +78,5 @@ readme.md                    # Documentation template
 **File naming:**
 Kebab-case for all files - foo-bar-baz.ex
 For pug mixins - m-foo-bar-baz.pug
+
 #
