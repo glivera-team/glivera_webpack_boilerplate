@@ -36,7 +36,7 @@ src                          # Sources
 ├── js                       # Scripts template
 │   ├── components           # JS-components
 │   ├── dev-vendors          # Functions for develop, unused in production
-│   ├── layout					     # Layout function for init global JS-components or Critical scripts
+│   ├── layout               # Layout function for init global JS-components or Critical scripts
 │   ├── pages                # JS-pages for init specific components
 │   ├── utils                # Constants, helpers functions
 │   ├── vendors              # Libriaries, plugins template

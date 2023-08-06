@@ -31,7 +31,7 @@ jobs:
           username: ${{ secrets.DEV_USER }}
           password: ${{ secrets.DEV_PASSWORD }}
 
-          local-dir: ./dist/
+          local-dir: ./build/
           server-dir: ./2023/${{ secrets.DEV_FOLDER || 'unnamed_project' }}/
 
           exclude: |
