@@ -9,7 +9,7 @@ const webpackConfiguration = require('../webpack.config');
 const environment = require('./environment');
 
 module.exports = merge(webpackConfiguration, {
-	mode: 'preview',
+	mode: 'production',
 
 	/* Manage source maps generation process. Refer to https://webpack.js.org/configuration/devtool/#production */
 	devtool: false,

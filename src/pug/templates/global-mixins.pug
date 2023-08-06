@@ -322,7 +322,7 @@ mixin picture(data)
 	picture(class=data.class)
 		//- array of types, ex:[[jpg], [png]]
 		each type, i in typesArray
-			if (global.environment === 'production' || environment === 'production')
+			if (global.environment === 'production' || environment === 'production' || global.environment === 'preview' || environment === 'preview')
 				- type.unshift('webp');
 				- defaultTypeIndex = 1;
 			else
