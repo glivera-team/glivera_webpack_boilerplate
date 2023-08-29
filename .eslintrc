@@ -38,6 +38,7 @@
 		"class-methods-use-this": "off",
 		"no-shadow": "off",
 		"new-cap": 0,
+		"prefer-destructuring": "off",
 		"prettier/prettier": [
 			"error",
 			{
