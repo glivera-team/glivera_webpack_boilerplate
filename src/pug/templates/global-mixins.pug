@@ -340,6 +340,21 @@ mixin picture(data)
 
 				source(
 					media=mediaAttr,
+					srcset=srcSet,
+					type=`image/${mimeType}`
+				)
+		- source = `${pathArray[0]}.${typesArray[0][defaultTypeIndex]}`
+		img(
+			class=data.img_class,
+			src=source,
+			alt=alt,
+			loading=loading
+		)
+
+//- part for custom lazy load
+
+				source(
+					media=mediaAttr,
 					data-srcset=loading === 'lazy' ? srcSet : undefined
 					srcset=loading === 'lazy' ? undefined : srcSet,
 					type=`image/${mimeType}`
@@ -351,6 +366,7 @@ mixin picture(data)
 			data-src=loading === 'lazy' ? source : undefined
 			alt=alt,
 		)
+
 
 //- old picture mixin
 //- mixin picture(data)
