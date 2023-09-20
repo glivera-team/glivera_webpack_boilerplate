@@ -1,0 +1,11 @@
+mixin dynamic_video(data)
+	.video.js-dynamic-video(data-poster=data.posterPath data-video-src=data.videoPath data-plyr-provider=data.videoProvider data-plyr-embed-id=data.videoId)
+		.video__poster_w.js-video-poster
+			if data.playBtn
+				button.video_btn(aria-label="play")
+			+picture({
+				class: 'video__poster',
+				img_class: 'video__poster_img',
+				img: data.posterPath,
+				alt: 'video poster',
+			})
