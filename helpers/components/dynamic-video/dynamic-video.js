@@ -49,15 +49,14 @@ const dynamicVideo = (playOnScroll) => {
 				start: 'top bottom',
 				end: 'bottom top',
 				onEnter: () => {
-					if (!isPlayerBuilt) {
-						buildDynamicVideo();
-					}
+					if (isPlayerBuilt) return;
 
+					buildDynamicVideo();
 					isPlayerBuilt = true;
 				},
 			});
 		} else {
-			$videoContainer.addEventListener('click', () => buildDynamicVideo($videoContainer), { once: true });
+			$videoContainer.addEventListener('click', buildDynamicVideo, { once: true });
 		}
 	});
 };
