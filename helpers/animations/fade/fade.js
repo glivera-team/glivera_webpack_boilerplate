@@ -4,11 +4,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const fade = () => {
-	const settings = {
+	const SELECTORS = {
 		el: '.js-fade-el',
 	};
 
-	const $fadeEl = document.querySelectorAll(settings.el);
+	const $fadeEl = document.querySelectorAll(SELECTORS.el);
 	if ($fadeEl.length) {
 		gsap.set($fadeEl, {
 			y: 20,

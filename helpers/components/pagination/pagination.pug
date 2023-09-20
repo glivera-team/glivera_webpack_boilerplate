@@ -1,30 +1,4 @@
-mixin pagination(config)
-	- config.mod = config.mod || ''
-	- config.active = config.active || 1
-	.pagination(class=config.mod)
-		ul.pagination__list(class=config.mod)
-			if config.arrows
-				li.pagination__item.pagination__item--prev_mod(class=config.mod)
-					a.pagination__link(href='#' class= config.mod)
-			- i = 1;
-			while i <= config.pages
-				if i == config.pages - 1
-					li.pagination__item.pagination__item--dots_mod(class=config.mod)
-						a.pagination__link(class= config.mod) &hellip;
-					li.pagination__item(class= config.mod)
-						a.pagination__link(href='#' title= i class= config.mod)= i
-				else if i == config.active
-					li.pagination__item.pagination__item--active_mod(class= config.mod)
-						a.pagination__link(title= i class= config.mod)= i
-				else
-					li.pagination__item(class= config.mod)
-						a.pagination__link(href='#' title= i class= config.mod)= i
-				-i++
-			if config.arrows
-				li.pagination__item.pagination__item--next_mod(class=config.mod)
-					a.pagination__link(href='#' class=config.mod)
-
 +pagination({
-	pages:5,
-	arrows:true
+	pages: 5,
+	arrows: true
 })
