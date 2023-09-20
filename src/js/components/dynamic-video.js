@@ -56,7 +56,7 @@ const dynamicVideo = (playOnScroll) => {
 				},
 			});
 		} else {
-			$videoContainer.addEventListener('click', () => buildDynamicVideo($videoContainer), { once: true });
+			$videoContainer.addEventListener('click', buildDynamicVideo, { once: true });
 		}
 	});
 };
