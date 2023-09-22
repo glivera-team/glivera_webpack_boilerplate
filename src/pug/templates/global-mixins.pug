@@ -351,6 +351,26 @@ mixin picture(data)
 			loading=loading
 		)
 
+mixin heading(data)
+	- title= data.title_tag || 'h2'
+	- subtitle= data.subtitle_tag || 'div'
+
+	.heading(class=data.mod)
+		if data.suptitle
+			.heading__suptitle!=data.suptitle
+		if data.title
+			#{title}.heading__title!=data.title
+		if data.subtitle
+			#{subtitle}.heading__subtitle!=data.subtitle
+		if data.descr
+			.heading__descr
+				each item in data.descr
+					!=item
+		if data.btns
+			.heading__btn_w
+				each item in data.btns
+					a(href="#" class=item.mod)= item.title
+
 //- part for custom lazy load
 
 				source(
