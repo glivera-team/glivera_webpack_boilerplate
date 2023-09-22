@@ -9,8 +9,6 @@ const parallax = () => {
 	const $items = document.querySelectorAll(SELECTORS.el);
 
 	$items.forEach((item) => {
-		console.log(item);
-
 		const offset = item.dataset.offset || 200;
 		const direction = item.dataset.reverse ? -1 : 1;
 
