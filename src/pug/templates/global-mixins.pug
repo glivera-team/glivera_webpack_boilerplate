@@ -230,16 +230,16 @@ mixin loop_while_sub(counter)
 			block
 
 //- works
-mixin breadcrumbs(data)
+mixin bread_crumbs(data)
 	- mod = data.mod || '';
-	.breadcrumbs
-		ul.breadcrumbs__list(class=mod)
+	.bread_crumbs
+		ul.bread_crumbs__list(class=mod)
 			each crumb, index in data.list
-				li.breadcrumbs__item
+				li.bread_crumbs__item
 					if (index == array.length - 1)
-						a.breadcrumbs__link.breadcrumbs__link--current_mod= crumb.text
+						a.bread_crumbs__link.bread_crumbs__link--current_mod= crumb.text
 					else
-						a.breadcrumbs__link(href=crumb.url)= crumb.text
+						a.bread_crumbs__link(href=crumb.url)= crumb.text
 
 //- works
 mixin menu(menuArray)

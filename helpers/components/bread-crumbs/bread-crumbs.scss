@@ -1,16 +1,16 @@
-.breadcrumbs {
+.bread_crumbs {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
 
-.breadcrumbs__list {
+.bread_crumbs__list {
 	display: flex;
 	align-items: center;
 
 	margin-right: -2rem;
 }
 
-.breadcrumbs__item {
+.bread_crumbs__item {
 	padding-right: 2rem;
 
 	&:not(:first-child) {
@@ -22,8 +22,8 @@
 	}
 }
 
-.breadcrumbs__link {
-	&.breadcrumbs__link--current_mod {
+.bread_crumbs__link {
+	&.bread_crumbs__link--current_mod {
 		pointer-events: none;
 	}
 
