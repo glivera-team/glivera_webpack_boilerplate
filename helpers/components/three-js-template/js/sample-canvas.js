@@ -1,6 +1,10 @@
 /* eslint-disable no-unreachable */
 import * as T from 'three';
 
+//! Template for creation a canvas with three.js
+//! Describes the structure and sequence of functions for rendering
+//! Contains useful developments often found in projects
+
 export default class SampleCanvas {
 	constructor(options) {
 		this.container = options.dom;
