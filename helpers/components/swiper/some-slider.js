@@ -1,34 +1,32 @@
-import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
+import Swiper, { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/scss/scrollbar';
-import { buildSwiper, removeSwiper } from './buildSwiper';
+import { buildSwiper, removeSwiper } from './build-swiper';
+
+const CLASS_NAMES = {
+	slider: '.js-some-slider',
+	wrapper: '.js-some-slider-wrapper',
+	arrowNext: '.js-some-slider-next',
+	arrowPrev: '.js-some-slider-prev',
+	pagination: '.js-some-slider-dots',
+};
+
+Swiper.use([Navigation, Pagination]);
 
 const someSlider = () => {
-	const classNames = {
-		slider: '.someSlider',
-		wrapper: '.someSliderWrapper',
-		arrowNext: '.someSliderNext',
-		arrowPrev: '.someSliderPrev',
-		pagination: '.someSliderDots',
-	};
-
-	const $sliderWrappers = document.querySelectorAll(classNames.wrapper);
+	const $sliderWrappers = document.querySelectorAll(CLASS_NAMES.wrapper);
 
 	if (!$sliderWrappers.length) return;
 
 	$sliderWrappers.forEach(($wrapper) => {
-		const $slider = $wrapper.querySelector(classNames.slider);
-		if (!$slider) return;
-
-		const $prevArrow = $wrapper.querySelector(classNames.arrowPrev);
-		const $nextArrow = $wrapper.querySelector(classNames.arrowNext);
-		const $pagination = $wrapper.querySelector(classNames.pagination);
+		const $slider = $wrapper.querySelector(CLASS_NAMES.slider);
+		const $prevArrow = $wrapper.querySelector(CLASS_NAMES.arrowPrev);
+		const $nextArrow = $wrapper.querySelector(CLASS_NAMES.arrowNext);
+		const $pagination = $wrapper.querySelector(CLASS_NAMES.pagination);
 
 		buildSwiper($slider);
 
 		const sliderInstance = new Swiper($slider, {
-			modules: [Navigation, Pagination],
 			observer: true,
 			observeParents: true,
 			speed: 800,
@@ -48,7 +46,8 @@ const someSlider = () => {
 					slidesPerView: 1,
 				},
 				1023: {
-					slidesPerView: 4,
+					slidesPerView: 3,
+					spaceBetween: 20,
 				},
 			},
 		});
@@ -56,3 +55,9 @@ const someSlider = () => {
 };
 
 export default someSlider;
+
+//	How to use
+
+// 	Optionally rename classes wich variable 'classNames' contains and add to your html elements wich should be a slider elements.
+//  Import some-slider.js to page or block with slider.
+//  Init slider by someSlider();
