@@ -5,7 +5,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const imgLazyLoad = () => {
+export const imgLazyLoad = () => {
 	// NOTE: just put data-src to your img tag or data-srcset to <source> tag of picture
 	const $nodes = document.querySelectorAll('[data-src]');
 	const $images = [...$nodes].filter(($node) => $node.tagName !== 'VIDEO');
@@ -45,4 +45,40 @@ const imgLazyLoad = () => {
 	});
 };
 
-export default imgLazyLoad;
+export const videoLazyLoad = () => {
+	// NOTE: just put data-src to your video tag
+	const $videos = document.querySelectorAll('video[data-src]');
+
+	if (!$videos.length) return;
+
+	const playVideo = ($video) => {
+		$video.play();
+	};
+
+	const pauseVideo = ($video) => {
+		$video.pause();
+	};
+
+	$videos.forEach(($video) => {
+		let isLoaded = false;
+		const source = $video.dataset.src;
+
+		ScrollTrigger.create({
+			trigger: $video,
+			start: 'top bottom',
+			end: 'bottom top',
+			onEnter: () => {
+				if (!isLoaded) {
+					$video.src = source;
+					$video.muted = true;
+					isLoaded = true;
+				}
+
+				playVideo($video);
+			},
+			onEnterBack: () => playVideo($video),
+			onLeave: () => pauseVideo($video),
+			onLeaveBack: () => pauseVideo($video),
+		});
+	});
+};
