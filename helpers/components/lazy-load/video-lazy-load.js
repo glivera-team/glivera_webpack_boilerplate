@@ -6,8 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const videoLazyLoad = () => {
 	// NOTE: just put data-src to your video tag
-	const $nodes = document.querySelectorAll('[data-src]');
-	const $videos = [...$nodes].filter(($node) => $node.tagName === 'VIDEO');
+	const $videos = document.querySelectorAll('video[data-src]');
 
 	if (!$videos.length) return;
 
@@ -20,16 +19,22 @@ const videoLazyLoad = () => {
 	};
 
 	$videos.forEach(($video) => {
+		let isLoaded = false;
 		const source = $video.dataset.src;
-
-		$video.src = source;
-		$video.muted = true;
 
 		ScrollTrigger.create({
 			trigger: $video,
 			start: 'top bottom',
 			end: 'bottom top',
-			onEnter: () => playVideo($video),
+			onEnter: () => {
+				if (!isLoaded) {
+					$video.src = source;
+					$video.muted = true;
+					isLoaded = true;
+				}
+
+				playVideo($video);
+			},
 			onEnterBack: () => playVideo($video),
 			onLeave: () => pauseVideo($video),
 			onLeaveBack: () => pauseVideo($video),
