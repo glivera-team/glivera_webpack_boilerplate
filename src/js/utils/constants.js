@@ -4,7 +4,7 @@ export const ENV_STATUS = {
 	projectPreviewStatus: process.env.NODE_ENV === 'development',
 };
 
-const phpVars = {
+export const phpVars = {
 	themeUrl: '',
 };
 
