@@ -1,3 +1,5 @@
+/** addGui Chunk - adds ui for dynamically changing environment parameters */
+
 import dat from 'dat.gui';
 
 addGui() {

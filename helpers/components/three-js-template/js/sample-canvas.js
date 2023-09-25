@@ -1,9 +1,11 @@
 /* eslint-disable no-unreachable */
 import * as T from 'three';
 
-//! Template for creation a canvas with three.js
-//! Describes the structure and sequence of functions for rendering
-//! Contains useful developments often found in projects
+/**
+ * Template for creation a canvas with three.js
+ * Describes the structure and sequence of functions for rendering
+ * Contains useful developments often found in projects
+ */
 
 export default class SampleCanvas {
 	constructor(options) {
@@ -11,6 +13,7 @@ export default class SampleCanvas {
 		this.init();
 	}
 
+	/** Initialization */
 	async init() {
 		if (this.container) return;
 
@@ -28,18 +31,18 @@ export default class SampleCanvas {
 		// this.addGui();
 		this.resize();
 		this.render();
-		this.setupResize();
+		this.initEvents();
 	}
 
+	/** Environment & Variables */
 	setupEvironment() {
-		// --------------------------------------------- Environment & Variables
 		this.width = this.container.offsetWidth;
 		this.height = this.container.offsetHeight;
-		// --------------------------------------------- Environment & Variables###
 	}
 
+	/** Setup Canvas */
 	setupScene() {
-		// --------------------------------------------- Rendering
+		/** Rendering: */
 		this.scene = new T.Scene();
 		this.renderer = new T.WebGLRenderer();
 		this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -47,18 +50,18 @@ export default class SampleCanvas {
 		this.renderer.setClearColor(0xeeeeee, 1);
 		this.renderer.outputEncoding = T.sRGBEncoding;
 		this.container.appendChild(this.renderer.domElement);
-		// --------------------------------------------- Rendering###
 
-		// --------------------------------------------- User View
+		/** User View: */
 		this.camera = new T.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.001, 1000);
 		this.camera.position.set(0, 0, 2);
-		// --------------------------------------------- User View###
 	}
 
-	setupResize() {
+	/** Setup Events */
+	initEvents() {
 		window.addEventListener('resize', this.resize.bind(this));
 	}
 
+	/** Update environment on resize */
 	resize() {
 		this.width = this.container.offsetWidth;
 		this.height = this.container.offsetHeight;
@@ -67,6 +70,7 @@ export default class SampleCanvas {
 		this.camera.updateProjectionMatrix();
 	}
 
+	/** Load external assets & modules */
 	loadObjects() {
 		const loader = new T.FileLoader();
 
@@ -103,6 +107,7 @@ export default class SampleCanvas {
 		return Promise.all([fragment, vertex]);
 	}
 
+	/** Setup Mesh material */
 	setMaterials() {
 		this.material = new T.ShaderMaterial({
 			//
@@ -124,10 +129,12 @@ export default class SampleCanvas {
 		});
 	}
 
+	/** Setup Mesh geometry */
 	setGeometries() {
 		this.geometry = new T.PlaneGeometry(1, 1, 1, 1);
 	}
 
+	/** Create and add meshes to the scene */
 	addObjects() {
 		this.setGeometries();
 		this.setMaterials();
@@ -136,6 +143,7 @@ export default class SampleCanvas {
 		this.scene.add(this.plane);
 	}
 
+	/** Сanvas drawing */
 	render() {
 		window.requestAnimationFrame(this.render.bind(this));
 		this.renderer.render(this.scene, this.camera);

@@ -33,7 +33,7 @@ const mobileSlider = (breakpoint) => {
 		const init = () => {
 			if (!isInit) {
 				buildSwiper($slider);
-				
+
 				sliderEl = new Swiper($slider, {
 					observer: true,
 					observeParents: true,
@@ -79,4 +79,3 @@ export default mobileSlider;
 // 	Optionally rename classes wich variable 'classNames' contains and add to your html elements wich should be a slider elements.
 //  Import some-slider.js to page or block with slider.
 //  Init slider by mobileSlider();
-

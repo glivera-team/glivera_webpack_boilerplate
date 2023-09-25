@@ -1,8 +1,10 @@
-	addLights() {
-		const l1 = new T.AmbientLight(0xfffffff, 0.2);
-		const l2 = new T.HemisphereLight(0xfffffff, 1);
+/** Lights Chunk - sample lights */
 
-		l2.position.set(-4, 4, 2);
+addLights() {
+	const l1 = new T.AmbientLight(0xfffffff, 0.2);
+	const l2 = new T.HemisphereLight(0xfffffff, 1);
 
-		this.scene.add(l2, l1);
-	}
+	l2.position.set(-4, 4, 2);
+
+	this.scene.add(l2, l1);
+}
