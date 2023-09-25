@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import RefreshAnimationOnResize from './RefreshAnimationOnResize';
+import RefreshAnimationOnResize from './refresh-anim-on-resize';
 import { BREAKPOINTS } from '../utils/constants';
 
 class AnimSample {

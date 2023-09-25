@@ -4,7 +4,9 @@ import { getWindowSize, isFunction } from '../utils';
 
 class RefreshAnimationOnResize {
 	removeMatchMedia() {
-		ScrollTrigger.clearMatchMedia(`(max-width: ${this.windowWidth + 1}px) and (min-width: ${this.windowWidth - 1}px)`);
+		ScrollTrigger.clearMatchMedia(
+			`(max-width: ${this.windowWidth + 1}px) and (min-width: ${this.windowWidth - 1}px)`,
+		);
 	}
 
 	initMatchMedia() {
