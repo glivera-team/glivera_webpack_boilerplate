@@ -1,5 +1,5 @@
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { exist } from '../utils/index';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -35,8 +35,8 @@ const createAnimConfig = ($fadeElement) => {
  * Define configuration
  * Apply animation
  * Usage:
- * Add .js-fade-item class to element wich you want to use with fade.
- * If you need that the element moves during appears use 'data-fade-direction' attribute with values 'up', 'down', 'right', 'left'
+ * Add .js-fade-item class to element wich you want to fade.
+ * If you need that the element moves to some direction use 'data-fade-direction' attribute with values 'up', 'down', 'right', 'left'
  * You can change animation parameters by adding the data-attribute to animatable element. Check 'fade-animation.pug' file in this folder
  */
 

@@ -1,6 +1,13 @@
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
+/** Initialize simple parallax animations:
+ * Find all animation targets
+ * Define configuration
+ * Apply animation
+ * Usage:
+ * Add .js-parallax-el class to element that you want to parallax.
+ */
 const parallax = () => {
 	const SELECTORS = {
 		el: '.js-parallax-el',

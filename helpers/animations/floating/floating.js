@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 
-/** Initialize floating/dead fish animations:
+/** Initialize floating/dead fish animation:
  * Define configuration
  * Apply animation to the target
  * @param {HTMLElement} el - target element
@@ -119,27 +119,3 @@ const floating = (el) => {
 };
 
 export default floating;
-
-// example usage:
-// const $items = document.querySelectorAll('.js-floating-el');
-// $items.forEach((el) => {
-// 	const [playFloating, pauseFloating] = floating(el);
-
-// 	const trigger = ScrollTrigger.create({
-// 		trigger: el,
-// 		start: 'top bottom',
-// 		end: 'bottom top',
-// 		onEnter: () => {
-// 			playFloating();
-// 		},
-// 		onEnterBack: () => {
-// 			playFloating();
-// 		},
-// 		onLeave: () => {
-// 			pauseFloating();
-// 		},
-// 		onLeaveBack: () => {
-// 			pauseFloating();
-// 		},
-// 	});
-// });

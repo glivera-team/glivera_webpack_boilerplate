@@ -1,35 +1,40 @@
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { exist } from '../utils/index';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const animConfigDefault = {
-	speed: '80',
-	start: 'top bottom',
-	end: 'top top',
-};
+/**
+ * Get configuration object for parallax animation
+ * @param {HTMLElement} $parallaxElement - parallax target element
+ * @return {object} Configuration
+ */
 const createAnimConfig = ($parallaxElement) => {
-	const trigger = $parallaxElement.dataset.parallaxTrigger || $parallaxElement;
-	const speed = $parallaxElement.dataset.parallaxSpeed || animConfigDefault.speed;
-	const start = $parallaxElement.dataset.parallaxTrigger || animConfigDefault.start;
-	const end = $parallaxElement.dataset.parallaxTrigger || animConfigDefault.end;
+	const animConfigDefault = {
+		speed: '80',
+		start: 'top bottom',
+		end: 'top top',
+	};
 
 	return {
-		trigger,
-		speed,
-		start,
-		end,
+		trigger: $parallaxElement.dataset.parallaxTrigger || $parallaxElement,
+		speed: $parallaxElement.dataset.parallaxSpeed || animConfigDefault.speed,
+		start: $parallaxElement.dataset.parallaxTrigger || animConfigDefault.start,
+		end: $parallaxElement.dataset.parallaxTrigger || animConfigDefault.end,
 	};
 };
 
+/** Initialize complex parallax animations:
+ * Find all animation targets
+ * Define configuration
+ * Apply animation
+ * Usage:
+ * Add .js-parallax-item class to element that you want to parallax.
+ */
 const parallaxAnim = () => {
 	const $parallaxItems = document.querySelectorAll('.js-parallax-item');
 
-	if (!exist($parallaxItems)) {
-		console.error('Parallax elements not found!');
-		return;
-	}
+	if (!exist($parallaxItems)) return;
 
 	$parallaxItems.forEach(($item) => {
 		const ANIM_CONFIG = createAnimConfig($item);
