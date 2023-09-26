@@ -9,9 +9,11 @@ mixin dynamic_video(data)
 		.video__poster_w.js-video-poster
 			if data.playBtn
 				button.video_btn(aria-label="play")
+					span.video__play_triangle
 			+picture({
 				class: 'video__poster',
 				img_class: 'video__poster_img',
 				img: data.posterPath,
 				alt: 'video poster',
 			})
+

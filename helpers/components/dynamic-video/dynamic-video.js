@@ -6,6 +6,14 @@ import 'ScssComponents/dynamic-video.scss';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/**
+ * Standard javascript dynamic video
+ * based on scroll trigger
+ * supports local HTML5 Video
+ * for videos from YouTube or Vimeo, you must specify data-plyr-provider and data-plyr-embed-id
+ * specify playOnScroll (true/false) as an argument when calling the function
+ */
+
 const dynamicVideo = (playOnScroll) => {
 	const $videoContainers = document.querySelectorAll('.js-dynamic-video');
 
