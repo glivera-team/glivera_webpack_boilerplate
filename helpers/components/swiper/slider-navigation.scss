@@ -14,12 +14,8 @@
 	transition: opacity 0.3 ease-in-out;
 	cursor: pointer;
 
+	&.swiper-button-disabled,
 	&.swiper-button-lock {
-		opacity: 0;
-		pointer-events: none;
-	}
-
-	&.swiper-button-disabled {
 		opacity: 0;
 		pointer-events: none;
 	}
