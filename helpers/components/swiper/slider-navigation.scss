@@ -21,10 +21,10 @@
 	}
 
 	&.slider_navigation--next_mod {
-		left: var(--gl-hr-indent);
+		right: var(--gl-hr-indent);
 	}
 	&.slider_navigation--prev_mod {
-		right: var(--gl-hr-indent);
+		left: var(--gl-hr-indent);
 	}
 
 	@media (hover: hover) {
