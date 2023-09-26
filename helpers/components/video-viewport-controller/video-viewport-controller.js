@@ -4,7 +4,7 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 export const videoViewportController = (videoSelector) => {
-	// NOTE: just put js-selector (class) to your video tag and specify this selector when call the fuction
+	// NOTE: just put js-selector to your video tag "NOTE: Simply add a 'js-selector' attribute to your video tag and specify this selector as an argument when calling the function
 	const $videos = document.querySelectorAll(videoSelector);
 
 	if (!$videos.length) return;
