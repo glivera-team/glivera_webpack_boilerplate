@@ -2,11 +2,7 @@ extends ../layout/layout
 
 block vars
 	//- include ../templates/project-vars
-	include ../templates/mixins/m-dynamic-video
 	- array = {body_class:'', layout_mod:'', sub_keywords:'', title_inner:'Index', template_name: 'index'}
-	-	data1 = {playBtn: true, posterPath: 'poster.jpg', videoPath: 'images/video-example.mp4'}
-	- data2 = {playBtn: false, posterPath: 'poster.jpg', videoProvider: 'youtube', videoId: 'bTqVqk7FSmY'}
-	- data3 = {playBtn: false, posterPath: 'poster.jpg', videoProvider: 'vimeo', videoId: '76979871'}
 
 block content_block
 	section.section.index_section.demo_mod
