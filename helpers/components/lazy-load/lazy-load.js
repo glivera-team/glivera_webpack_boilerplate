@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-return-assign */
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,14 +46,6 @@ export const videoLazyLoad = () => {
 
 	if (!$videos.length) return;
 
-	const playVideo = ($video) => {
-		$video.play();
-	};
-
-	const pauseVideo = ($video) => {
-		$video.pause();
-	};
-
 	$videos.forEach(($video) => {
 		const source = $video.dataset.src;
 
@@ -68,40 +60,6 @@ export const videoLazyLoad = () => {
 
 				$video.src = source;
 			},
-		});
-	});
-};
-
-export const videoViewportController = () => {
-	const $videos = document.querySelectorAll('video[data-src]');
-
-	if (!$videos.length) return;
-
-	const playVideo = ($video) => {
-		if ($video.readyState !== 4) {
-			return;
-		}
-
-		$video.play();
-	};
-
-	const pauseVideo = ($video) => {
-		if ($video.readyState !== 4) {
-			return;
-		}
-
-		$video.pause();
-	};
-
-	$videos.forEach(($video) => {
-		ScrollTrigger.create({
-			trigger: $video,
-			start: 'top bottom',
-			end: 'bottom top',
-			onEnter: () => playVideo($video),
-			onEnterBack: () => playVideo($video),
-			onLeave: () => pauseVideo($video),
-			onLeaveBack: () => pauseVideo($video),
 		});
 	});
 };
