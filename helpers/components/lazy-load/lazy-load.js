@@ -25,8 +25,6 @@ export const imgLazyLoad = () => {
 
 		if (!srcSet && !source) return;
 
-		const needRefresh = $image.dataset.refresh === undefined || $parent.dataset.refresh === undefined;
-
 		const trigger = ScrollTrigger.create({
 			trigger: $image,
 			start: 'top-=200% bottom',
@@ -34,9 +32,6 @@ export const imgLazyLoad = () => {
 			onEnter: () => {
 				$image.addEventListener('load', () => {
 					trigger?.kill();
-					if (needRefresh) {
-						ScrollTrigger.refresh();
-					}
 				});
 
 				if (wrapperMode === 'PICTURE') {
@@ -60,34 +55,20 @@ export const videoLazyLoad = () => {
 
 	if (!$videos.length) return;
 
-	const playVideo = ($video) => {
-		$video.play();
-	};
-
-	const pauseVideo = ($video) => {
-		$video.pause();
-	};
-
 	$videos.forEach(($video) => {
-		let isLoaded = false;
 		const source = $video.dataset.src;
 
-		ScrollTrigger.create({
+		const trigger = ScrollTrigger.create({
 			trigger: $video,
-			start: 'top bottom',
-			end: 'bottom top',
+			start: 'top-=200% bottom',
+			end: 'bottom+=200% top',
 			onEnter: () => {
-				if (!isLoaded) {
-					$video.src = source;
-					$video.muted = true;
-					isLoaded = true;
-				}
+				$video.addEventListener('loadeddata', () => {
+					trigger?.kill();
+				});
 
-				playVideo($video);
+				$video.src = source;
 			},
-			onEnterBack: () => playVideo($video),
-			onLeave: () => pauseVideo($video),
-			onLeaveBack: () => pauseVideo($video),
 		});
 	});
 };
