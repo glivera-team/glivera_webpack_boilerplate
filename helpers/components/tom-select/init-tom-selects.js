@@ -3,6 +3,9 @@ import { exist } from '../utils';
 import 'tom-select/dist/css/tom-select.css';
 import 'ScssComponents/universal/tom-select.scss';
 
+/**
+ * Initialize TomSelect plugin for custom selects, compatible with WordPress
+ */
 const initTomSelects = () => {
 	const SELECTORS = {
 		select: '.js-tom-select',
