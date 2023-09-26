@@ -25,6 +25,8 @@ export const imgLazyLoad = () => {
 
 		if (!srcSet && !source) return;
 
+		const needRefresh = $image.dataset.refresh !== undefined || $parent.dataset.refresh !== undefined;
+
 		const trigger = ScrollTrigger.create({
 			trigger: $image,
 			start: 'top-=200% bottom',
@@ -32,6 +34,10 @@ export const imgLazyLoad = () => {
 			onEnter: () => {
 				$image.addEventListener('load', () => {
 					trigger?.kill();
+
+					if (needRefresh) {
+						ScrollTrigger.refresh();
+					}
 				});
 
 				if (wrapperMode === 'PICTURE') {
