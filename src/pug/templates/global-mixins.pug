@@ -230,16 +230,16 @@ mixin loop_while_sub(counter)
 			block
 
 //- works
-mixin breadcrumbs(data)
+mixin bread_crumbs(data)
 	- mod = data.mod || '';
-	.breadcrumbs
-		ul.breadcrumbs__list(class=mod)
+	.bread_crumbs
+		ul.bread_crumbs__list(class=mod)
 			each crumb, index in data.list
-				li.breadcrumbs__item
+				li.bread_crumbs__item
 					if (index == array.length - 1)
-						a.breadcrumbs__link.breadcrumbs__link--current_mod= crumb.text
+						a.bread_crumbs__link.bread_crumbs__link--current_mod= crumb.text
 					else
-						a.breadcrumbs__link(href=crumb.url)= crumb.text
+						a.bread_crumbs__link(href=crumb.url)= crumb.text
 
 //- works
 mixin menu(menuArray)
@@ -317,7 +317,8 @@ mixin picture(data)
 	- is2x = data.is2x ? true : false;
 	- media = data.media;
 	- alt = data.alt || 'some image';
-	- loading = data.lazy ? 'lazy' : 'eager';
+	- loading = (data.lazy === false || data.jsLazy === true) ? 'eager' : 'lazy';
+	- jsLazy = data.jsLazy;
 
 	picture(class=data.class)
 		//- array of types, ex:[[jpg], [png]]
@@ -340,25 +341,53 @@ mixin picture(data)
 
 				source(
 					media=mediaAttr,
-					srcset=srcSet,
+					srcset=jsLazy ? undefined : srcSet,
+					data-srcset=jsLazy ? srcSet : undefined
 					type=`image/${mimeType}`
 				)
 		- source = `${pathArray[0]}.${typesArray[0][defaultTypeIndex]}`
 		img(
 			class=data.img_class,
-			src=source,
+			src=jsLazy ? undefined : source,
+			data-src=jsLazy ? source : undefined
 			alt=alt,
 			loading=loading
 		)
 
+mixin heading(data)
+	- title= data.title_tag || 'h2'
+	- subtitle= data.subtitle_tag || 'div'
+
+	.heading(class=data.mod)
+		if data.suptitle
+			.heading__suptitle!=data.suptitle
+		if data.title
+			#{title}.heading__title!=data.title
+		if data.subtitle
+			#{subtitle}.heading__subtitle!=data.subtitle
+		if data.descr
+			.heading__descr
+				each item in data.descr
+					!=item
+		if data.btns
+			.heading__btn_w
+				each item in data.btns
+					a(href="#" class=item.mod)= item.title
+
+mixin slider_navigation(buttonMod = '')
+	button.slider_navigation.slider_navigation--prev_mod.js-slider-navigation-prev(class=buttonMod type="button" aria-label="Prev slide")
+		+icon('arrow_prev', 'icon--size_mod')
+	button.slider_navigation.slider_navigation--next_mod.js-slider-navigation-next(class=buttonMod type="button" aria-label="Next slide")
+		+icon('arrow_prev', 'icon--size_mod')
+
 //- part for custom lazy load
 
-				source(
-					media=mediaAttr,
-					data-srcset=loading === 'lazy' ? srcSet : undefined
-					srcset=loading === 'lazy' ? undefined : srcSet,
-					type=`image/${mimeType}`
-				)
+	source(
+		media=mediaAttr,
+		data-srcset=loading === 'lazy' ? srcSet : undefined
+		srcset=loading === 'lazy' ? undefined : srcSet,
+		type=`image/${mimeType}`
+	)
 		- source = `${pathArray[0]}.${typesArray[0][defaultTypeIndex]}`
 		img(
 			class=data.img_class,

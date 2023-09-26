@@ -1,8 +1,7 @@
-.slider.someSliderWrapper
-	.slider__arrow.slider_arrow--prev.someSliderPrev
-	.slider__arrow.slider_arrow--next.someSliderNext
-	.slider__list.someSlider
+.slider.js-some-slider-wrapper
+	+slider_navigation
+	.slider__list.js-some-slider(role='slider')
 		+loop_while(14)
 			.slider__item
 				p slide#{i}
-	.slider__dots.someSliderDots
+	.slider__dots.js-some-slider-dots

@@ -1,3 +1,5 @@
+/** Plyr initialization sample */
+
 const videoPlayer = Array.from(document.querySelectorAll('.video_block')).map(
 	(p) =>
 		new Plyr(p, {
