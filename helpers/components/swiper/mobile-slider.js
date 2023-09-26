@@ -1,5 +1,5 @@
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
 import Swiper, { Navigation } from 'swiper';
 import 'swiper/css';
@@ -19,6 +19,9 @@ const CLASS_NAMES = {
 
 Swiper.use([Navigation]);
 
+/**
+ * Swiper sample including mobile destroy behaviour
+ */
 const mobileSlider = (breakpoint) => {
 	const $sliderWrappers = document.querySelectorAll(CLASS_NAMES.wrapper);
 

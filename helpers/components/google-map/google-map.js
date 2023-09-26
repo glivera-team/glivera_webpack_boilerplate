@@ -1,16 +1,22 @@
 import { Loader } from '@googlemaps/js-api-loader';
 import { exist } from '../utils/index';
 
+/**
+ * Google map initialization sample
+ * text to the manager about the API key
+ * docs - {@link https://developers.google.com/maps/documentation Google Docs}
+ */
+
 const initMap = () => {
 	const SELECTORS = {
 		map: '#map',
 	};
 
 	const $map = document.querySelector(SELECTORS.map);
-	if (!exist($map)) return;
+	if (!exist($map) || !$map.dataset.key) return;
 
-	const latValue = parseFloat($map.dataset.lat);
-	const lngValue = parseFloat($map.dataset.lng);
+	const latValue = parseFloat($map.dataset.lat || 0);
+	const lngValue = parseFloat($map.dataset.lng || 0);
 
 	const loader = new Loader({
 		apiKey: $map.dataset.key,
@@ -38,7 +44,7 @@ const initMap = () => {
 			});
 		})
 		.catch((e) => {
-			// console.log(e);
+			console.log(e);
 		});
 };
 

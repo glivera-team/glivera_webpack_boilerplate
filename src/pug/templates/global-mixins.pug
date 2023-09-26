@@ -374,6 +374,12 @@ mixin heading(data)
 				each item in data.btns
 					a(href="#" class=item.mod)= item.title
 
+mixin slider_navigation(buttonMod = '')
+	button.slider_navigation.slider_navigation--prev_mod.js-slider-navigation-prev(class=buttonMod type="button" aria-label="Prev slide")
+		+icon('arrow_prev', 'icon--size_mod')
+	button.slider_navigation.slider_navigation--next_mod.js-slider-navigation-next(class=buttonMod type="button" aria-label="Next slide")
+		+icon('arrow_prev', 'icon--size_mod')
+
 //- part for custom lazy load
 
 	source(

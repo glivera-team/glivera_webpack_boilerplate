@@ -6,8 +6,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Get configuration object for fading animation
- * @param {HTMLElement} $fadeElement - fade target element
- * @return {object} Configuration
+ * @param {HTMLElement} $fadeElement 	- fade target element
+ * @return {object} 									- Configuration
  */
 
 const createAnimConfig = ($fadeElement) => {
@@ -54,7 +54,7 @@ const fadeAnim = () => {
 		/**
 		 * Check translate direction
 		 * @param {string} value - direction
-		 * @return {boolean} is direction match
+		 * @return {boolean}		 - is direction match
 		 */
 		const checkDirection = (value) => {
 			return ANIM_CONFIG.direction === value;
@@ -62,7 +62,7 @@ const fadeAnim = () => {
 		/**
 		 * Get initial state of the animation
 		 * @param {object} settings - settings
-		 * @return {object} initial state
+		 * @return {object} 				- initial state
 		 */
 		const getInitialState = (settings) => {
 			return {
@@ -73,7 +73,7 @@ const fadeAnim = () => {
 		/**
 		 * Get initial finish state of the animation
 		 * @param {object} settings - settings
-		 * @return {object} finish state
+		 * @return {object} 				- finish state
 		 */
 		const getTargetState = (settings) => {
 			return {

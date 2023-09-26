@@ -3,15 +3,15 @@ import gsap from 'gsap';
 /** Initialize floating/dead fish animation:
  * Define configuration
  * Apply animation to the target
- * @param {HTMLElement} el - target element
- * @return {array} play/pause functions array
+ * @param {HTMLElement} el 	- target element
+ * @return {array} 					- play/pause functions array
  */
 
 const floating = (el) => {
 	/** Get random value in range
-	 * @param {number} min - min val
-	 * @param {number} max - max val
-	 * @return {number} random val
+	 * @param {number} min 	- min val
+	 * @param {number} max 	- max val
+	 * @return {number} 		- random val
 	 */
 	function random(min, max) {
 		const delta = max - min;
@@ -27,9 +27,9 @@ const floating = (el) => {
 	const randomScale = random(0.8, 1.1);
 
 	/** Apply translate X animation
-	 * @param {object} timeline - target timeline
-	 * @param {HTMLElement} target - target element
-	 * @param {number} direction - -1 or 1 to represent direction
+	 * @param {object} timeline 		- target timeline
+	 * @param {HTMLElement} target 	- target element
+	 * @param {number} direction 		- -1 or 1 to represent direction
 	 */
 	function moveX(tl, target, direction) {
 		tl.to(target, {
@@ -41,9 +41,9 @@ const floating = (el) => {
 	}
 
 	/** Apply translate Y animation
-	 * @param {object} timeline - target timeline
-	 * @param {HTMLElement} target - target element
-	 * @param {number} direction - -1 or 1 to represent direction
+	 * @param {object} timeline 		- target timeline
+	 * @param {HTMLElement} target 	- target element
+	 * @param {number} direction 		- -1 or 1 to represent direction
 	 */
 	function moveY(tl, target, direction) {
 		tl.to(target, {
@@ -55,9 +55,9 @@ const floating = (el) => {
 	}
 
 	/** Apply rotate animation
-	 * @param {object} timeline - target timeline
-	 * @param {HTMLElement} target - target element
-	 * @param {number} direction - -1 or 1 to represent direction
+	 * @param {object} timeline 		- target timeline
+	 * @param {HTMLElement} target 	- target element
+	 * @param {number} direction 		- -1 or 1 to represent direction
 	 */
 	function rotate(tl, target, direction) {
 		tl.to(target, {
@@ -69,9 +69,9 @@ const floating = (el) => {
 	}
 
 	/** Apply scale animation
-	 * @param {object} timeline - target timeline
-	 * @param {HTMLElement} target - target element
-	 * @param {number} direction - -1 or 1 to represent direction
+	 * @param {object} timeline 		- target timeline
+	 * @param {HTMLElement} target 	- target element
+	 * @param {number} direction 		- -1 or 1 to represent direction
 	 */
 	function scale(tl, target, direction) {
 		tl.to(target, {

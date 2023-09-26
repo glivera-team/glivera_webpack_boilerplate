@@ -13,6 +13,9 @@ const CLASS_NAMES = {
 
 Swiper.use([Navigation, Pagination]);
 
+/**
+ * Swiper default sample
+ */
 const someSlider = () => {
 	const $sliderWrappers = document.querySelectorAll(CLASS_NAMES.wrapper);
 

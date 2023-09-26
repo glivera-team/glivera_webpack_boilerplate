@@ -6,8 +6,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Get configuration object for parallax animation
- * @param {HTMLElement} $parallaxElement - parallax target element
- * @return {object} Configuration
+ * @param {HTMLElement} $parallaxElement 	- parallax target element
+ * @return {object} 											- configuration
  */
 const createAnimConfig = ($parallaxElement) => {
 	const animConfigDefault = {
@@ -29,7 +29,8 @@ const createAnimConfig = ($parallaxElement) => {
  * Define configuration
  * Apply animation
  * Usage:
- * Add .js-parallax-item class to element that you want to parallax.
+ * add .js-parallax-item class to element that you want to parallax
+ * You can change animation parameters by adding the data-attribute to animatable element. Check 'parallax.pug' file in this folder
  */
 const parallaxAnim = () => {
 	const $parallaxItems = document.querySelectorAll('.js-parallax-item');
@@ -59,8 +60,3 @@ const parallaxAnim = () => {
 };
 
 export default parallaxAnim;
-
-//	How to use
-
-//	Just add .js-parallax-item class to element wich you want to be with parallax
-//	You can change animation parameters by adding the data-attribute to animatable element. Check 'parallax.pug' file in this folder

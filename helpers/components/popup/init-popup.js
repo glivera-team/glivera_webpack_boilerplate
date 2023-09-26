@@ -1,16 +1,17 @@
 import { exist } from '../utils/index';
 import 'ScssComponents/universal/popup.scss';
 
-// 1. import file to your component
-// 2. initPopup('.js-popup-btn-name', '.js-popup-name');
-// 3. style for body
-// &.body--popup_open {
-// overflow: hidden;
-// }
-
-// byId - Need for popups with the same structure but different content
-// (you need to pass data-popup-id for trigger and popup)
-
+/**
+ * Standart popup constructor
+ * contains default methods for popup functionality
+ * usage:
+ * init - initPopup('.js-popup-btn-name', '.js-popup-name', false);
+ * data-popup-id - put attribute in popup and trigger if you need id check
+ *
+ * @param {string} btnSelector 		- trigger selector
+ * @param {string} popupSelector 	- popup selector
+ * @param {boolean} byId 					- id`s module. finds popups <-> triggers by id
+ */
 const initPopup = (btnSelector, popupSelector, byId = false) => {
 	const SELECTORS = {
 		close: '.js-popup-close',

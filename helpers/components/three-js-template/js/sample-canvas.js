@@ -6,7 +6,6 @@ import * as T from 'three';
  * Describes the structure and sequence of functions for rendering
  * Contains useful developments often found in projects
  */
-
 export default class SampleCanvas {
 	constructor(options) {
 		this.container = options.dom;

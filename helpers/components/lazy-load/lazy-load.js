@@ -1,12 +1,17 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-return-assign */
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/**
+ * Standard javascript lazy loading for images
+ * based on scroll trigger
+ * put data-src to your img tag or data-srcset to <source> tag of the picture
+ * add data-refresh if you need refresh scroll trigger when it triggers, or if image has auto hight
+ */
 export const imgLazyLoad = () => {
-	// NOTE: just put data-src to your img tag or data-srcset to <source> tag of picture
 	const $nodes = document.querySelectorAll('[data-src]');
 	const $images = [...$nodes].filter(($node) => $node.tagName !== 'VIDEO');
 
@@ -45,8 +50,12 @@ export const imgLazyLoad = () => {
 	});
 };
 
+/**
+ * Standard javascript lazy loading for videos
+ * based on scroll trigger
+ * put data-src to your video tag
+ */
 export const videoLazyLoad = () => {
-	// NOTE: just put data-src to your video tag
 	const $videos = document.querySelectorAll('video[data-src]');
 
 	if (!$videos.length) return;

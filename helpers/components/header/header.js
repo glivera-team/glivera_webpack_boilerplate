@@ -1,21 +1,10 @@
 import { onWindowScroll, exist } from '../utils';
 
-// Example of usage
-// * Import and init this component into layout.js
-
-// * Some styles
-// &.body--open_menu_state {
-// 	overflow: hidden;
-// }
-
-// &.header--scroll_state {
-// 	background-color: rgba($white, 0.6);
-// }
-
-// &.header--pos_state {
-// 	transform: translateY(-100%);
-// }
-
+/**
+ * Main header constructor
+ * contains default header funcionality
+ * import and init this component into layout.js
+ */
 const header = () => {
 	const SELECTORS = {
 		header: '.js-header',
@@ -50,18 +39,19 @@ const header = () => {
 			$header.classList.remove(CLASSNAMES.headerScrollState);
 		}
 
-		// if you need header dissapear
-		// 1. Add this to CLASSNAMES: bodyScrollPos: 'body--pos_state',
-		// 2. Add this variable: let prevScrollPos = window.scrollY;
-		// 3. Get Header height: const headerHeight = $header.clientHeight;
-		// 4. Uncomment me
-		// if (prevScrollPos < window.scrollY && scrollY > headerHeight) {
-		// 	$header.classList.add(CLASSNAMES.bodyScrollPos);
-		// } else {
-		// 	$header.classList.remove(CLASSNAMES.bodyScrollPos);
-		// }
-
-		// prevScrollPos = window.scrollY;
+		/**
+		 * if you need header dissapear
+		 * 1. Add this to CLASSNAMES: bodyScrollPos: 'body--pos_state',
+		 * 2. Add this variable: let prevScrollPos = window.scrollY;
+		 * 3. Get Header height: const headerHeight = $header.clientHeight;
+		 * 4. Paste:
+		 * if (prevScrollPos < window.scrollY && scrollY > headerHeight) {
+		 * 	$header.classList.add(CLASSNAMES.bodyScrollPos);
+		 * } else {
+		 * 	$header.classList.remove(CLASSNAMES.bodyScrollPos);
+		 * }
+		 * prevScrollPos = window.scrollY;
+		 */
 	};
 
 	const initializeEventListeners = () => {

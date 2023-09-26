@@ -1,3 +1,10 @@
+/**
+ * Standart quantity input functionality
+ * usage:
+ * put js-selectors to your field
+ * init function on your page
+ */
+
 const quantity = () => {
 	const CLASSNAMES = {
 		qty: '.js-quantity',
