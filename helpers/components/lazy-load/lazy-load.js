@@ -20,8 +20,6 @@ export const imgLazyLoad = () => {
 
 		if (!srcSet && !source) return;
 
-		const needRefresh = $image.dataset.refresh === undefined || $parent.dataset.refresh === undefined;
-
 		const trigger = ScrollTrigger.create({
 			trigger: $image,
 			start: 'top-=200% bottom',
@@ -29,9 +27,6 @@ export const imgLazyLoad = () => {
 			onEnter: () => {
 				$image.addEventListener('load', () => {
 					trigger?.kill();
-					if (needRefresh) {
-						ScrollTrigger.refresh();
-					}
 				});
 
 				if (wrapperMode === 'PICTURE') {
@@ -60,22 +55,50 @@ export const videoLazyLoad = () => {
 	};
 
 	$videos.forEach(($video) => {
-		let isLoaded = false;
 		const source = $video.dataset.src;
 
+		const trigger = ScrollTrigger.create({
+			trigger: $video,
+			start: 'top-=200% bottom',
+			end: 'bottom+=200% top',
+			onEnter: () => {
+				$video.addEventListener('loadeddata', () => {
+					trigger?.kill();
+				});
+
+				$video.src = source;
+			},
+		});
+	});
+};
+
+export const videoViewportController = () => {
+	const $videos = document.querySelectorAll('video[data-src]');
+
+	if (!$videos.length) return;
+
+	const playVideo = ($video) => {
+		if ($video.readyState !== 4) {
+			return;
+		}
+
+		$video.play();
+	};
+
+	const pauseVideo = ($video) => {
+		if ($video.readyState !== 4) {
+			return;
+		}
+
+		$video.pause();
+	};
+
+	$videos.forEach(($video) => {
 		ScrollTrigger.create({
 			trigger: $video,
 			start: 'top bottom',
 			end: 'bottom top',
-			onEnter: () => {
-				if (!isLoaded) {
-					$video.src = source;
-					$video.muted = true;
-					isLoaded = true;
-				}
-
-				playVideo($video);
-			},
+			onEnter: () => playVideo($video),
 			onEnterBack: () => playVideo($video),
 			onLeave: () => pauseVideo($video),
 			onLeaveBack: () => pauseVideo($video),
