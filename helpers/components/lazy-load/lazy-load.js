@@ -1,12 +1,17 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-return-assign */
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/**
+ * Standard javascript lazy loading for images
+ * based on scroll trigger
+ * put data-src to your img tag or data-srcset to <source> tag of the picture
+ * add data-refresh if you need refresh scroll trigger when it triggers, or if image has auto hight
+ */
 export const imgLazyLoad = () => {
-	// NOTE: just put data-src to your img tag or data-srcset to <source> tag of picture
 	const $nodes = document.querySelectorAll('[data-src]');
 	const $images = [...$nodes].filter(($node) => $node.tagName !== 'VIDEO');
 
@@ -20,7 +25,7 @@ export const imgLazyLoad = () => {
 
 		if (!srcSet && !source) return;
 
-		const needRefresh = $image.dataset.refresh === undefined || $parent.dataset.refresh === undefined;
+		const needRefresh = $image.dataset.refresh !== undefined || $parent.dataset.refresh !== undefined;
 
 		const trigger = ScrollTrigger.create({
 			trigger: $image,
@@ -29,6 +34,7 @@ export const imgLazyLoad = () => {
 			onEnter: () => {
 				$image.addEventListener('load', () => {
 					trigger?.kill();
+
 					if (needRefresh) {
 						ScrollTrigger.refresh();
 					}
@@ -45,40 +51,30 @@ export const imgLazyLoad = () => {
 	});
 };
 
+/**
+ * Standard javascript lazy loading for videos
+ * based on scroll trigger
+ * put data-src to your video tag
+ */
 export const videoLazyLoad = () => {
-	// NOTE: just put data-src to your video tag
 	const $videos = document.querySelectorAll('video[data-src]');
 
 	if (!$videos.length) return;
 
-	const playVideo = ($video) => {
-		$video.play();
-	};
-
-	const pauseVideo = ($video) => {
-		$video.pause();
-	};
-
 	$videos.forEach(($video) => {
-		let isLoaded = false;
 		const source = $video.dataset.src;
 
-		ScrollTrigger.create({
+		const trigger = ScrollTrigger.create({
 			trigger: $video,
-			start: 'top bottom',
-			end: 'bottom top',
+			start: 'top-=200% bottom',
+			end: 'bottom+=200% top',
 			onEnter: () => {
-				if (!isLoaded) {
-					$video.src = source;
-					$video.muted = true;
-					isLoaded = true;
-				}
+				$video.addEventListener('loadeddata', () => {
+					trigger?.kill();
+				});
 
-				playVideo($video);
+				$video.src = source;
 			},
-			onEnterBack: () => playVideo($video),
-			onLeave: () => pauseVideo($video),
-			onLeaveBack: () => pauseVideo($video),
 		});
 	});
 };

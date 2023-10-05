@@ -6,7 +6,7 @@
 
 1. plyr.min.js, plyr.polyfilled.min => js/libs/
 
-2. \_plyr.scss => sass/plugins/ (include)
+2. plyr.scss => sass/plugins/ (include)
 
 3. icons => i/ => gulp svgSpriteBuild
 

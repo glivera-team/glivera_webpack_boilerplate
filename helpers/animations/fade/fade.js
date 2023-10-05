@@ -1,8 +1,15 @@
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/** Initialize simple fade animations:
+ * Find all animation targets
+ * Define configuration
+ * Apply animation
+ * Usage:
+ * Add .js-fade-el class to element that you want to fade.
+ */
 const fade = () => {
 	const SELECTORS = {
 		el: '.js-fade-el',

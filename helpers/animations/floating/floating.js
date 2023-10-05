@@ -1,6 +1,18 @@
 import gsap from 'gsap';
 
+/** Initialize floating/dead fish animation:
+ * Define configuration
+ * Apply animation to the target
+ * @param {HTMLElement} el 	- target element
+ * @return {array} 					- play/pause functions array
+ */
+
 const floating = (el) => {
+	/** Get random value in range
+	 * @param {number} min 	- min val
+	 * @param {number} max 	- max val
+	 * @return {number} 		- random val
+	 */
 	function random(min, max) {
 		const delta = max - min;
 		return (direction = 1) => (min + delta * Math.random()) * direction;
@@ -14,6 +26,11 @@ const floating = (el) => {
 	const randomAngle = random(-36, 36);
 	const randomScale = random(0.8, 1.1);
 
+	/** Apply translate X animation
+	 * @param {object} timeline 		- target timeline
+	 * @param {HTMLElement} target 	- target element
+	 * @param {number} direction 		- -1 or 1 to represent direction
+	 */
 	function moveX(tl, target, direction) {
 		tl.to(target, {
 			duration: randomTime(),
@@ -23,6 +40,11 @@ const floating = (el) => {
 		});
 	}
 
+	/** Apply translate Y animation
+	 * @param {object} timeline 		- target timeline
+	 * @param {HTMLElement} target 	- target element
+	 * @param {number} direction 		- -1 or 1 to represent direction
+	 */
 	function moveY(tl, target, direction) {
 		tl.to(target, {
 			duration: randomTime(),
@@ -32,6 +54,11 @@ const floating = (el) => {
 		});
 	}
 
+	/** Apply rotate animation
+	 * @param {object} timeline 		- target timeline
+	 * @param {HTMLElement} target 	- target element
+	 * @param {number} direction 		- -1 or 1 to represent direction
+	 */
 	function rotate(tl, target, direction) {
 		tl.to(target, {
 			duration: randomTime2(),
@@ -41,6 +68,11 @@ const floating = (el) => {
 		});
 	}
 
+	/** Apply scale animation
+	 * @param {object} timeline 		- target timeline
+	 * @param {HTMLElement} target 	- target element
+	 * @param {number} direction 		- -1 or 1 to represent direction
+	 */
 	function scale(tl, target, direction) {
 		tl.to(target, {
 			duration: randomTime2(),
@@ -67,6 +99,7 @@ const floating = (el) => {
 	rotate(tlRotate, el, 1);
 	scale(tlScale, el, 1);
 
+	/** Play all animations */
 	const playTl = () => {
 		tlX.play();
 		tlY.play();
@@ -74,6 +107,7 @@ const floating = (el) => {
 		tlScale.play();
 	};
 
+	/** Stop all animations */
 	const pauseTl = () => {
 		tlX.pause();
 		tlY.pause();
@@ -85,27 +119,3 @@ const floating = (el) => {
 };
 
 export default floating;
-
-// example usage:
-// const $items = document.querySelectorAll('.js-floating-el');
-// $items.forEach((el) => {
-// 	const [playFloating, pauseFloating] = floating(el);
-
-// 	const trigger = ScrollTrigger.create({
-// 		trigger: el,
-// 		start: 'top bottom',
-// 		end: 'bottom top',
-// 		onEnter: () => {
-// 			playFloating();
-// 		},
-// 		onEnterBack: () => {
-// 			playFloating();
-// 		},
-// 		onLeave: () => {
-// 			pauseFloating();
-// 		},
-// 		onLeaveBack: () => {
-// 			pauseFloating();
-// 		},
-// 	});
-// });

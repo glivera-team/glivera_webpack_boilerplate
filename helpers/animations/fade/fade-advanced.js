@@ -1,38 +1,44 @@
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { exist } from '../utils/index';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const animConfigDefault = {
-	start: 'top 80%',
-	duration: 1,
-	ease: 'none',
-	elementStartPosition: 100,
-	elementEndPosition: 0,
-};
+/**
+ * Get configuration object for fading animation
+ * @param {HTMLElement} $fadeElement 	- fade target element
+ * @return {object} 									- Configuration
+ */
 
 const createAnimConfig = ($fadeElement) => {
-	const trigger = $fadeElement.dataset.fadeTrigger || $fadeElement;
-	const start = $fadeElement.dataset.fadeStart || animConfigDefault.start;
-	const duration = $fadeElement.dataset.fadeDuration || animConfigDefault.duration;
-	const ease = $fadeElement.dataset.fadeEase || animConfigDefault.ease;
-	const direction = $fadeElement.dataset.fadeDirection;
-	const elementStartPosition =
-		$fadeElement.dataset.elementStartPosition || animConfigDefault.elementStartPosition;
-	const elementEndPosition =
-		$fadeElement.dataset.elementStartPosition || animConfigDefault.elementEndPosition;
+	const animConfigDefault = {
+		start: 'top 80%',
+		duration: 1,
+		ease: 'none',
+		elementStartPosition: 100,
+		elementEndPosition: 0,
+	};
 
 	return {
-		trigger,
-		start,
-		duration,
-		ease,
-		direction,
-		elementStartPosition,
-		elementEndPosition,
+		trigger: $fadeElement.dataset.fadeTrigger || $fadeElement,
+		start: $fadeElement.dataset.fadeStart || animConfigDefault.start,
+		duration: $fadeElement.dataset.fadeDuration || animConfigDefault.duration,
+		ease: $fadeElement.dataset.fadeEase || animConfigDefault.ease,
+		direction: $fadeElement.dataset.fadeDirection,
+		elementStartPosition: $fadeElement.dataset.elementStartPosition || animConfigDefault.elementStartPosition,
+		elementEndPosition: $fadeElement.dataset.elementStartPosition || animConfigDefault.elementEndPosition,
 	};
 };
+
+/** Initialize complex fade animations:
+ * Find all animation targets
+ * Define configuration
+ * Apply animation
+ * Usage:
+ * Add .js-fade-item class to element wich you want to fade.
+ * If you need that the element moves to some direction use 'data-fade-direction' attribute with values 'up', 'down', 'right', 'left'
+ * You can change animation parameters by adding the data-attribute to animatable element. Check 'fade-animation.pug' file in this folder
+ */
 
 const fadeAnim = () => {
 	const $fadeItems = document.querySelectorAll('.js-fade-item');
@@ -45,34 +51,49 @@ const fadeAnim = () => {
 	$fadeItems.forEach(($item) => {
 		const ANIM_CONFIG = createAnimConfig($item);
 
-		const setAnimDirection = (value) => {
+		/**
+		 * Check translate direction
+		 * @param {string} value - direction
+		 * @return {boolean}		 - is direction match
+		 */
+		const checkDirection = (value) => {
 			return ANIM_CONFIG.direction === value;
 		};
-		const setInitialConfig = (axis) => {
+		/**
+		 * Get initial state of the animation
+		 * @param {object} settings - settings
+		 * @return {object} 				- initial state
+		 */
+		const getInitialState = (settings) => {
 			return {
 				opacity: 0,
-				...axis,
+				...settings,
 			};
 		};
-		const setAnimConfig = (axis) => {
+		/**
+		 * Get initial finish state of the animation
+		 * @param {object} settings - settings
+		 * @return {object} 				- finish state
+		 */
+		const getTargetState = (settings) => {
 			return {
 				opacity: 1,
-				...axis,
+				...settings,
 				duration: ANIM_CONFIG.duration,
 				ease: ANIM_CONFIG.ease,
 			};
 		};
 
-		if (setAnimDirection('up')) {
-			gsap.set($item, setInitialConfig({ y: ANIM_CONFIG.elementStartPosition }));
-		} else if (setAnimDirection('down')) {
-			gsap.set($item, setInitialConfig({ y: -ANIM_CONFIG.elementStartPosition }));
-		} else if (setAnimDirection('right')) {
-			gsap.set($item, setInitialConfig({ x: -ANIM_CONFIG.elementStartPosition }));
-		} else if (setAnimDirection('left')) {
-			gsap.set($item, setInitialConfig({ x: ANIM_CONFIG.elementStartPosition }));
+		if (checkDirection('up')) {
+			gsap.set($item, getInitialState({ y: ANIM_CONFIG.elementStartPosition }));
+		} else if (checkDirection('down')) {
+			gsap.set($item, getInitialState({ y: -ANIM_CONFIG.elementStartPosition }));
+		} else if (checkDirection('right')) {
+			gsap.set($item, getInitialState({ x: -ANIM_CONFIG.elementStartPosition }));
+		} else if (checkDirection('left')) {
+			gsap.set($item, getInitialState({ x: ANIM_CONFIG.elementStartPosition }));
 		} else {
-			gsap.set($item, setInitialConfig());
+			gsap.set($item, getInitialState());
 		}
 
 		ScrollTrigger.create({
@@ -82,12 +103,12 @@ const fadeAnim = () => {
 			once: true,
 			//	markers: true,
 			onEnter: () => {
-				if (setAnimDirection('up') || setAnimDirection('down')) {
-					gsap.to($item, setAnimConfig({ y: ANIM_CONFIG.elementEndPosition }));
-				} else if (setAnimDirection('right') || setAnimDirection('left')) {
-					gsap.to($item, setAnimConfig({ x: ANIM_CONFIG.elementEndPosition }));
+				if (checkDirection('up') || checkDirection('down')) {
+					gsap.to($item, getTargetState({ y: ANIM_CONFIG.elementEndPosition }));
+				} else if (checkDirection('right') || checkDirection('left')) {
+					gsap.to($item, getTargetState({ x: ANIM_CONFIG.elementEndPosition }));
 				} else {
-					gsap.to($item, setAnimConfig());
+					gsap.to($item, getTargetState());
 				}
 			},
 		});
@@ -95,9 +116,3 @@ const fadeAnim = () => {
 };
 
 export default fadeAnim;
-
-//  How to use
-
-// Just add .js-fade-item class to element wich you want to use with fade.
-// If you need that the element moves during appears use 'data-fade-direction' attribute with values 'up', 'down', 'right', 'left'
-// You can change animation parameters by adding the data-attribute to animatable element. Check 'fade-animation.pug' file in this folder

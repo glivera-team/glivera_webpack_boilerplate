@@ -1,3 +1,7 @@
+/**
+ * Auto-Form swiper structure instead of manually adding swiper classes
+ * such as swiper-wrapper, swiper-slide etc
+ */
 export const buildSwiper = (sliderNode) => {
 	if (!sliderNode) return;
 
@@ -12,6 +16,10 @@ export const buildSwiper = (sliderNode) => {
 	$slider.innerHTML = htmlStructure;
 };
 
+/**
+ * Remove previously added swiper structure
+ * Swiper instance should be destroyed first
+ */
 export const removeSwiper = (sliderNode) => {
 	if (!sliderNode) return;
 

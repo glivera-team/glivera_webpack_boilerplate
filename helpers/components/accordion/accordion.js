@@ -2,6 +2,13 @@
 
 import { onWindowResize } from '../utils/index';
 
+/** Accordion constructor
+ * animation of collapsing elements
+ * @param {object} config 										- configuration
+ * @property {array} config.triggers 					- accordion triggers [HTMLElement]
+ * @property {string} config.activeStateName 	- active state className
+ */
+
 const Accordion = ({ triggers, activeStateName }) => {
 	const CLASSNAMES = {
 		defaultActiveState: 'accordion__item--active-mod',
@@ -12,6 +19,7 @@ const Accordion = ({ triggers, activeStateName }) => {
 
 	const isEnabled = () => enabled;
 
+	/** recalculating inner height propery on resize to apply actual height */
 	const onResize = () => {
 		if (isEnabled()) {
 			$allTriggers.forEach(($item) => {
@@ -79,15 +87,3 @@ const Accordion = ({ triggers, activeStateName }) => {
 };
 
 export default Accordion;
-
-// ------------ how init
-// copy past this
-
-// import this and if u need fix path
-// import Accordion from './components/accordion';
-
-// add it in loadFunc
-// const accordion = Accordion({
-// 	triggers: document.querySelectorAll('.accordion__item_head'),
-// 	activeStateName: 'accordion__item--active-mod',
-// });

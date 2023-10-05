@@ -1,5 +1,12 @@
-// import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-
+/**
+ * Default Tabs contructor
+ * Functionallity:
+ * toggle active state between multiple tabs/list items
+ * @param {string} trigger - trigger js-selector
+ * @param {string} content - content js-selector
+ * @param {string} triggerClass - trigger markup selector
+ * @param {string} contentClass - content markup selector
+ */
 function tabs({ trigger, content, triggerClass, contentClass }) {
 	let triggerSelector = document.querySelectorAll(trigger);
 	let blockSelector = document.querySelectorAll(content);
@@ -7,12 +14,12 @@ function tabs({ trigger, content, triggerClass, contentClass }) {
 	const activeTriggerClass = `${triggerClass}--active_state`;
 	const activeContentClass = `${contentClass}--active_state`;
 
-	const handActiveTab = (index) => {
+	const handActiveTab = (id) => {
 		document.querySelector(`.${activeTriggerClass}`)?.classList.remove(activeTriggerClass);
 		document.querySelector(`.${activeContentClass}`)?.classList.remove(activeContentClass);
 
-		document.querySelector(`.${triggerClass}[data-tab="${index}"]`).classList.add(activeTriggerClass);
-		document.querySelector(`.${contentClass}[data-tab="${index}"]`).classList.add(activeContentClass);
+		document.querySelector(`.${triggerClass}[data-tab="${id}"]`).classList.add(activeTriggerClass);
+		document.querySelector(`.${contentClass}[data-tab="${id}"]`).classList.add(activeContentClass);
 		// uncomment for refresh gsap triggers under tabs
 		// ScrollTrigger.refresh();
 	};
@@ -27,27 +34,11 @@ function tabs({ trigger, content, triggerClass, contentClass }) {
 		triggerSelector.forEach((item) => {
 			item.addEventListener('click', (e) => {
 				e.preventDefault();
-				let currentIndex = item.getAttribute('data-tab');
-				handActiveTab(currentIndex);
+				let id = item.getAttribute('data-tab');
+				handActiveTab(id);
 			});
 		});
 	}
-
-	// example usage:
-	// const SELECTORS = {
-	// 	tabsTrigger: '.js-section-tab-trigger',
-	// 	tabsContent: '.js-section-tab-content',
-	// };
-	// const classNames = {
-	// 	tabTriggerClass: 'section__tabs_button',
-	// 	tabContentClass: 'section__tabs_content',
-	// };
-	// tabs({
-	// 	trigger: SELECTORS.tabsTrigger,
-	// 	content: SELECTORS.tabsContent,
-	// 	triggerClass: classNames.tabTriggerClass,
-	// 	contentClass: classNames.tabContentClass,
-	// });
 }
 
 export default tabs;

@@ -230,16 +230,16 @@ mixin loop_while_sub(counter)
 			block
 
 //- works
-mixin breadcrumbs(data)
+mixin bread_crumbs(data)
 	- mod = data.mod || '';
-	.breadcrumbs
-		ul.breadcrumbs__list(class=mod)
+	.bread_crumbs
+		ul.bread_crumbs__list(class=mod)
 			each crumb, index in data.list
-				li.breadcrumbs__item
+				li.bread_crumbs__item
 					if (index == array.length - 1)
-						a.breadcrumbs__link.breadcrumbs__link--current_mod= crumb.text
+						a.bread_crumbs__link.bread_crumbs__link--current_mod= crumb.text
 					else
-						a.breadcrumbs__link(href=crumb.url)= crumb.text
+						a.bread_crumbs__link(href=crumb.url)= crumb.text
 
 //- works
 mixin menu(menuArray)
@@ -373,6 +373,12 @@ mixin heading(data)
 			.heading__btn_w
 				each item in data.btns
 					a(href="#" class=item.mod)= item.title
+
+mixin slider_navigation(buttonMod = '')
+	button.slider_navigation.slider_navigation--prev_mod.js-slider-navigation-prev(class=buttonMod type="button" aria-label="Prev slide")
+		+icon('arrow_prev', 'icon--size_mod')
+	button.slider_navigation.slider_navigation--next_mod.js-slider-navigation-next(class=buttonMod type="button" aria-label="Next slide")
+		+icon('arrow_prev', 'icon--size_mod')
 
 //- part for custom lazy load
 
