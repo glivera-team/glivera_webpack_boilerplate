@@ -1,7 +1,3 @@
-import { exist } from '../utils';
-
-const index = () => {
-	exist('.qq');
-};
+const index = () => {};
 
 export default index;
