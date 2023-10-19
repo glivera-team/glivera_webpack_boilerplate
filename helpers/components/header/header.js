@@ -1,10 +1,5 @@
 import { onWindowScroll, exist } from '../utils';
 
-/**
- * Main header constructor
- * contains default header funcionality
- * import and init this component into layout.js
- */
 const header = () => {
 	const SELECTORS = {
 		header: '.js-header',
