@@ -17,7 +17,7 @@ const initScrollSmoother = () => {
 		content: document.querySelector('.js-scroll-inner'),
 		smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
 		smoothTouch: false, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-		normalizeScroll: true,
+		normalizeScroll: { allowNestedScroll: true },
 	});
 };
 
