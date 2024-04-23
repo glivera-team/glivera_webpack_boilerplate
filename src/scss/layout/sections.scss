@@ -6,17 +6,69 @@
 
 	font-size: 1rem;
 
-	//remove this demo style
-	&.demo_mod {
-		@include flex_block(row, nowrap, center, center, center);
+	&.info {
+		display: flex;
+		align-items: flex-end;
+		height: 45rem;
+		padding: 3.75rem;
+		background-image: url(../images/bg.png);
+		background-size: cover;
 
-		height: calc(100vh - (var(--height-footer) + var(--height-header)));
+		.info_content {
+			width: 43.75rem;
+			padding: 3.125rem;
+			background-color: rgba(255, 255, 255, 0.9);
 
-		font-size: 4rem;
-		color: $white;
-		text-align: center;
+			h1 {
+				font-size: 3.125rem;
+				font-weight: 900;
+				color: $blue;
+				text-transform: uppercase;
+			}
 
-		background-color: $black;
+			p {
+				line-height: 1.5rem;
+				letter-spacing: 0.5px;
+			}
+
+			.info_link {
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 0.875rem;
+				font-weight: 700;
+				color: $blue;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)) padding-box,
+					linear-gradient(90deg, $blue, $yellow) border-box;
+				border: 1px solid transparent;
+				border-radius: 1.25rem;
+				padding: 0.7rem 2.75rem;
+				margin-top: 1.625rem;
+
+				&:hover {
+					color: $white;
+					text-decoration: none;
+					background: linear-gradient(90deg, $blue, $yellow) border-box;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 580px) {
+	.info {
+		padding: 0;
+		background-image: url(../images/bg-mb.png);
+
+		.info_content {
+			padding: 2.5rem 1.25rem;
+
+			h1 {
+				font-size: 2.5rem;
+			}
+		}
 	}
 }
 

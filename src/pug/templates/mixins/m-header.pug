@@ -1,2 +1,28 @@
 mixin header
 	header.header
+		nav.navbar
+			a.navbar_brand(href="#")
+			button.navbar_toggler.open-btn(type="button")
+				span.navbar_toggler_icon menu
+			div.navbar_collapse.hidden
+				button.navbar_toggler.close-btn(type="button")
+					span.navbar_toggler_icon close  
+				ul.navbar_nav
+					li.navbar_nav_item 
+						a.nav_item_link(href="#" title="About Us") About Us
+					li.navbar_nav_item 
+						a.nav_item_link(href="#" title="Knowledge Hub") Knowledge Hub
+					li.navbar_nav_item
+						a.nav_item_link(href="#" title="Innovators Directory") Innovators Directory	
+					li.navbar_nav_item
+						a.nav_item_link(href="#" title="Application Portal") Application Portal
+					li.navbar_nav_item
+						a.nav_item_link(href="#" title="News & Updates") News & Updates
+				div.line
+				ul.navbar_social
+					li.navbar_social_item 
+						a.icon.instagram(href="#" title="Instagram")
+					li.navbar_social_item 
+						a.icon.facebook(href="#" title="Facebook")
+					li.navbar_social_item
+						a.icon.twitter(href="#" title="Twitter")

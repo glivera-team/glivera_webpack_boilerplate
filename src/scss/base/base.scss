@@ -7,14 +7,14 @@
 :root {
 	--full-screen: calc(var(--vh, 1vh) * 100);
 
-	--height-header: 10rem;
+	--height-header: 5rem;
 	--height-footer: 10rem;
 	--gl-indent: 5rem;
 }
 
 html {
 	height: 100%;
-	font: 400 calc(100vw / 1920 * 10) / 1.33 $font_1;
+	// font: 400 calc(100vw / 1920 * 10) / 1.33 $font_1;
 }
 
 body {
@@ -25,6 +25,9 @@ body {
 
 	font-size: $font_size_base;
 	color: $color_text_base;
+	font-family: Roboto;
+	font-size: 1rem;
+	font-weight: 400;
 
 	-webkit-text-size-adjust: none;
 	-webkit-font-smoothing: antialiased;

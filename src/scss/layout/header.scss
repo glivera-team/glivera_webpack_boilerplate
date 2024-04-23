@@ -4,14 +4,150 @@
 	top: 0;
 	left: 0;
 
-	height: var(--height-header);
+	// height: var(--height-header);
 	width: 100%;
 
-	font-size: 1rem;
+	// font-size: 1rem;
 
 	will-change: transform;
 
 	@include z-index(header);
+
+	.navbar {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background-color: $white;
+		padding: 1.188rem 3.75rem;
+
+		.navbar_brand {
+			display: block;
+			width: 15.813rem;
+			height: 2.688rem;
+			background-image: url(../images/logo.png);
+			background-size: contain;
+		}
+
+		.navbar_toggler {
+			display: flex;
+			align-items: center;
+			background-color: transparent;
+			border: none;
+			cursor: pointer;
+
+			.navbar_toggler_icon {
+				font-size: 0.688rem;
+				font-weight: 900;
+				color: $main_color;
+				text-transform: uppercase;
+				border: 3px solid $main_color;
+				border-left: none;
+				border-right: none;
+
+				&:hover {
+					transform: scale(1.1);
+				}
+			}
+		}
+
+		.navbar_collapse {
+			position: absolute;
+			top: 0;
+			right: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 3.75rem;
+			width: 28rem;
+			background-color: $blue;
+			padding: 1.9rem 3.75rem 7.5rem 3.75rem;
+			transition: all 0.5s linear 0.5s;
+
+			&.hidden {
+				right: -45rem;
+			}
+
+			.navbar_toggler.close-btn {
+				align-self: flex-end;
+
+				.navbar_toggler_icon {
+					color: $white;
+					border: 3px solid $white;
+					border-left: none;
+					border-right: none;
+				}
+			}
+
+			.navbar_nav {
+				display: flex;
+				flex-direction: column;
+				gap: 1.875rem;
+				margin-top: 1.8rem;
+
+				.navbar_nav_item {
+					font-size: 1.875rem;
+					font-weight: 900;
+					color: var(--white-color);
+
+					.nav_item_link {
+						color: $white;
+					}
+				}
+			}
+
+			.line {
+				width: 100%;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+			}
+
+			.navbar_social {
+				display: flex;
+				gap: 1.875rem;
+
+				.navbar_social_item {
+					.icon {
+						width: 1.875rem;
+						height: 1.875rem;
+						background-size: cover;
+
+						&:hover {
+							transform: scale(1.1);
+						}
+					}
+
+					.instagram {
+						background-image: url(../images/icons/other-icons/instagram.svg);
+					}
+
+					.facebook {
+						background-image: url(../images/icons/other-icons/facebook.svg);
+					}
+
+					.twitter {
+						background-image: url(../images/icons/other-icons/twitter.svg);
+					}
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: 580px) {
+		.navbar {
+			padding: 1.25rem;
+
+			.navbar_brand {
+				width: 13.25rem;
+				height: 2.25rem;
+			}
+
+			.navbar_collapse {
+				gap: 3.75rem;
+				padding: 1.625rem 1.25rem 7.5rem 2.5rem;
+				width: 25.875rem;
+			}
+		}
+	}
 }
 
 //------------------------------------------------------------layout###
