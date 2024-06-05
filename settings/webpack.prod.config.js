@@ -56,18 +56,18 @@ module.exports = merge(webpackConfiguration, {
 				silent: false,
 				strict: true,
 			}),
-			new ImageMinimizerPlugin({
-				minimizer: {
-					implementation: ImageMinimizerPlugin.squooshMinify,
-					options: {
-						encodeOptions: {
-							mozjpeg: {
-								quality: 100,
-							},
-						},
-					},
-				},
-			}),
+			// new ImageMinimizerPlugin({
+			// 	minimizer: {
+			// 		implementation: ImageMinimizerPlugin.squooshMinify,
+			// 		options: {
+			// 			encodeOptions: {
+			// 				mozjpeg: {
+			// 					quality: 100,
+			// 				},
+			// 			},
+			// 		},
+			// 	},
+			// }),
 		],
 	},
 
